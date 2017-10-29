@@ -1,0 +1,25 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  socket: <%= ENV["WINDOWS_MYSQL_SOCKET"] %>
+
+development:
+  <<: *default
+  database: development_make_friend_database
+  username: <%= ENV["DEVELOP_DATABASE_USERNAME"] %>
+  password: <%= ENV["DEVELOP_DATABASE_PASSWORD"] %>
+
+test:
+  <<: *default
+  database: test_make_friend_database
+  username: <%= ENV["TEST_DATABASE_USERNAME"] %>
+  password: <%= ENV["TEST_DATABASE_PASSWORD"] %>
+
+production:
+  <<: *default
+  database: production_make_friend_database
+  username: <%= ENV["PRODUCTION_DATABASE_USERNAME"] %>
+  password: <%= ENV["PRODUCTION_DATABASE_PASSWORD"] %>
