@@ -22,6 +22,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'semantic-ui-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'capistrano-rails', group: :development
 
