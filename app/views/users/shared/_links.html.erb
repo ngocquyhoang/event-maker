@@ -11,6 +11,7 @@
   <% if devise_mapping.confirmable? && controller_name != 'confirmations' && devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
     <%= link_to "Can't access my account", "#", class: "shared-link no-outline", data: { toggle: "modal", target: "#troubleModal"  } %>
   <% end %>
+  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
 </div>
 
 <% if devise_mapping.confirmable? && controller_name != 'confirmations' && devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>

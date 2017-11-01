@@ -14,7 +14,7 @@ module UsersHelper
     commune_list_of_province = []
     commune_list.each do |commune|
       if commune['Ten_Tinh_Thanh_Pho'] == province && commune['Ten_Quan_Huyen'] == district
-        commune_list_of_province << commune 
+        commune_list_of_province << commune
       end
     end
 
@@ -26,7 +26,7 @@ module UsersHelper
     school_list_fil = []
     school_list.each do |school|
       if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
-        school_list_fil << school 
+        school_list_fil << school
       end
     end
 

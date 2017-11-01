@@ -5,15 +5,15 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
 
-  devise_for :admins, path: 'admins', skip: :registrations, controllers: { 
+  devise_for :admins, path: 'admins', skip: :registrations, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
   }
 
   namespace :users do
     resources :dashboard, only: [:index]
-    
-    devise_scope :user do 
+
+    devise_scope :user do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
     end
   end
@@ -31,12 +31,14 @@ Rails.application.routes.draw do
   post 'check_username_ajax', to: 'users#check_username_ajax', as: 'check_username_ajax'
 
   get ':username', to: 'users#show', as: :user
-  
-  devise_for :users, path: 'users', controllers: { 
+
+  devise_for :users, path: 'users', controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
+    omniauth_callbacks: "users/omniauth_callbacks",
+    root: "home#index"
   }
 end

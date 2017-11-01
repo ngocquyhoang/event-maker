@@ -20,12 +20,15 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'remotipart', '~> 1.3.1'
 gem 'semantic-ui-sass'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry'
 end
 
 group :development do

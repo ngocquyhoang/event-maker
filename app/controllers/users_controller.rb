@@ -2,10 +2,10 @@ class UsersController < Users::AccessController
   include UsersHelper
   before_action :show_user, only: :show
   before_action :set_user, except: [
-    :show, 
-    :get_district_ajax, 
-    :get_commune_ajax, 
-    :get_highschool_district_ajax, 
+    :show,
+    :get_district_ajax,
+    :get_commune_ajax,
+    :get_highschool_district_ajax,
     :get_highschool_list_ajax,
     :check_username_ajax
   ]
@@ -17,7 +17,7 @@ class UsersController < Users::AccessController
       @jobs = get_job_list
       @like_dislike_list = get_like_dislike_list
       @university_list = get_university_list
-      
+
       @address_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
       @distric_list_of_province = get_district_list(@user.address_province)
       @commune_list_of_province = get_commune_list(@user.address_province, @user.address_district)
