@@ -23,6 +23,8 @@ gem 'semantic-ui-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'momentjs-rails', '>= 2.9.0'
+
 
 gem 'capistrano-rails', group: :development
 

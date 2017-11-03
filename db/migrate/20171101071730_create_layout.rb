@@ -9,6 +9,8 @@ class CreateLayout < ActiveRecord::Migration[5.1]
       t.text :sub_description
       t.string :address
       t.integer :event_type_id
+
+      t.timestamps
     end
   end
 end
