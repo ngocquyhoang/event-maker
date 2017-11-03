@@ -18,6 +18,8 @@ class CreateEvent < ActiveRecord::Migration[5.1]
       t.string :seo_keyword
       t.boolean :use_form
       t.string :google_form_url
+
+      t.timestamps
     end
   end
 end

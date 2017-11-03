@@ -70,4 +70,8 @@ module UsersHelper
 
     return like_dislike_list
   end
+
+  def load_event
+    @events = Event.where(user_id: current_user.id).order(id: :desc)
+  end
 end

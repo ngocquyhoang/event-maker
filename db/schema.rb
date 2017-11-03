@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921102555) do
+ActiveRecord::Schema.define(version: 20171101072022) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,49 @@ ActiveRecord::Schema.define(version: 20170921102555) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cost_managements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "type", null: false
+    t.integer "amount", null: false
+    t.string "note"
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  create_table "event_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "label", null: false
+  end
+
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "slug"
+    t.integer "user_id"
+    t.integer "layout_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "main_description"
+    t.text "sub_description"
+    t.integer "event_type_id"
+    t.string "address"
+    t.string "scale"
+    t.integer "est_amount_people"
+    t.integer "expense"
+    t.string "title_layout"
+    t.string "seo_keyword"
+    t.boolean "use_form"
+    t.string "google_form_url"
+  end
+
+  create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "html"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "main_description"
+    t.text "sub_description"
+    t.string "address"
+    t.integer "event_type_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

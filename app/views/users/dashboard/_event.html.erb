@@ -1,0 +1,4 @@
+<h2>List events created</h2>
+<% @events.each do |event| %>
+  <div><%= link_to event.name, users_event_path(event) %></div>
+<% end %>

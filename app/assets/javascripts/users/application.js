@@ -4,7 +4,9 @@
 //= require 'users/dashboard'
 //= require 'mouse.parallax'
 //= require 'pnotify.min'
-//= require semantic-ui 
+//= require semantic-ui
+//= require 'users/moment'
+//= require 'users/bootstrap-datetimepicker'
 
 $(document).ready(function() {
   if ( $( document ).width() >= 992 ) {
