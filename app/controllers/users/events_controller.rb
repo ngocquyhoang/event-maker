@@ -1,6 +1,6 @@
-class Users::EventsController < ApplicationController
+class Users::EventsController < Users::AccessController
   include UsersHelper
-  before_action :find_event, only: [:show]
+  before_action :find_event, only: [:show, :update]
   before_action :load_event, only: [:create]
 
   def show
@@ -13,6 +13,10 @@ class Users::EventsController < ApplicationController
     respond_to do |format|
       format.js { render :file => "/users/dashboard/create_event.js.erb" }
     end
+  end
+
+  def update
+    @event.update_attributes event_params
   end
 
   private

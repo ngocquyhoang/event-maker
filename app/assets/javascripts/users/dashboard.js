@@ -1,13 +1,15 @@
 $(document).ready(function () {
   $('#datepicker-start').datetimepicker({
-    format: 'DD-MM-YYYY',
-    minDate: new Date()
+    format: 'DD-MM-YYYY HH:mm',
+    minDate: new Date(),
+    sideBySide: true,
   });
 
 // End date date and time picker
   $('#datepicker-end').datetimepicker({
-    format: 'DD-MM-YYYY',
+    format: 'DD-MM-YYYY HH:mm',
     minDate: new Date(),
+    sideBySide: true,
     useCurrent: false
   });
 

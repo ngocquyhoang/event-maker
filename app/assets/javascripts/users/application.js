@@ -7,6 +7,7 @@
 //= require semantic-ui
 //= require 'users/moment'
 //= require 'users/bootstrap-datetimepicker'
+//= require 'users/events'
 
 $(document).ready(function() {
   if ( $( document ).width() >= 992 ) {
