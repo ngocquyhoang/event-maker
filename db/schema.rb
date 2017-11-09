@@ -35,10 +35,14 @@ ActiveRecord::Schema.define(version: 20171101072022) do
     t.string "note"
     t.integer "event_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "label", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,6 +63,8 @@ ActiveRecord::Schema.define(version: 20171101072022) do
     t.string "seo_keyword"
     t.boolean "use_form"
     t.string "google_form_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,6 +76,8 @@ ActiveRecord::Schema.define(version: 20171101072022) do
     t.text "sub_description"
     t.string "address"
     t.integer "event_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
