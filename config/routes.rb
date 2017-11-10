@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :dashboard, only: [:index]
+    resources :layouts, only: [:create]
   end
 
   devise_for :admins, path: 'admins', skip: :registrations, controllers: {

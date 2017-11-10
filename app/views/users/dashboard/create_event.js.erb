@@ -1,6 +1,6 @@
 $('#list-event').html('<%= j render "users/dashboard/event" %>');
 $('#create_event_modal').modal('hide');
-jQuery(document).ready(function($) {
+jQuery(document).ready(function() {
   <% flash.each do |key, value| %>
   new PNotify({
     text: '<%= value %>',
