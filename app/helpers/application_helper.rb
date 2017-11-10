@@ -26,4 +26,12 @@ module ApplicationHelper
     address << user.address_province if user.address_province?
     return address.join(' - ')
   end
+
+  def load_event_type_label layout
+    if layout.event_type_id.nil?
+      "other"
+    else
+      EventType.find_by_id(layout.event_type_id).label
+    end
+  end
 end
