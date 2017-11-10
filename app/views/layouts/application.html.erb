@@ -23,14 +23,32 @@
 
   <body>
 
+    <div class='thetop'></div>
+
     <%= yield %>
 
     <div class="pre-loader"></div>
+
+    <button type="button" class='scroll-top no-outline'>
+      <i class="fa fa-angle-up"></i>
+    </button>
 
     <script type="text/javascript">
       $(window).load(function() {
         $(".pre-loader").fadeOut(500);
       });
+
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 50 ) {
+          $('.scroll-top').stop(true, true).fadeIn();
+        } else {
+          $('.scroll-top').stop(true, true).fadeOut();
+        }
+      });
+
+      $(function(){$(".scroll-top").click(function(){
+        $("html,body").animate({scrollTop:$(".thetop").offset().top},"1500"); return false})
+      })
     </script>
 
     <% unless flash.empty? %>

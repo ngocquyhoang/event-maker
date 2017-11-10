@@ -100,3 +100,35 @@
     }
   }
 }
+
+.scroll-top {
+  display: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  text-align: center;
+  border: 1px solid #435D8D;
+  background-color: #FFFFFF;
+  transition: all 0.4s;
+  padding: 0px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px; 
+
+  .fa {
+    font-size: 25px;
+    line-height: 30px;
+    color: #435D8D;
+    transition: all 0.4s;
+  }
+
+  &:hover {
+    border: 1px solid #FFFFFF;
+    background-color: #435D8D;
+
+    .fa {
+      color: #FFFFFF;
+    }
+  }
+}
+

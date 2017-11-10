@@ -1,16 +1,13 @@
-//= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require 'users/dashboard'
+//= require semantic-ui
+
 //= require 'mouse.parallax'
 //= require 'pnotify.min'
-//= require semantic-ui
+
+//= require 'users/dashboard'
 //= require 'users/moment'
-//= require 'users/bootstrap-datetimepicker'
 //= require 'users/events'
 
-$(document).ready(function() {
-  if ( $( document ).width() >= 992 ) {
-    $('#parallaxBackground').mouseParallax({ moveFactor: 7 });
-  }
-});
+//= require 'vendor/bootstrap.min'
+//= require 'vendor/bootstrap-datetimepicker'

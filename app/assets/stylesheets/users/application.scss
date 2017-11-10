@@ -4,45 +4,15 @@
 @import '../animate';
 @import '../pnotify-style';
 @import 'semantic-ui';
-@import 'bootstrap-datetimepicker';
+
+@import 'bootstrap.min';
+@import 'bootstrap-theme.min';
+@import '../bootstrap-datetimepicker';
 
 /* Google Font */
-@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura|Ribeye+Marrow:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 
-/* Parallax styles */
-
-.mouse-parallax-bg {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  position: fixed;
-  z-index: -1;
-}
-
-/* End Parallax styles */
-
-html, body {
-  font-family: 'Jura', sans-serif;
-}
-
-.header-font {
-  font-family: 'Bungee Inline', cursive;
-}
-
-.margin-top-20 {
-  margin-top: 20px !important;
-}
-
-.margin-left-20 {
-  margin-left: 20px !important;
-}
-
-.height-100vh {
-  height: 100vh;
-}
-
-// Pre loader
+/* Pre loader */
 
 .pre-loader{
   position: fixed;
@@ -57,26 +27,6 @@ html, body {
   background-color: #fff;
 }
 
-// Over loader
-
-.over-loader{
-  position: fixed;
-  display: none;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: asset-url('over-loader.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.65);
-}
-
-.over-flow-open {
-  overflow: hidden;
-  padding-right: 15px;
-}
 
 #userMainNav {
   background-color: #C63D0F;
