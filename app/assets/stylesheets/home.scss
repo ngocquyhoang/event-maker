@@ -1,35 +1,15 @@
-.home-screen {
-  #parallaxBackground {
-    background-image: url(asset-path('bg-home-2.jpg'));
-    background-repeat: no-repeat;
+#signModal {
+  .modal-header {
+    height: 50px;
+    border: 0px;
   }
-
-  .home-content {
-    background-color: rgba(0, 0, 0, 0.35)
-  }
-
-  .main-text-logo {
-    color: #ffffff;
-    margin-bottom: 30px;
-    font-size: 45px;
-    line-height: 50px;
-  }
-
-  .home-nav-box .btn {
-    font-size: 25px;
-    text-transform: uppercase;
-
-    &:hover {
-      color: #000000;
-    }
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .home-screen {
-      #parallaxBackground {
-      background-size: cover;
-      background-position: center center;
+  .sign-wrap {
+    ul > li {
+      width: 50%;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 16px;
+      line-height: 18px;
     }
   }
 }
