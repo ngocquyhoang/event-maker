@@ -190,8 +190,8 @@
         <div class="right-info">
           <ul>
             <li><a href="#"><i class="fa fa-envelope"></i>contact@zevent.date</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i>0869291156</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i>CT3 Ecogreen Nguyen Xien Ha Noi</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>(+84)869291156</a></li>
+            <li><a href="#"><i class="fa fa-map-marker"></i>Ecogreen Nguyen Xien Ha Noi</a></li>
           </ul>
         </div>
       </div>
@@ -215,3 +215,53 @@
     </div>
   </div>
 </footer>
+
+<div class="modal fade zevent-modal" id="successModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="modal-icon">
+              <%= image_tag "vendor/success.svg" %>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="modal-wrap-content">
+              <h3>Thanks for being awesome!</h3>
+              <p>Message was successful send!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade zevent-modal" id="errorModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="modal-icon">
+              <%= image_tag "vendor/error.svg" %>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="modal-wrap-content">
+              <h3>Something went wrong!</h3>
+              <p>Please try again in a few minutes!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -51,9 +51,11 @@
 
 .zevent-modal {
   .modal-content {
-    margin-top: 100px;
+    margin-top: 150px;
     border-radius: 0px;
     position: relative;
+    border: 0px;
+    box-shadow: none;
   }
 
   .close-modal {
@@ -67,6 +69,34 @@
 
     img {
       width: 30px;
+    }
+  }
+
+  .modal-icon {
+    padding: 20px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .modal-wrap-content {
+    text-align: left;
+    margin-top: 70px;
+
+    h3 {
+      font-size: 26px;
+      line-height: 30px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      margin-top: 0px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 0px;
     }
   }
 }
