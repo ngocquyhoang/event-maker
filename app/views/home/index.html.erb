@@ -6,9 +6,21 @@
           <li class="nav-item">
             <a href="#" class="no-outline">Layouts</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="no-outline" data-toggle="modal" data-target="#signModal" >Sign in / Sign up</a>
-          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", "#", class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "no-outline" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class: "no-outline" %>
+            </li>
+          <% end %>
         </ul>
         <div class="content-wrap">
           <div class="text-content">
@@ -21,33 +33,6 @@
     </div>
   </div>
 </section>
-
-<div class="modal fade zevent-modal" id="signModal" tabindex="-1" role="dialog" aria-labelledby="signModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close no-outline" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="sign-wrap">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-              <a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Sign up</a>
-            </li>
-            <li role="presentation">
-              <a href="#signin" aria-controls="signin" role="tab" data-toggle="tab">Sign in</a>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="signup">up</div>
-            <div role="tabpanel" class="tab-pane" id="signin">in</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <section class="second-section">
   <div class="container">
@@ -177,28 +162,28 @@
     <div class="row">
       <div class="col-md-6">
         <div class="row">
-          <form id="contact" action="" method="post">
+          <%= form_for @message, url: new_message_path, :remote => true, authenticity_token: true, :html => {:id => "contact"} do |f| %>
             <div class="col-md-6">
               <fieldset>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                <%= f.text_field :name, class: "form-control no-outline", placeholder: "Your name...", required: true %>
               </fieldset>
             </div>
             <div class="col-md-6">
               <fieldset>
-                <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                <%= f.email_field :email, class: "form-control no-outline", placeholder: "Your email...", required: true %>
               </fieldset>
             </div>
             <div class="col-md-12">
               <fieldset>
-                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                <%= f.text_area :message, rows: 6, class: "form-control no-outline", required: true, placeholder: "Your message..." %>
               </fieldset>
             </div>
             <div class="col-md-12">
               <fieldset>
-                <button type="submit" id="form-submit" class="btn">Send Message</button>
+                <button type="submit" id="form-submit" class="btn no-outline">Send Message</button>
               </fieldset>
             </div>
-          </form>
+          <% end %>
         </div>
       </div>
       <div class="col-md-5">
