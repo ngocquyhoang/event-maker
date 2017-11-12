@@ -1,0 +1,14 @@
+Log:
+<% @cost_log.each do |log| %>
+  <div class="row">
+    <div class="col-sm-1">
+      <%= log.id %>
+    </div>
+
+    <div class="col-sm-11">
+      Type: <%= log.cost_type %> Amount:<%= log.amount %> by
+      <span style="color: darkblue"><%= log.user.username %></span>
+      <p>Note:<%= log.note %></p>
+    </div>
+  </div>
+<% end %>
