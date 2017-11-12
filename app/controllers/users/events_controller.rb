@@ -8,7 +8,11 @@ class Users::EventsController < Users::AccessController
 
   def create
     event = Event.new
-    event.update_attributes event_params
+    if event.update_attributes event_params
+      flash[:success] = "Event created!!"
+    else
+      flash[:success] = "Something Wrong!!"
+    end
 
     respond_to do |format|
       format.js { render :file => "/users/dashboard/create_event.js.erb" }
@@ -16,7 +20,12 @@ class Users::EventsController < Users::AccessController
   end
 
   def update
-    @event.update_attributes event_params
+    if @event.update_attributes event_params
+      flash[:success] = "Event edited!!"
+    else
+      find_event
+      flash[:danger] = "Something Wrong!!"
+    end
   end
 
   private
