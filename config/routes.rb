@@ -39,7 +39,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: "users/omniauth_callbacks",
     root: "home#index"

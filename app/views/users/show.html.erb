@@ -289,90 +289,6 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="table-panel">
-                <div class="table-child ver-mid form-label">
-                  High school
-                </div>
-                <div class="table-child ver-mid">
-                  <div class="row margin-bottom-15">
-                    <div class="col">
-                      <%= f.select :highschool_province, @address_highschool_province_list.collect { |ahp| [ ahp['Ten_Tinh_Thanh_Pho'], ahp['Ten_Tinh_Thanh_Pho'] ] }, { include_blank: 'Select school province' }, class: "ui search dropdown js--select-highschool-province semantic-ui-form width-100" %>
-                    </div>
-                    <div class="col">
-                      <%= f.select :highschool_district, @address_highschool_district_list.collect { |ahd| [ ahd['Ten_Quan_Huyen'], ahd['Ten_Quan_Huyen'] ] }, { include_blank: 'Select school district' }, class: "ui search dropdown js--select-highschool-district semantic-ui-form width-100" %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <%= f.select :high_school, @highschool_list.collect { |hc| [ "#{hc['Ten_Truong']} -- #{hc['Dia_Chi']}", hc['Ten_Truong'] ] }, { include_blank: 'Select your High School' }, class: "ui search dropdown js--select-highschool semantic-ui-form width-100" %>
-                    </div>
-                  </div>
-                  
-                  <script type="text/javascript">
-                    $('.js--select-highschool-province').dropdown();
-                    $('.js--select-highschool-district').dropdown();
-                    $('.js--select-highschool').dropdown();
-                  </script>
-
-                  <script type="text/javascript">
-                    $('#user_highschool_province').on('change', function() {
-                      $.ajax({
-                        url: '<%= get_highschool_district_ajax_path %>',
-                        data: { 'province' : this.value },
-                        type: 'post',
-                        success: function(result){
-                          $('#user_highschool_district').children('option:not(:first)').remove();
-                          $('#user_high_school').children('option:not(:first)').remove();
-                          $('.js--select-highschool-district > .text').text('Select school district');
-                          $('.js--select-highschool > .text').text('Select your High School');
-                          $.each(result.distric_list, function(index, value) {
-                            $('#user_highschool_district')
-                              .append($("<option></option>")
-                              .attr("value",value.Ten_Quan_Huyen)
-                              .text(value.Ten_Quan_Huyen));
-                          });
-                        }}
-                      );
-                    })
-
-                    $('#user_highschool_district').on('change', function() {
-                      $.ajax({
-                        url: '<%= get_highschool_list_ajax_path %>',
-                        data: { 'province' : $('#user_highschool_province').val(), 'district' : this.value },
-                        type: 'post',
-                        success: function(result){
-                          $('#user_high_school').children('option:not(:first)').remove();
-                          $('.js--select-highschool > .text').text('Select your High School');
-                          $.each(result.school_list, function(index, value) {
-                            $('#user_high_school')
-                              .append($("<option></option>")
-                              .attr("value",value.Ten_Truong)
-                              .text(`${value.Ten_Truong} -- ${value.Dia_Chi}`));
-                          });
-                        }}
-                      );
-                    })
-                  </script>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="table-panel">
-                <div class="table-child ver-mid form-label">
-                  University
-                </div>
-                <div class="table-child ver-mid">
-                  <%= f.select :univesity, @university_list, { :include_blank => "Select your University"}, { :class => "ui fluid search dropdown js--select-univesity semantic-ui-form form-multipe" } %>
-
-                  <script type="text/javascript">
-                    $('.js--select-univesity').dropdown();
-                  </script>
-                </div>
-              </div>
-            </div>
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
@@ -405,6 +321,7 @@
           }).appendTo(image_holder);
 
       }
+      
       image_holder.show();
       reader.readAsDataURL($(this)[0].files[0]);
     } else {

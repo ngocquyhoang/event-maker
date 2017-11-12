@@ -17,15 +17,15 @@ en:
       deleted_account: "You've deleted your account. Thanks!"
     mailer:
       confirmation_instructions:
-        subject: "[Account notice] Please confirm your email :: Make Friend Around The World"
+        subject: "[Account notice] Please confirm your email :: EVENT MAKER"
       reset_password_instructions:
-        subject: "[Account notice] Reset your password :: Make Friend Around The World"
+        subject: "[Account notice] Reset your password :: EVENT MAKER"
       unlock_instructions:
-        subject: "[Account notice] Your account was locked :: Make Friend Around The World"
+        subject: "[Account notice] Your account was locked :: EVENT MAKER"
       email_changed:
-        subject: "[Account notice] Your email was changed :: Make Friend Around The World"
+        subject: "[Account notice] Your email was changed :: EVENT MAKER"
       password_change:
-        subject: "[Account notice] Your password was changed :: Make Friend Around The World"
+        subject: "[Account notice] Your password was changed :: EVENT MAKER"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
