@@ -1,24 +1,27 @@
-<% @is_global_layout = true %>
-
-<div class="user-main-wrap">
-  <div class="container">
-    <div class="user-edit-screen">
-      <div class="screen-header">
-        <h2 class="screen-title">Account setting</h2>
-      </div>
-      <div class="screen-body">
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <h3 class="screen-note">
-            Currently waiting confirmation for: <span class="note-email"><%= resource.unconfirmed_email %></span>
-          </h3>
-          <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-primary btn-lg" %>
-        <% else %>
-          <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-10 col-xs-12">
+<div class="user-wrapper">
+  <div class="user-profile-screen">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="user-profile">
+            <div class="user-avatar">
+              <%= avatar_for current_user %>
+            </div>
+            <div id="userInformationComboBox">
+              <%= render 'users/user_information_show', user_target: current_user %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+          <div class="user-setting-page">
+            <div class="user-page-header">
+              <h3 class="user-page-title">Account setting</h3>
+            </div>
+            <div class="user-page-body">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                 <div class="form-group js--email-field">
                   <div class="table-panel">
-                    <div class="table-child ver-mid text-left">
+                    <div class="table-child ver-mid field-label text-left">
                       Email
                     </div>
                     <div class="table-child ver-mid">
@@ -42,7 +45,7 @@
 
                 <div class="form-group js--new-password-field">
                   <div class="table-panel">
-                    <div class="table-child ver-mid text-left">
+                    <div class="table-child ver-mid field-label text-left">
                       New password
                     </div>
                     <div class="table-child ver-mid">
@@ -65,7 +68,7 @@
 
                 <div class="form-group js--comfirm-new-password-field">
                   <div class="table-panel">
-                    <div class="table-child ver-mid text-left">
+                    <div class="table-child ver-mid field-label text-left">
                       New password confirmation
                     </div>
                     <div class="table-child ver-mid">
@@ -86,7 +89,7 @@
 
                 <div class="form-group js--current-password-field">
                   <div class="table-panel">
-                    <div class="table-child ver-mid text-left">
+                    <div class="table-child ver-mid field-label text-left">
                       Current password
                     </div>
                     <div class="table-child ver-mid">
@@ -102,39 +105,46 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group submit-group">
-                  <div class="row">
-                    <div class="col-lg-6 col-md-12 text-right">
-                      <button type="button" class="btn btn-outline-danger btn-lg cursor-pointer" data-toggle="modal" data-target="#deleteAccountModal">
-                        Cancel my account
-                      </button>
-                    </div>
-                    <div class="col-lg-6 col-md-12 text-right">
-                      <%= f.submit "Save Setting", class: 'btn btn-outline-primary btn-lg cursor-pointer' %>
-                    </div>
-                  </div>
+                <div class="form-group text-right">
+                  <button type="submit" class="btn btn-submit btn-lg no-outline">
+                    Save Setting
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
                 </div>
               <% end %>
+              <div class="cancel-block">
+                <h4 class="cancel-title text-center"><span> Unhappy? </span></h4>
+                <button type="button" class="btn btn-cancel-account btn-lg no-outline" data-toggle="modal" data-target="#deleteAccountModal">
+                  Cancel my account
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade zevent-modal" id="deleteAccountModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
-        <button type="button" class="close cursor-pointer" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-right">
-        <button type="button" class="btn btn-secondary btn-lg cursor-pointer" data-dismiss="modal">No</button>
-        <%= button_to "Yes", registration_path(resource_name), method: :delete, class: 'btn btn-danger btn-lg cursor-pointer' %>
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <h3 class="modal-title">Are you sure?</h3>
+        <div class="modal-control">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" class="btn no-outline btn-modal btn-cancel" data-dismiss="modal">No</button>
+            </div>
+            <div class="col-sm-6">
+              <%= button_to "Yes", registration_path(resource_name), method: :delete, class: 'btn no-outline btn-modal btn-submit' %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -14,7 +14,16 @@
       </li>
     <% end %>
     <% if user_target.dob? %>
-      <li class="infor-line text-center"><b><%= user_target.dob.strftime("%Y %B %d") %> - <%= get_age user_target.dob %> years old </b></li>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            Birthday:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.dob.strftime("%Y %B %d") %>
+          </div>
+        </div>
+      </li>
     <% end %>
     <% if user_target.address_commune? || user_target.address_district? || user_target.address_province? %>
       <li class="infor-line">
@@ -62,6 +71,19 @@
             <%= user_target.dislike.gsub('|', ', ') %>
           </div>
         </div>
+      </li>
+    <% end %>
+    <% if user_target == current_user %>
+      <li class="setting-redirect text-center">
+        <% if current_page?(edit_user_registration_path) %>
+          <% if user_target.username? %>
+            <%= link_to "My Profile", user_path(current_user.username), class: "btn no-outline" %>
+          <% else %>
+            <%= link_to "My Profile", user_path(current_user.id), class: "btn no-outline" %>
+          <% end %>
+        <% else %>
+          <%= link_to "Account Setting", edit_user_registration_path, class: "btn no-outline" %>
+        <% end %>
       </li>
     <% end %>
   </ul>

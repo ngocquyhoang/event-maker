@@ -1,14 +1,11 @@
 <% if remotipart_submitted? %>
-  $('body').removeClass('over-flow-open');
   $('#userAvatarBox').html('<%= j avatar_for @user %>');
-  $('#editUserAvatarModal #user_avatar').val('');
-  $("#preview_image").empty();
-  $('.js--add-image').show();
-  $('.over-loader').hide();
-<% else %>
-  $('body').removeClass('over-flow-open');
-  $('#editUserAvatarModal @user_avatar').val('');
-  $("#preview_image").empty();
-  $('.js--add-image').show();
-  $('.over-loader').hide();
 <% end %>
+
+$('#editUserAvatarModal #user_avatar').val('');
+$("#preview_image").empty();
+$('.js--add-image').show();
+$('#editUserAvatarModal #formUploadButton .fa').removeClass('fa-spinner');
+$('#editUserAvatarModal #formUploadButton .fa').removeClass('fa-spin');
+$('#editUserAvatarModal #formUploadButton .fa').addClass('fa-cloud-upload');
+$('#editUserAvatarModal').bsmodal('hide');

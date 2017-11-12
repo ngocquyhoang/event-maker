@@ -14,13 +14,10 @@
         </li>
         <li class="nav-item">
           <% if current_user.username? %>
-            <%= link_to "My Profile", user_path(current_user.username), class: "no-outline" %>
+            <%= link_to "Profile", user_path(current_user.username), class: "no-outline" %>
           <% else %>
-            <%= link_to "My Profile", user_path(current_user.id), class: "no-outline" %>
+            <%= link_to "Profile", user_path(current_user.id), class: "no-outline" %>
           <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Account Setting", edit_user_registration_path, class: "no-outline" %>
         </li>
         <li class="nav-item">
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "no-outline" %>
