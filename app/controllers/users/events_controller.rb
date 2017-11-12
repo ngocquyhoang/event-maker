@@ -2,6 +2,7 @@ class Users::EventsController < Users::AccessController
   include UsersHelper
   before_action :find_event, only: [:show, :update]
   before_action :load_event, only: [:create]
+  before_action :load_cost, only: [:show]
 
   def show
   end
@@ -38,5 +39,9 @@ class Users::EventsController < Users::AccessController
 
   def find_event
     @event = Event.find_by id: params[:id]
+  end
+
+  def load_cost
+    @cost_log = CostManagement.where(event_id: params[:id]).order(id: :desc)
   end
 end

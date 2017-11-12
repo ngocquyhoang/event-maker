@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :events, only: [:new, :create, :edit, :update, :show]
     resources :layouts, only: [:index]
+    resources :cost_managements, only: [:create]
 
     devise_scope :user do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
