@@ -16,7 +16,6 @@ class UsersController < Users::AccessController
     if @user == current_user
       @jobs = get_job_list
       @like_dislike_list = get_like_dislike_list
-      @university_list = get_university_list
 
       @address_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
       @distric_list_of_province = get_district_list(@user.address_province)
@@ -56,14 +55,6 @@ class UsersController < Users::AccessController
 
   def get_commune_ajax
     render json: { 'commune_list': get_commune_list(params['province'], params['district']) }
-  end
-
-  def get_highschool_district_ajax
-    render json: { 'distric_list': get_district_list(params['province']) }
-  end
-
-  def get_highschool_list_ajax
-    render json: { 'school_list': get_school_list(params['province'], params['district']) }
   end
 
   def check_username_ajax

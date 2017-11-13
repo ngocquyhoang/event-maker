@@ -1,26 +1,94 @@
-<h2>Log in Admin</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="admin-wrapper admin-sign-page">
+  <div class="admin-sign-screen">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 hidden-sm hidden-xs">
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="sign-form">
+            <h2 class="page-title">Sign In</h2>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "admin-account-form"}) do |f| %>
+              <div class="form-group js--email-field">
+                <% if alert %>
+                  <%= f.email_field :email, autofocus: true, class: 'form-control is-invalid', placeholder: "Email" %>
+                  <div class="invalid-feedback"></div>
+                <% else %>
+                  <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Email" %>
+                  <div class="invalid-feedback"></div>
+                <% end %>
+              </div>
+              <div class="form-group js--password-field">
+                <% if alert %>
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control is-invalid', placeholder: "Password" %>
+                  <div class="invalid-feedback"></div>
+                <% else %>
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password" %>
+                  <div class="invalid-feedback"></div>
+                <% end %>
+              </div>
+              <% if devise_mapping.rememberable? %>
+                <div class="form-group remember-block">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid">
+                      <label class="switch--toggle switch--rectangular switch--theme-green">
+                        <%= f.check_box :remember_me, class: 'switch--checkbox' %>
+                        <span class="switch--slider"></span>
+                      </label>
+                    </div>
+                    <div class="table-child ver-mid">
+                      <span class="sign-note-text">Keep me signed in</span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <div class="form-group">
+                <%= f.submit "Sign in", class: "btn btn-block no-outline sign-button" %>
+              </div>
+            <% end %>
+            <div class="admin-nav-box">
+              <h3 class="admin-nav-title">Trouble?</h3>
+              <%= link_to "Forgot password?", new_password_path(resource_name), class: "btn btn-block btn-admin-nav no-outline" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%#= render "admins/shared/links" %>
+<script type="text/javascript">
+  $( '#admin_email' ).keyup( () => {
+    $( '.admin-registration-form .error-message' ).text( '' )
+    if ( validateEmail( $( '#admin_email' ).val() ) ) {
+      $( '#admin_email' ).removeClass('is-invalid');
+      $( '#admin_email' ).addClass('is-valid');
+      $( '.js--email-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_email' ).removeClass('is-valid');
+      $( '#admin_email' ).addClass('is-invalid');
+      if ( $( '#admin_email' ).val() == "" ) {
+        $( '.js--email-field .invalid-feedback' ).text( "Email can't be blank" )
+      } else {
+        $( '.js--email-field .invalid-feedback' ).text( 'Email is invalid' )
+      }
+    }
+  })
+
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+
+  $( '#admin_password' ).keyup( () => {
+    $( '.admin-registration-form .error-message' ).text( '' )
+    if ( $( '#admin_password' ).val() == "" ) {
+      $( '#admin_password' ).removeClass('is-valid');
+      $( '#admin_password' ).addClass('is-invalid');
+      $( '.js--password-field .invalid-feedback' ).text( "Password can't be blank" )
+    } else {
+      $( '#admin_password' ).removeClass('is-invalid');
+      $( '#admin_password' ).addClass('is-valid');
+      $( '.js--password-field .invalid-feedback' ).text('')
+    }
+  })
+</script>

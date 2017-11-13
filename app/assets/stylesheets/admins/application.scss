@@ -1,7 +1,338 @@
-/*
- *= require_tree .
- *= require '../users/bootstrap-datetimepicker'
- *= require_self
- */
+@import 'dashboard';
+@import '../pnotify.min';
+@import '../pnotify-style';
 
-/* CSS USER */
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Open+Sans:300i,400,600,700');
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.pre-loader{
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: asset-url('pre-loader.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+}
+
+.user-main-nav {
+  background-color: rgba(65, 91, 144, 0.85);
+  color: #ffffff;
+
+  .navbar-header {
+    .navbar-brand {
+      height: 65px;
+      line-height: 35px;
+      font-size: 30px;
+      color: #ffffff;
+      font-family: 'Cabin Sketch', cursive;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+
+  .main-menu {
+    .nav-item {
+      padding: 0px;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      a {
+        padding: 15px 20px;
+        line-height: 35px;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 300;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.sub-footer {
+  background-color: #415b90;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 9px 0px;
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.admin-wrapper {
+  padding-top: 70px;
+  min-height: calc(100vh - 40px);
+}
+
+.table-panel {
+  display: table;
+  width: 100%;
+
+  .table-child {
+    display: table-cell;
+
+    &.ver-mid {
+      vertical-align: middle;
+    }
+  }
+}
+
+.no-outline:active,
+.no-outline:focus {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.admin-wrapper.admin-sign-page {
+  background-image: asset-url('bg-home-2-80.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.switch--toggle {
+  position: relative;
+  display: block;
+  width: 53px;
+  height: 27px;
+  margin-bottom: 0px;
+
+  .switch--checkbox {
+    display: none;
+  }
+
+  .switch--slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .6s;
+    transition: .6s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 23px;
+      width: 23px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+  }
+
+  .switch--checkbox:checked + .switch--slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+
+  &.switch--theme-green {
+    .switch--checkbox:checked + .switch--slider {
+      background-color: #28a745;
+    }
+
+    .switch--checkbox:focus + .switch--slider {
+      box-shadow: 0 0 1px #28a745;
+    }
+  }
+
+  &.switch--rectangular {
+    .switch--slider {
+      border-radius: 3px;
+
+      &:before {
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+.admin-sign-screen {
+  padding: 20px 0px 50px;
+
+  .content-wrap-block {
+    margin-top: 40px;
+    text-align: center;
+
+    .page-main-title {
+      font-family: 'Cabin Sketch', cursive;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 40px;
+      line-height: 45px;
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 0px;
+    }
+
+    .page-note {
+      color: #ffffff;
+      font-size: 17px;
+      line-height: 24px;
+      margin-bottom: 50px;
+    }
+
+    .btn-go-home {
+      padding: 12px 25px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 22px;
+      line-height: 26px;
+      border: 1px solid #ffffff;
+      background-color: transparent;
+      font-family: 'Cabin Sketch', cursive;
+      margin-bottom: 20px;
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        color: #333333;
+      }
+
+      .fa {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .sign-form {
+    margin-top: 60px;
+    padding: 15px;
+
+    .page-title {
+      font-family: 'Cabin Sketch', cursive;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 35px;
+      line-height: 40px;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 0px;
+    }
+
+    .redirect-form {
+      .btn-redirect {
+        padding: 12px;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 20px;
+        border: 1px solid #ffffff;
+        background-color: transparent;
+        font-family: 'Cabin Sketch', cursive;
+        margin-bottom: 20px;
+        transition: all 0.5s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 1);
+          color: #333333;
+        }
+      }
+    }
+
+    .admin-account-form {
+      .form-control {
+        font-size: 18px;
+        padding: 8px 12px;
+        height: auto;
+        line-height: 30px;
+        background-color: transparent;
+        color: #ffffff;
+        border-color: #ffffff;
+
+        &.is-valid {
+          border-color: #28a745;
+          color: #28a745;
+        }
+
+        &.is-invalid {
+          border-color: #dc3545;
+          color: #dc3545;
+        }
+      }
+
+      .invalid-feedback {
+        color: #dc3545;
+        margin-top: 6px;
+        font-size: 15px;
+      }
+
+      .sign-note-text {
+        color: #ffffff;
+        font-size: 15px;
+
+        a {
+          text-decoration: none;
+        }
+      }
+
+      .sign-button {
+        padding: 12px;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 20px;
+        border: 1px solid #ffffff;
+        background-color: transparent;
+        font-family: 'Cabin Sketch', cursive;
+        transition: all 0.5s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 1);
+          color: #333333;
+        }
+      }
+    }
+
+    .admin-nav-box {
+      margin-top: 22px;
+      padding-top: 15px;
+      border-top: 1px solid #dddddd;
+
+      .admin-nav-title {
+        color: #eeeeee;
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 15px;
+        font-family: 'Cabin Sketch', cursive;
+        text-align: center;
+      }
+
+      .btn-admin-nav {
+        border: 0px;
+        padding: 12px 20px;
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 22px;
+        font-family: 'Cabin Sketch', cursive;
+        background-color: #3D5B94;
+      }
+    }
+  }
+}

@@ -1,16 +1,57 @@
-<h2>Forgot your password?</h2>
+<div class="admin-wrapper admin-sign-page">
+  <div class="admin-sign-screen">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 hidden-sm hidden-xs">
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="sign-form">
+            <h2 class="page-title">Reset password</h2>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "admin-account-form"}) do |f| %>
+              
+              <div class="form-group js--email-field">
+                <% if resource.errors[:email].empty? %>
+                  <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Your email...." %>
+                <% else %>
+                  <%= f.email_field :email, autofocus: true, class: 'form-control is-invalid', placeholder: "Your email...." %>
+                <% end %>
+                <div class="invalid-feedback"><p><%= resource.errors.full_messages[0] unless resource.errors.empty? %></p></div>
+              </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+              <div class="form-group">
+                <%= f.submit "Reset password", class: "btn btn-block no-outline sign-button" %>
+              </div>
+            <% end %>
+            <div class="admin-nav-box">
+              <h3 class="admin-nav-title">or All done?</h3>
+              <%= link_to "Sign in", new_session_path(resource_name), class: "btn btn-block btn-admin-nav no-outline" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+<script type="text/javascript">
+  $( '#admin_email' ).keyup( () => {
+    if ( validateEmail( $( '#admin_email' ).val() ) ) {
+      $( '#admin_email' ).removeClass('is-invalid');
+      $( '#admin_email' ).addClass('is-valid');
+      $( '.invalid-feedback' ).text('')
+    } else {
+      $( '#admin_email' ).removeClass('is-valid');
+      $( '#admin_email' ).addClass('is-invalid');
+      if ( $( '#admin_email' ).val() == "" ) {
+        $( '.invalid-feedback' ).text("Email can't be blank")
+      } else {
+        $( '.invalid-feedback' ).text("Email is invalid")
+      }
+    }
+  })
 
-<%= render "admins/shared/links" %>
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+</script>
