@@ -1,0 +1,21 @@
+<nav class="navbar user-main-nav navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header ">
+      <%= link_to "Admin :: Event Maker", root_path, class: "navbar-brand no-outline" %>
+    </div>
+    
+    <ul class="main-menu nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <%= link_to "Layout", "#", class: "no-outline" %>
+      </li>
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Dashboard", admins_dashboard_index_path, class: "no-outline" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "no-outline" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
