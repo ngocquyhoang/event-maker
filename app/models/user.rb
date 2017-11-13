@@ -3,11 +3,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :lockable, :omniauthable,
     omniauth_providers: [:facebook, :google_oauth2]
+
   has_many :event
 
   mount_uploader :avatar, User::AvatarUploader
 
-  validates :username, uniqueness: true, length: { in: 6..20 }
+  validates :username, uniqueness: true, length: { in: 6..20 }, :allow_blank => true
 
   def soft_delete
     update_attribute(:deleted_at, Time.current)

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   patch 'update_information/:id', to: 'users#update_information', as: 'update_information'
   put 'update_information/:id', to: 'users#update_information'
 
+  post 'new_message', to: 'home#new_message', as: 'new_message'
+
   patch 'upload_avatar/:id', to: 'users#upload_avatar', as: 'upload_avatar'
   put 'upload_avatar/:id', to: 'users#upload_avatar'
 
@@ -40,7 +42,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: "users/omniauth_callbacks",
     root: "home#index"

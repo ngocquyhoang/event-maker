@@ -14,15 +14,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :address_commune
       t.string :address_district
       t.string :address_province
-      t.string :highschool_province
-      t.string :highschool_district
       t.text :job
       t.text :hobby
       t.text :dislike
-      t.text :high_school
-      t.text :univesity
       t.datetime :dob
-      t.boolean :is_verified,           default: false
 
       ## Recoverable
       t.string   :reset_password_token,               unique: true
@@ -39,10 +34,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      t.string   :confirmation_token,   unique: true
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email
+      # t.string   :confirmation_token,   unique: true
+      # t.datetime :confirmed_at
+      # t.datetime :confirmation_sent_at
+      # t.string   :unconfirmed_email
 
       ## Lockable
       t.integer  :failed_attempts,      default: 0,   null: false

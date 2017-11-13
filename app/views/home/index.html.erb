@@ -1,28 +1,263 @@
-<div class="home-screen">
-  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
-  <div class="home-content">
-    <div class="container">
-      <div class="row height-100vh align-items-center">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-10 col-xs-12">
-              <h1 class="main-text-logo text-center header-font">Make Friend Around The World</h1>
+<section class="first-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline list-unstyled zevent-nav">
+          <li class="nav-item">
+            <a href="#" class="no-outline">Layouts</a>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", users_dashboard_index_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "no-outline" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class: "no-outline" %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="content-wrap">
+          <div class="text-content">
+            <h2>Welcome To Event Maker</h2>
+            <div class="line-dec"></div>
+            <span>Easy &amp; professional event management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="second-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <div class="service-item">
+          <div class="icon">
+            <%= image_tag "vendor/first-icon.png" %>
+          </div>
+          <h4>Quick Editing</h4>
+          <p>Aliquam ex velit, viverra eu tristique vel, rhoncus nec ligula. In vel massa sed dolor pharetra interdum vitae posuere.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="service-item">
+          <div class="icon">
+            <%= image_tag "vendor/second-icon.png" %>
+          </div>
+          <h4>Responsive Layout</h4>
+          <p>Sed pulvinar ipsum id leo volutpat, in convallis lectus molestie. Aliquam nisi sapien, faucibus eu consequat id, egestas vitae augue.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="service-item">
+          <div class="icon">
+            <%= image_tag "vendor/third-icon.png" %>
+          </div>
+          <h4>Quick Support</h4>
+          <p>Aliquam ex velit, viverra eu tristique vel, rhoncus nec ligula. In vel massa sed dolor pharetra interdum vitae posuere.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="service-item">
+          <div class="icon">
+            <%= image_tag "vendor/fourth-icon.png" %>
+          </div>
+          <h4>Voice Chat</h4>
+          <p>Sed pulvinar ipsum id leo volutpat, in convallis lectus molestie. Aliquam nisi sapien, faucibus eu consequat id, egestas vitae augue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="third-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="left-image col-md-4">
+          <%= image_tag "vendor/left-image.png" %>
+        </div>
+        <div class="right-text col-md-8">
+          <h4><em>Integer suscipit</em><br>Nullam volutpat mi vel</h4>
+          <p>Nulla tempor lectus at mauris bibendum porttitor. Aenean ultrices orci id nibh sodales, vel suscipit arcu vulputate. Pellentesque hendrerit diam quis leo dignissim, lacinia interdum nunc volutpat. Morbi lobortis mattis lectus, a dictum augue lobortis non. Fusce eu nulla sagittis, scelerisque eros fringilla, commodo dolor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fourth-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <div class="portfolio-item first-item">
+          <div class="image">
+            <a href="<%= asset_path 'vendor/01-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/first-item.jpg" %></a>
+          </div>
+          <div class="text">
+            <span>Nature</span>
+            <h4>Robotic Light</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="portfolio-item second-item">
+          <div class="image">
+            <a href="<%= asset_path 'vendor/02-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/second-item.jpg" %></a>
+          </div>
+          <div class="text">
+            <span>Architect</span>
+            <h4>Rock Solid</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="portfolio-item third-item">
+          <div class="image">
+            <a href="<%= asset_path 'vendor/03-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/third-item.jpg" %></a>
+          </div>
+          <div class="text">
+            <span>Focus</span>
+            <h4>Clean Design</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="send-to-portfolio">
+          <span>Do you want to see more?</span>
+          <div class="primary-button">
+            <a href="portfolio-page.html">Visit layouts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fivth-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1"> 
+        <div class="left-text col-md-8">
+          <h4><em>Aliquam efficitur</em><br>augue et libero vulputate feugiat</h4>
+          <p>Mauris eget orci porta, aliquam neque sit amet, porttitor dui. Donec efficitur vehicula justo quis varius. Vivamus pharetra lorem eget turpis ornare tempus. Vivamus ac sodales lectus. Morbi rhoncus feugiat neque ultrices rhoncus. Maecenas ultrices, nisl pellentesque hendrerit dignissim, ante purus hendrerit urna, eu tristique est massa quis risus.</p>
+        </div>
+        <div class="right-image col-md-4">
+          <%= image_tag "vendor/right-image.png" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sixth-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <%= form_for @message, url: new_message_path, :remote => true, authenticity_token: true, :html => {:id => "contact"} do |f| %>
+            <div class="col-md-6">
+              <fieldset>
+                <%= f.text_field :name, class: "form-control no-outline", placeholder: "Your name...", required: true %>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset>
+                <%= f.email_field :email, class: "form-control no-outline", placeholder: "Your email...", required: true %>
+              </fieldset>
+            </div>
+            <div class="col-md-12">
+              <fieldset>
+                <%= f.text_area :message, rows: 6, class: "form-control no-outline", required: true, placeholder: "Your message..." %>
+              </fieldset>
+            </div>
+            <div class="col-md-12">
+              <fieldset>
+                <button type="submit" id="form-submit" class="btn no-outline">Send Message</button>
+              </fieldset>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="right-info">
+          <ul>
+            <li><a href="#"><i class="fa fa-envelope"></i>contact@zevent.date</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>(+84)869291156</a></li>
+            <li><a href="#"><i class="fa fa-map-marker"></i>Ecogreen Nguyen Xien Ha Noi</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="https://github.com/ngocquyhoang"><i class="fa fa-github"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+        <p>Copyright &copy; 2017 Event Maker | Design: <a href="https://ngocquyhoang.com" target="_blank">ngocquyhoang.com</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal fade zevent-modal" id="successModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="modal-icon">
+              <%= image_tag "vendor/success.svg" %>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-10 col-xs-12 home-nav-box">
-              <% if user_signed_in? || admin_signed_in? %>
-                <% if current_user %>
-                  <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-lg btn-block" %>
-                <% elsif current_admin %>
-                  <%= link_to "Go to Dashboard", admins_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                  <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-lg btn-block" %>
-                <% end %>
-              <% else %>
-                <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light btn-lg btn-block margin-top-20" %>
-              <% end %>
+          <div class="col-md-8 col-sm-12">
+            <div class="modal-wrap-content">
+              <h3>Thanks for being awesome!</h3>
+              <p>Message was successful send!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade zevent-modal" id="errorModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="modal-icon">
+              <%= image_tag "vendor/error.svg" %>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="modal-wrap-content">
+              <h3>Something went wrong!</h3>
+              <p>Please try again in a few minutes!</p>
             </div>
           </div>
         </div>

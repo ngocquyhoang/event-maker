@@ -1,0 +1,11 @@
+<% if @success %>
+  $("#successModal").modal("show");
+  $("#message_name").val("");
+  $("#message_email").val("");
+  $("#message_message").val("");
+<% else %>
+  $("#errorModal").modal("show");
+  $("#message_name").val("");
+  $("#message_email").val("");
+  $("#message_message").val("");
+<% end %>

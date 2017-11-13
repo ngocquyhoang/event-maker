@@ -1,29 +1,40 @@
-<div class="user-screen">
-  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
-  <div class="user-content">
+<div class="user-wrapper user-sign-page">
+  <div class="user-sign-screen">
     <div class="container">
-      <div class="row height-100vh align-items-center">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-10 col-xs-12">
-              <div class="user-main-block">
-                <div class="user-header">
-                  <h1 class="main-text-logo text-center header-font">Thanks you</h1>
+      <div class="row">
+        <div class="col-md-8 hidden-sm hidden-xs">
+          <div class="content-wrap-block">
+            <h2 class="page-main-title">Thanks you</h2>
+            <div class="page-note">
+              If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
+            </div>
+            <%= link_to root_path, class: "btn btn-lg btn-go-home" do %>
+              <i class="fa fa-home" aria-hidden="true"></i> Go to Home
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="sign-form">
+            <h2 class="page-title">Reset password</h2>
+            <div class="redirect-form">
+              <%= link_to "Sign In", new_user_session_path, class: "btn btn-block btn-redirect" %>
+              <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-block btn-redirect" %>
+            </div>
+            <div class="omi-authenticate">
+              <h3 class="omi-title">or Sign in with</h3>
+              <div class="row">
+                <div class="col-md-6 col-sm-12 text-center">
+                  <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-block btn-omi btn-facebook no-outline" do %>
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    Facebook
+                  <% end %>
                 </div>
-                <div class="user-block-note">
-                  If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
+                <div class="col-md-6 col-sm-12 text-center">
+                  <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-block btn-omi btn-google no-outline" do %>
+                    <i class="fa fa-google" aria-hidden="true"></i>
+                    Google
+                  <% end %>
                 </div>
-                <% unless user_signed_in? %>
-                  <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                      <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-lg btn-block btn-margin-sm-bottom" %>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                    </div>
-                  </div>
-                <% end %>
-                <%= link_to "Go to Home", root_path, class: "btn btn-outline-light btn-lg btn-block margin-top-20" %>
               </div>
             </div>
           </div>

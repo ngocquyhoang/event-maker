@@ -8,18 +8,18 @@ default: &default
 
 development:
   <<: *default
-  database: development_make_friend_database
+  database: development_event_maker_database
   username: <%= ENV["DEVELOP_DATABASE_USERNAME"] %>
   password: <%= ENV["DEVELOP_DATABASE_PASSWORD"] %>
 
 test:
   <<: *default
-  database: test_make_friend_database
+  database: test_event_maker_database
   username: <%= ENV["TEST_DATABASE_USERNAME"] %>
   password: <%= ENV["TEST_DATABASE_PASSWORD"] %>
 
 production:
   <<: *default
-  database: production_make_friend_database
+  database: production_event_maker_database
   username: <%= ENV["PRODUCTION_DATABASE_USERNAME"] %>
   password: <%= ENV["PRODUCTION_DATABASE_PASSWORD"] %>
