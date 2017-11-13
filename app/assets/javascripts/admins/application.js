@@ -1,0 +1,9 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.remotipart
+//= require 'mouse.parallax'
+//= require 'pnotify.min'
+//= require semantic-ui
+//= require '../users/moment'
+//= require '../users/bootstrap-datetimepicker'
+//= require 'admins/dashboard'

@@ -29,6 +29,7 @@
                   id: "datepicker-start-edit" %>
               </div>
             </div>
+
             <div class="col-sm-6">
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <%= f.label :end_date, class:"form-label", for:"regular1" %>
@@ -47,12 +48,14 @@
           <div class="row" style="margin: 5px 0;">
             <div class="col-sm-6">
               <%= f.label :layout, class:"form-label" %>
-              <%= f.select :layout_id, class:"form-control" %>
+              <%= f.select :layout_id, Layout.all.collect { |l| [ l.title, l.id ] },
+                class:"form-control" %>
             </div>
 
             <div class="col-sm-6">
               <%= f.label :event_type, class:"form-label" %>
-              <%= f.select :event_type_id, class:"form-control" %>
+              <%= f.select :event_type_id, EventType.all.collect { |e| [ e.label, e.id ] },
+                class:"form-control" %>
             </div>
           </div>
 

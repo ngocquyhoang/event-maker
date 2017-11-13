@@ -2,13 +2,18 @@ class Users::EventsController < Users::AccessController
   include UsersHelper
   before_action :find_event, only: [:show, :update]
   before_action :load_event, only: [:create]
+  before_action :load_cost, only: [:show]
 
   def show
   end
 
   def create
     event = Event.new
-    event.update_attributes event_params
+    if event.update_attributes event_params
+      flash[:success] = "Event created!!"
+    else
+      flash[:success] = "Something Wrong!!"
+    end
 
     respond_to do |format|
       format.js { render :file => "/users/dashboard/create_event.js.erb" }
@@ -16,7 +21,12 @@ class Users::EventsController < Users::AccessController
   end
 
   def update
-    @event.update_attributes event_params
+    if @event.update_attributes event_params
+      flash[:success] = "Event edited!!"
+    else
+      find_event
+      flash[:danger] = "Something Wrong!!"
+    end
   end
 
   private
@@ -29,5 +39,9 @@ class Users::EventsController < Users::AccessController
 
   def find_event
     @event = Event.find_by id: params[:id]
+  end
+
+  def load_cost
+    @cost_log = CostManagement.where(event_id: params[:id]).order(id: :desc)
   end
 end

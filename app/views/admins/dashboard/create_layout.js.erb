@@ -1,0 +1,4 @@
+$('#create_layout_modal').css('display','none');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+$('#list-layout').html('<%= j render "admins/dashboard/layout" %>');
