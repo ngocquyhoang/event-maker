@@ -16,7 +16,6 @@ class UsersController < Users::AccessController
     if @user == current_user
       @jobs = get_job_list
       @like_dislike_list = get_like_dislike_list
-      @university_list = get_university_list
 
       @address_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
       @distric_list_of_province = get_district_list(@user.address_province)

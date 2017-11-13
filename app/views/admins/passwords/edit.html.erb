@@ -1,25 +1,88 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+<div class="admin-wrapper admin-sign-page">
+  <div class="admin-sign-screen">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 hidden-sm hidden-xs">
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <div class="sign-form">
+            <h2 class="page-title">Reset password</h2>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: "admin-account-form"}) do |f| %>
+              <%= f.hidden_field :reset_password_token %>
+              <div class="form-group js--password-field">
+                <% if resource.errors.empty? %>
+                  <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: "New password" %>
+                  <div class="invalid-feedback"></div>
+                <% else %>
+                  <% if resource.errors.messages[:password].empty? %>
+                    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'is-valid form-control', placeholder: "New password" %>
+                    <div class="invalid-feedback"></div>
+                  <% else %>
+                    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'is-invalid form-control', placeholder: "New password" %>
+                    <div class="invalid-feedback">
+                      <%= "Password " + resource.errors.messages[:password][0] %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="form-group js--password-confirmation-field">
+                <% if resource.errors.empty? %>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "Confirm new password" %>
+                  <div class="invalid-feedback"></div>
+                <% else %>
+                  <% if resource.errors.messages[:password_confirmation].empty? && resource.errors.messages[:password].empty? %>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control is-valid', placeholder: "Confirm new password" %>
+                    <div class="invalid-feedback"></div>
+                  <% else %>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control is-invalid', placeholder: "Confirm new password" %>
+                    <div class="invalid-feedback">
+                      <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] unless resource.errors.messages[:password_confirmation].empty? %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="form-group">
+                <%= f.submit "Reset", class: "btn btn-block no-outline sign-button" %>
+              </div>
+            <% end %>
+            <div class="admin-nav-box">
+              <h3 class="admin-nav-title">or All done?</h3>
+              <%= link_to "Sign in", new_session_path(resource_name), class: "btn btn-block btn-admin-nav no-outline" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<script type="text/javascript">
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+  $( '#admin_password' ).keyup( () => {
+    if ( $( '#admin_password' ).val().length >= 8 ) {
+      $( '#admin_password' ).removeClass('is-invalid');
+      $( '#admin_password' ).addClass('is-valid');
+      $( '.js--password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_password' ).removeClass('is-valid');
+      $( '#admin_password' ).addClass('is-invalid');
+      if ( $( '#admin_password' ).val() == "" ) {
+        $( '.js--password-field .invalid-feedback' ).text("Password can't be blank")
+      } else {
+        $( '.js--password-field .invalid-feedback' ).text("Password is too short (minimum is 8 characters)")
+      }
+    }
+  })
 
-<%= render "admins/shared/links" %>
+  $( '#admin_password_confirmation' ).keyup( () => {
+    if ( $( '#admin_password_confirmation' ).val() == $( '#admin_password' ).val() && $( '#admin_password' ).val().length >= 8 ) {
+      $( '#admin_password_confirmation' ).removeClass('is-invalid');
+      $( '#admin_password_confirmation' ).addClass('is-valid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_password_confirmation' ).removeClass('is-valid');
+      $( '#admin_password_confirmation' ).addClass('is-invalid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text("Password confirmation doesn't match Password")
+    }
+  })
+</script>
