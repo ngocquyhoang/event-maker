@@ -1,0 +1,184 @@
+<div class="admin-wrapper">
+  <div class="admin-profile-screen">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+          <div class="admin-setting-page">
+            <div class="admin-page-header">
+              <h3 class="admin-page-title">Admin setting</h3>
+            </div>
+            <div class="admin-page-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="form-group js--email-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid field-label text-left">
+                      Email
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.empty? %>
+                        <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
+                        <div class="invalid-feedback text-left"></div>
+                      <% else %>
+                        <% if resource.errors.messages[:email].empty? %>
+                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-valid', placeholder: "Email" %>
+                          <div class="invalid-feedback text-left"></div>
+                        <% else %>
+                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                          <div class="invalid-feedback text-left">
+                            <%= "Email " + resource.errors.messages[:email][0] %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group js--new-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid field-label text-left">
+                      New password
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password" %>
+                        <div class="invalid-feedback text-left text-black"> ( Leave blank if you don't want to change it ) </div>
+                      <% else %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password" %>
+                        <div class="invalid-feedback text-left">
+                          <% if resource.errors.messages[:password].empty? %>
+                            <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                          <% else %>
+                            <%= "New password " + resource.errors.messages[:password][0] %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group js--comfirm-new-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid field-label text-left">
+                      New password confirmation
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password confirmation" %>
+                        <div class="invalid-feedback text-left"></div>
+                      <% else %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password confirmation" %>
+                        <div class="invalid-feedback text-left">
+                          <% unless resource.errors.messages[:password_confirmation].empty? %>
+                           <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group js--current-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid field-label text-left">
+                      Current password
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:current_password].empty? %>
+                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Current password" %>
+                        <div class="invalid-feedback text-left text-black"> ( We need your current password to confirm your changes ) </div>
+                      <% else %>
+                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Current password" %>
+                        <div class="invalid-feedback text-left">
+                          <%= "Current password " + resource.errors.messages[:current_password][0] %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group text-right">
+                  <button type="submit" class="btn btn-submit btn-lg no-outline">
+                    Save Setting
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $( '#admin_email' ).keyup( () => {
+    if ( validateEmail( $( '#admin_email' ).val() ) ) {
+      $( '#admin_email' ).removeClass('is-invalid');
+      $( '#admin_email' ).addClass('is-valid');
+      $( '.js--email-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_email' ).removeClass('is-valid');
+      $( '#admin_email' ).addClass('is-invalid');
+      if ( $( '#admin_email' ).val() == "" ) {
+        $( '.js--email-field .invalid-feedback' ).text("Email can't be blank")
+      } else {
+        $( '.js--email-field .invalid-feedback' ).text("Email is invalid")
+      }
+    }
+  })
+
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+
+  $( '#admin_current_password' ).keyup( () => {
+    if ( $( '#admin_current_password' ).val().length >= 8 ) {
+      $( '#admin_current_password' ).removeClass('is-invalid');
+      $( '#admin_current_password' ).addClass('is-valid');
+      $( '.js--current-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_current_password' ).removeClass('is-valid');
+      $( '#admin_current_password' ).addClass('is-invalid');
+
+      if ( $( '#admin_current_password' ).val().length == 0 ) {
+        $( '.js--current-password-field .invalid-feedback' ).text("Current password can't be blank")
+      } else {
+        $( '.js--current-password-field .invalid-feedback' ).text("Current password is too short (minimum is 8 characters)")
+      }
+    }
+  })
+
+  $( '#admin_password' ).keyup( () => {
+    if ( $( '#admin_password' ).val().length >= 8 ) {
+      $( '#admin_password' ).removeClass('is-invalid');
+      $( '#admin_password' ).addClass('is-valid');
+      $( '.js--new-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_password' ).removeClass('is-valid');
+      $( '#admin_password' ).removeClass('is-invalid');
+      $( '.js--new-password-field .invalid-feedback' ).text(" ( Leave blank if you don't want to change it )" )
+
+      if( $( '#admin_password' ).val().length != 0 ) {
+        $( '#admin_password' ).addClass('is-invalid');
+        $( '.js--new-password-field .invalid-feedback' ).text("Password is too short (minimum is 8 characters)")
+      }
+    }
+  })
+
+  $( '#admin_password_confirmation' ).keyup( () => {
+    if ( $( '#admin_password_confirmation' ).val() == $( '#admin_password' ).val() && $( '#admin_password_confirmation' ).val().length != 0 ) {
+      $( '#admin_password_confirmation' ).removeClass('is-invalid');
+      $( '#admin_password_confirmation' ).addClass('is-valid');
+      $( '.js--comfirm-new-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#admin_password_confirmation' ).removeClass('is-valid');
+      $( '#admin_password_confirmation' ).removeClass('is-invalid');
+
+      if( $( '#admin_password_confirmation' ).val().length != 0 ) {
+        $( '#admin_password_confirmation' ).addClass('is-invalid');
+        $( '.js--comfirm-new-password-field .invalid-feedback' ).text( "Password confirmation doesn't match Password ")
+      }
+    }
+  })
+</script>

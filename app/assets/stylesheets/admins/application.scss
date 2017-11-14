@@ -21,7 +21,7 @@
   background-color: #fff;
 }
 
-.user-main-nav {
+.admin-main-nav {
   background-color: rgba(65, 91, 144, 0.85);
   color: #ffffff;
 
@@ -332,6 +332,121 @@
         line-height: 22px;
         font-family: 'Cabin Sketch', cursive;
         background-color: #3D5B94;
+      }
+    }
+  }
+}
+
+.admin-setting-page {
+  margin-top: 35px;
+
+  .admin-page-header {
+    margin-bottom: 30px;
+
+    .admin-page-title {
+      font-family: 'Cabin Sketch', cursive;
+      color: #415b90;
+      text-transform: uppercase;
+      font-size: 35px;
+      line-height: 40px;
+      text-align: center;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+  }
+
+  .admin-page-body {
+    .field-label {
+      width: 200px;
+      font-size: 20px;
+      line-height: 24px;
+      font-family: 'Cabin Sketch', cursive;
+    }
+
+    .form-control {
+      font-size: 16px;
+      padding: 10px 12px;
+      height: auto;
+      line-height: 22px;
+
+      &.is-valid {
+        border-color: #28a745;
+        color: #28a745;
+      }
+
+      &.is-invalid {
+        border-color: #dc3545;
+        color: #dc3545;
+      }
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      margin-top: 6px;
+    }
+
+    .text-black {
+      color: #000000;
+    }
+
+    .btn-submit {
+      padding: 12px 20px;
+      font-size: 20px;
+      line-height: 24px;
+      border: 1px solid #415b90;
+      font-family: 'Cabin Sketch', cursive;
+      background-color: #415b90;
+      color: #ffffff;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    .cancel-block {
+      margin-top: 30px;
+      text-align: center;
+
+      .cancel-title {
+        position: relative;
+        
+        span {
+          font-family: 'Cabin Sketch', cursive;
+          margin-top: 0px;
+          margin-bottom: 20px;
+          line-height: 26px;
+          font-size: 24px;
+          text-transform: uppercase;
+          background-color: #ffffff;
+          display: inline-block;
+          padding: 0px 30px;
+          color: #415b90;
+          position: relative;
+        }
+
+        &::before {
+          content: "";
+          width: 100%;
+          height: 0px;
+          border-top: 2px solid #415b90;
+          position: absolute;
+          top: 12px;
+          left: 0px;
+        }
+      }
+
+      .btn-cancel-account {
+        padding: 12px 20px;
+        font-size: 20px;
+        line-height: 24px;
+        border: 1px solid #DD4B39;
+        font-family: 'Cabin Sketch', cursive;
+        background-color: #DD4B39;
+        color: #ffffff;
+
+        .fa {
+          margin-left: 5px;
+        }
       }
     }
   }
