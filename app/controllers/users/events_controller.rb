@@ -12,7 +12,7 @@ class Users::EventsController < Users::AccessController
     if event.update_attributes event_params
       flash[:success] = "Event created!!"
     else
-      flash[:success] = "Something Wrong!!"
+      flash[:danger] = "Something Wrong!!"
     end
 
     respond_to do |format|
