@@ -3,6 +3,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :lockable, :omniauthable,
     omniauth_providers: [:facebook, :google_oauth2]
+  enum acc_state: [:free, :pro, :plus]
 
   has_many :event
 

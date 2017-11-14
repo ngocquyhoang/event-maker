@@ -1,10 +1,44 @@
 <div class="user-main-wrap">
   <div class="container">
     <h1>User Dashboard</h1>
-    <%= render "create_event" %>
+    <%= render "/users/dashboard/create_event" %>
 
     <div id="list-event">
-      <%= render "event" %>
+      <%= render "/users/dashboard/event" %>
+    </div>
+
+    <div>
+      Upgrade your account:
+      <% if current_user.acc_state == "pro" %>
+        <p>Your account state is Professional.</p>
+      <% elsif current_user.acc_state == "plus" %>
+        <p>Your account state is Professional Plus.</p>
+      <% else %>
+        <p>Your account state is Free.</p>
+      <% end %>
+
+      <% unless current_user.acc_state == "pro" || current_user.acc_state == "plus" %>
+        <%= link_to new_users_paypal_path(status: "pro") do %>
+          <div class="btn btn-primary" id="pay_with_paypal_pro">
+            Professional
+          </div>
+        <% end %>
+      <% end %>
+
+      <% unless current_user.acc_state == "plus" %>
+        <%= link_to new_users_paypal_path(status: "pro_plus") do %>
+          <div class="btn btn-primary" id="pay_with_paypal_pro_plus">
+            Professional Plus
+          </div>
+        <% end %>
+
+        <%= link_to new_users_paypal_path(status: "https_only") do %>
+          <div class="btn btn-primary" id="pay_with_paypal_https">
+            Https Package
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
+
