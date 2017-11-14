@@ -1,11 +1,48 @@
-<h1>Admin Dashboard</h1>
-<% if admin_signed_in? %>
-  <div><%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-primary btn-lg" %></div>
-  <br>
-
-  <%= render "create_layout_modal" %>
-
-  <div id="list-layout">
-    <%= render "layout" %>
+<div class="admin-dashboard-screen table-panel">
+  <div class="admin-slide-left table-child">
+    <ul class="list-unstyled">
+      <li class="slide-item">
+        <a href="#">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          Events
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#">
+          <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          Payment
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#">
+          <i class="fa fa-list-ul" aria-hidden="true"></i>
+          Event Type
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#">
+          <i class="fa fa-bar-chart" aria-hidden="true"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="slide-item">
+        <a href="#">
+          <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+          Setting
+        </a>
+      </li>
+      <li class="slide-item">
+        <%= link_to destroy_admin_session_path, method: :delete do %>
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          Sign out
+        <% end %>
+      </li>
+    </ul>
   </div>
-<% end %>
+  <div class="dashboard-main table-child">
+    <div class="dashboard-layout dashboard-event">
+      <%= render "create_layout_modal" %>
+      <%= render "layout" %>
+    </div>
+  </div>
+</div>

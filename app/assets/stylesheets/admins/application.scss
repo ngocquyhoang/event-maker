@@ -105,9 +105,10 @@
 }
 
 .admin-wrapper.admin-sign-page {
-  background-image: asset-url('bg-home-2-80.jpg');
+  background-image: asset-url('bg-home-3-80.png');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .switch--toggle {
@@ -449,5 +450,18 @@
         }
       }
     }
+  }
+}
+
+.admin-dashboard-screen {
+  height: 100vh;
+
+  .admin-slide-left {
+    width: 80px;
+    background-color: #415b90;
+  }
+
+  .dashboard-main {
+    
   }
 }
