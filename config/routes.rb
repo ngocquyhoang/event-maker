@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     resources :layouts, only: [:create]
   end
 
-  devise_for :admins, path: 'admins', skip: :registrations, controllers: {
+  devise_for :admins, path: 'admins', controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
   }
 
   namespace :users do
