@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :dashboard, only: [:index]
     resources :layouts, only: [:create]
+
+    get 'layout', to: 'dashboard#layout', as: 'layout'
+    get 'event_type', to: 'dashboard#event_type', as: 'event_type'
+    get 'payment', to: 'dashboard#payment', as: 'payment'
   end
 
   devise_for :admins, path: 'admins', controllers: {

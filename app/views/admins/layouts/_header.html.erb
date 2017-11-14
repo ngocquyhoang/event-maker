@@ -1,29 +1,13 @@
 <nav class="navbar admin-main-nav navbar-fixed-top">
   <div class="container">
     <div class="navbar-header ">
-      <% if admin_signed_in? %>
-        <%= link_to "Event Admin", admins_dashboard_index_path, class: "navbar-brand no-outline" %>
-      <% else %>
-        <%= link_to "Event Admin", root_path, class: "navbar-brand no-outline" %>
-      <% end %>
+      <%= link_to "Event Admin", root_path, class: "navbar-brand no-outline" %>
     </div>
     
     <ul class="main-menu nav navbar-nav navbar-right">
-      <% if admin_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Dashboard", admins_dashboard_index_path, class: "no-outline" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Account Setting", edit_admin_registration_path, class: "no-outline" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "no-outline" %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "no-outline" %>
-        </li>
-      <% end %>
+      <li class="nav-item">
+        <%= link_to "Home", root_path, class: "no-outline" %>
+      </li>
     </ul>
   </div>
 </nav>
