@@ -1,0 +1,27 @@
+<li class="type-item cursor-pointer" data-toggle="modal" data-target="#editEventType<%= type.id %>" data-type-id="<%= type.id %>">
+  <%= type.label %>
+</li>
+<div class="modal fade zevent-modal" id="editEventType<%= type.id %>" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body text-center">
+        <h3 class="modal-title">Edit Event Type</h3>
+        <div class="event-type-form-modal">
+          <div class="event-type-form">
+            <%= form_for(type, url: admins_update_event_type_path( type ), :remote => true, authenticity_token: true) do |f| %>
+              <%= f.text_field :label, class: "label-field no-outline", required: true %>
+              <%= f.submit "Update", class: "submit-event-type no-outline" %>
+              <%= link_to admins_destroy_event_type_path( type ), method: :delete, remote: true, class: 'delete-event-type no-outline' do %>
+                Delete
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
