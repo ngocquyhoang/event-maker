@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     get 'layout', to: 'dashboard#layout', as: 'layout'
     get 'event_type', to: 'dashboard#event_type', as: 'event_type'
     get 'payment', to: 'dashboard#payment', as: 'payment'
+
+    post 'create_event_type', to: 'dashboard#create_event_type', as: 'create_event_type'
+    delete 'event_type/:id', to: 'dashboard#destroy_event_type', as: 'destroy_event_type'
   end
 
   devise_for :admins, path: 'admins', controllers: {

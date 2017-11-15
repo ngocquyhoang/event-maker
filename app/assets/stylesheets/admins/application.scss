@@ -342,10 +342,12 @@
   overflow-y: hidden;
   overflow-x: auto;
   height: 100vh;
+  min-height: 600px;
 
   .admin-dashboard-screen {
     height: 100vh;
     min-width: 1200px;
+    min-height: 600px;
 
     .admin-slide-left {
       width: 90px;
@@ -423,6 +425,8 @@
         }
 
         .dashboard-body {
+          overflow-y: auto;
+          height: calc( 100vh - 110px );
 
           .form-control {
             font-size: 16px;
@@ -478,6 +482,194 @@
       font-size: 20px;
       line-height: 24px;
       font-family: 'Cabin Sketch', cursive;
+    }
+  }
+}
+
+.dashboard-event-type {
+  .dashboard-body {
+    padding-top: 70px;
+
+    .event-type-form {
+      margin-bottom: 30px;
+      display: inline-block;
+
+      .label-field {
+        font-size: 18px;
+        line-height: 20px;
+        padding: 8px 20px;
+        border: 1px solid #415b90;
+        border-radius: 20px;
+        width: 400px;
+        float: left;
+      }
+
+      .submit-event-type {
+        padding: 8px 20px;
+        border: 1px solid #415b90;
+        border-radius: 20px;
+        font-size: 18px;
+        line-height: 20px;
+        text-transform: uppercase;
+        background-color: #415b90;
+        float: left;
+        margin-left: 20px;
+        color: #ffffff;
+        font-family: 'Cabin Sketch', cursive;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    }
+  }
+}
+
+.dashboard-layout-list {
+  .list-layouts {
+    .layout-item {
+      width: calc( (100% - 20px)/5 );
+      margin-bottom: 15px;
+      float: left;
+
+      .layout-image {
+        max-width: 100%;
+      }
+
+      .layout-text {
+        padding-top: 10px;
+
+        .layout-type {
+          font-size: 16px;
+          line-height: 20px;
+          margin-bottom: 10px;
+          display: block;
+        }
+
+        .layout-name {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          font-size: 18px;
+          line-height: 22px;
+          font-family: 'Cabin Sketch', cursive;
+
+          &.new-layout {
+            text-align: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+          }
+        }
+      }
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+.zevent-modal {
+  .modal-content {
+    margin-top: 150px;
+    border-radius: 0px;
+    position: relative;
+    border: 0px;
+    box-shadow: none;
+  }
+
+  .modal-title {
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-family: 'Cabin Sketch', cursive;
+    text-align: center;
+    color: #415b90;
+  }
+
+  .close-modal {
+    border: 0px;
+    background-color: transparent;
+    padding: 10px;
+    box-shadow: none;
+    position: absolute;
+    top: -50px;
+    right: -50px;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  .modal-icon {
+    padding: 20px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .modal-wrap-content {
+    text-align: left;
+    margin-top: 70px;
+
+    h3 {
+      font-size: 26px;
+      line-height: 30px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      margin-top: 0px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+#newLayoutModal {
+  .modal-content {
+    margin-top: 100px;
+  }
+
+  #newLayoutStep {
+
+    .carousel-inner {
+      .item {
+        height: 500px;
+      }
+    }
+  }
+
+  .step-control {
+    margin-top: 10px;
+    text-align: right;
+
+    .control-button {
+      background-color: #415b90;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 20px;
+      font-family: 'Cabin Sketch', cursive;
+
+      &.next-button .fa {
+        margin-left: 5px;
+      }
+
+      &.prev-button .fa {
+        margin-right: 5px;
+      }
+
+      &.submit-button {
+        display: none;
+      }
     }
   }
 }

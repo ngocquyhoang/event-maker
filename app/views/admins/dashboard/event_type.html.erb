@@ -9,6 +9,30 @@
           <h2 class="admin-page-title">Event Type</h2>
         </div>
         <div class="dashboard-body">
+          <%= render 'admins/dashboard/form_event_type', event_type: @event_type %>
+
+          <div class="event-type-list">
+            <ul class="list-unstyled list-inline" id="event_type_list">
+              <% @event_types.each do |type| %>
+                <li class="type-item cursor-pointer" data-toggle="modal" data-target="#editEventType<%= type.id %>" data-type-id="<%= type.id %>">
+                  <%= type.label %>
+                  <%#= link_to admins_destroy_event_type_path(type), data: { confirm: 'Are you sure?' }, method: :delete, remote: true do %>
+                    <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+                  <%# end %>
+                </li>
+                <div class="modal fade" id="editEventType<%= type.id %>" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      
+                      <div class="modal-body text-center">
+                        ...
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

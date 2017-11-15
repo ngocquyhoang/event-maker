@@ -1,0 +1,4 @@
+<%= form_for(event_type, url: admins_create_event_type_path, :remote => true, :html => { class: 'event-type-form' },authenticity_token: true) do |f| %>
+  <%= f.text_field :label, class: "label-field no-outline", required: true %>
+  <%= f.submit "Create", class: "submit-event-type no-outline" %>
+<% end %>
