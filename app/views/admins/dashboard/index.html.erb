@@ -9,7 +9,35 @@
           <h2 class="admin-page-title">Dashboard</h2>
         </div>
         <div class="dashboard-body">
-          
+          <div class="dashboard-main-item">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @event_count %></h4> Event created
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @user_count %></h4> User sign up
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @layout_count %></h4> Theme
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @message_count %></h4> Contact Message
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-messages">
+            <h3 class="dashboard-block-title">
+              Contact Messages
+            </h3>
+          </div>
         </div>
       </div>
     </div>

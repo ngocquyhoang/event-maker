@@ -575,6 +575,40 @@
   }
 }
 
+.dashboard-dashboard {
+  .dashboard-main-item {
+    margin-bottom: 30px;
+
+    .dashboard-item {
+      padding: 25px 10px;
+      border: 1px solid #415b90;
+      font-size: 20px;
+      line-height: 30px;
+      font-family: 'Cabin Sketch', cursive;
+      text-transform: uppercase;
+
+      .count {
+        font-size: 30px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .dashboard-messages {
+    .dashboard-block-title {
+      font-size: 26px;
+      line-height: 30px;
+      margin-bottom: 20px;
+      margin-top: 0px;
+      font-family: 'Cabin Sketch', cursive;
+      text-align: center;
+      color: #415b90;
+    }
+  }
+}
+
 .dashboard-layout-list {
   .list-layouts {
     .layout-item {

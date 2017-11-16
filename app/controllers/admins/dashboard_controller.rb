@@ -2,6 +2,10 @@ class Admins::DashboardController < Admins::AccessController
   before_action :set_event_type, only: [:update_event_type, :destroy_event_type]
 
   def index
+    @event_count = Event.count
+    @message_count = Message.count
+    @layout_count = Layout.count
+    @user_count = User.count
   end
 
   def layout
