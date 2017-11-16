@@ -6,6 +6,8 @@ class Admins::DashboardController < Admins::AccessController
     @message_count = Message.count
     @layout_count = Layout.count
     @user_count = User.count
+
+    @messages = Message.all.order('created_at DESC').limit(10)
   end
 
   def layout

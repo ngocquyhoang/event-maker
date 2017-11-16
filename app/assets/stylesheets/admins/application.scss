@@ -578,6 +578,8 @@
 .dashboard-dashboard {
   .dashboard-main-item {
     margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 
     .dashboard-item {
       padding: 25px 10px;
@@ -605,6 +607,35 @@
       font-family: 'Cabin Sketch', cursive;
       text-align: center;
       color: #415b90;
+    }
+
+    .message-item {
+      padding: 15px;
+      border-bottom: 1px solid #415b90;
+      font-size: 16px;
+      line-height: 20px;
+
+      &:first-child {
+        border-top: 1px solid #415b90;
+      }
+
+      .message-time {
+        width: 180px;
+      }
+
+      .message-email {
+        width: 300px;
+      }
+
+      .message-name {
+        width: 300px;
+      }
+
+      .contact-message-modal {
+        .modal-content {
+          margin-top: 100px;
+        }
+      }
     }
   }
 }

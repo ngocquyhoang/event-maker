@@ -1,0 +1,33 @@
+<li class="message-item cursor-pointer" data-toggle="modal" data-target="#contactMessageModal<%= contact_message.id %>">
+  <div class="table-panel">
+    <div class="table-child message-time">
+      <%= contact_message.created_at.strftime("%Y %b %d %H:%M") %>
+    </div>
+    <div class="table-child message-email">
+      <%= contact_message.email %>
+    </div>
+    <div class="table-child message-name">
+      <%= contact_message.name %>
+    </div>
+    <div class="table-child message-content">
+      <%= truncate( contact_message.message , length: 45) %>
+    </div>
+  </div>
+</li>
+<div class="modal fade zevent-modal contact-message-modal" id="contactMessageModal<%= contact_message.id %>" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body text-center">
+        <h3 class="modal-title">Contact message from <%= contact_message.name %></h3>
+        <div class="event-type-form-modal">
+          <div class="event-type-form">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

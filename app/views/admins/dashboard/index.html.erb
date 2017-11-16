@@ -23,7 +23,7 @@
               </div>
               <div class="col-md-3">
                 <div class="dashboard-item text-center">
-                  <h4 class="count"><%= @layout_count %></h4> Theme
+                  <h4 class="count"><%= @layout_count %></h4> Themes
                 </div>
               </div>
               <div class="col-md-3">
@@ -37,6 +37,13 @@
             <h3 class="dashboard-block-title">
               Contact Messages
             </h3>
+            <div class="message-list">
+              <ul class="list-unstyled">
+                <% @messages.each do |message| %>
+                  <%= render 'admins/contact_message/contact_message_item', contact_message: message %>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
