@@ -8,11 +8,13 @@ Rails.application.routes.draw do
     get 'layout', to: 'dashboard#layout', as: 'layout'
     get 'event_type', to: 'dashboard#event_type', as: 'event_type'
     get 'payment', to: 'dashboard#payment', as: 'payment'
+    get 'messages', to: 'dashboard#messages', as: 'messages'
 
     post 'create_event_type', to: 'dashboard#create_event_type', as: 'create_event_type'
     patch 'update_event_type/:id', to: 'dashboard#update_event_type', as: 'update_event_type'
     put 'update_event_type/:id', to: 'dashboard#update_event_type'
     delete 'destroy_event_type/:id', to: 'dashboard#destroy_event_type', as: 'destroy_event_type'
+    post 'reply_messages', to: 'dashboard#reply_messages', as: 'reply_messages'
   end
 
   devise_for :admins, path: 'admins', controllers: {

@@ -91,6 +91,14 @@
     &.ver-mid {
       vertical-align: middle;
     }
+
+    &.ver-top {
+      vertical-align: top;
+    }
+
+    &.ver-bot {
+      vertical-align: bottom;
+    }
   }
 }
 
@@ -104,6 +112,9 @@
   cursor: pointer !important;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
 .admin-wrapper.admin-sign-page {
   background-image: asset-url('bg-home-3-80.png');
   background-size: cover;
@@ -342,12 +353,12 @@
   overflow-y: hidden;
   overflow-x: auto;
   height: 100vh;
-  min-height: 600px;
+  min-height: 700px;
 
   .admin-dashboard-screen {
     height: 100vh;
     min-width: 1200px;
-    min-height: 600px;
+    min-height: 700px;
 
     .admin-slide-left {
       width: 90px;
@@ -598,8 +609,8 @@
     }
   }
 
-  .dashboard-messages {
-    .dashboard-block-title {
+  .dashboard-analytics {
+    .dashboard-ana-title {
       font-size: 26px;
       line-height: 30px;
       margin-bottom: 20px;
@@ -609,31 +620,92 @@
       color: #415b90;
     }
 
-    .message-item {
-      padding: 15px;
-      border-bottom: 1px solid #415b90;
+    // DASHBOAR HERE -------------------------------------------------------------------------------------------------
+  }
+}
+
+.dashboard-messages {
+
+  .message-item {
+    padding: 15px;
+    border-bottom: 1px solid #415b90;
+    font-size: 16px;
+    line-height: 20px;
+
+    &:first-child {
+      border-top: 1px solid #415b90;
+    }
+
+    .message-id {
+      width: 60px;
+      padding-right: 20px;
+      color: #415b90;
+      text-align: center;
+    }
+
+    .message-time {
+      width: 180px;
+    }
+
+    .message-email {
+      width: 300px;
+    }
+
+    .message-name {
+      width: 300px;
+    }
+  }
+
+  .contact-message-modal {
+
+    .modal-title {
+      margin-bottom: 20px;
+    }
+
+    .modal-content {
+      margin-top: 100px;
+    }
+
+    .contact-message-block {
       font-size: 16px;
-      line-height: 20px;
+      line-height: 22px;
 
-      &:first-child {
-        border-top: 1px solid #415b90;
+      .table-panel {
+        border-bottom: 1px solid #415b90;
+
+        .table-child {
+          padding: 15px 25px;
+          text-align: left;
+        }
+
+        .label-title {
+          width: 200px;
+        }
       }
 
-      .message-time {
-        width: 180px;
+      .message-content {
+        padding: 20px;
+        text-align: left;
       }
+    }
 
-      .message-email {
-        width: 300px;
-      }
+    .reply-message-block {
+      .reply_message_list {
+        li {
+          font-size: 16px;
+          line-height: 20px;
+          text-align: left;
+          margin-bottom: 20px;
 
-      .message-name {
-        width: 300px;
-      }
+          .table-child {
+            padding: 10px 25px;
+          }
 
-      .contact-message-modal {
-        .modal-content {
-          margin-top: 100px;
+          .label-title {
+            width: 200px;
+            border-right: 3px solid #415b90;
+            color: #415b90;
+          }
         }
       }
     }
@@ -743,6 +815,53 @@
       font-size: 16px;
       line-height: 20px;
       margin-bottom: 0px;
+    }
+  }
+}
+
+.email_form {
+  .table-panel{
+    .table-child {
+      padding: 10px 25px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 22px;
+      border-bottom: 1px solid #415b90;
+    }
+
+    .child-label {
+      color: #415b90;
+      text-transform: uppercase;
+      font-size: 18px;
+      width: 200px;
+    }
+  }
+
+  .label-content {
+    font-size: 16px;
+    line-height: 22px;
+    border: 0px;
+    outline: none;
+    width: 620px;
+    max-width: 620px;
+    min-width: 620px;
+    padding: 0px;
+  }
+
+  .submit-form {
+    margin-top: 20px;
+    padding: 0px 25px;
+
+    .send-form-email {
+      background-color: #415b90;
+      font-family: 'Cabin Sketch', cursive;
+      color: #ffffff;
+      padding: 10px 25px;
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 22px;
+      border-radius: 3px;
+      border: 0px;
     }
   }
 }

@@ -33,17 +33,10 @@
               </div>
             </div>
           </div>
-          <div class="dashboard-messages">
-            <h3 class="dashboard-block-title">
-              Contact Messages
+          <div class="dashboard-analytics">
+            <h3 class="dashboard-ana-title">
+              Google Analytics
             </h3>
-            <div class="message-list">
-              <ul class="list-unstyled">
-                <% @messages.each do |message| %>
-                  <%= render 'admins/contact_message/contact_message_item', contact_message: message %>
-                <% end %>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

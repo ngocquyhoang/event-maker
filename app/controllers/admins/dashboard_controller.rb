@@ -6,8 +6,6 @@ class Admins::DashboardController < Admins::AccessController
     @message_count = Message.count
     @layout_count = Layout.count
     @user_count = User.count
-
-    @messages = Message.all.order('created_at DESC').limit(10)
   end
 
   def layout
@@ -32,6 +30,7 @@ class Admins::DashboardController < Admins::AccessController
     respond_to do |format|
       @event_type.update( event_type_params ) ? ( @update_success = true ) : ( @update_success = false )
       @event_type.reload
+
       format.js {}
     end
   end
@@ -46,10 +45,34 @@ class Admins::DashboardController < Admins::AccessController
   def payment
   end
 
+  def messages
+    @messages = Message.all.order('created_at DESC').limit(20)
+
+    @reply = ReplyMessage.new()
+  end
+
+  def reply_messages
+    @reply_messages = ReplyMessage.new(reply_message_params)
+
+    respond_to do |format|
+      if @reply_messages.save ? ( @save_success = true ) : ( @save_success = false )
+        ContactMailer.reply_contact_email( @reply_messages.message, @reply_messages.content ).deliver
+        @save_success = true
+      else
+        @save_success = false
+      end
+      format.js {}
+    end
+  end
+
   private
 
   def event_type_params
     params.require(:event_type).permit(:label)
+  end
+
+  def reply_message_params
+    params.require(:reply_message).permit(:content, :message_id)
   end
 
   def set_event_type

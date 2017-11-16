@@ -8,6 +8,7 @@ class HomeController < ApplicationController
       @message = Message.new(new_message_params)
       if @message.save
         @success = true
+        ContactMailer.thanks_contacting_email( @message.name, @message.email, @message.message ).deliver
       else
         @success = false
       end

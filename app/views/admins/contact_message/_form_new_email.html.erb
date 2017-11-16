@@ -1,0 +1,31 @@
+<%= form_for(@reply, url: admins_reply_messages_path, :remote => true, :html => { class: 'email_form' }, authenticity_token: true) do |f| %>
+  <%= f.hidden_field :message_id, :value => target.id %>
+  <div class="table-panel">
+    <div class="table-child child-label">From :</div>
+    <div class="table-child cursor-not-allowed">no-reply@zevent.date</div>
+  </div>
+  <div class="table-panel">
+    <div class="table-child child-label">To :</div>
+    <div class="table-child cursor-not-allowed"><%= target.email %></div>
+  </div>
+  <div class="table-panel">
+    <div class="table-child child-label">Subject :</div>
+    <div class="table-child cursor-not-allowed">[Reply] Thanks for contacting :: EVENT MAKER</div>
+  </div>
+  <div class="table-panel">
+    <div class="table-child child-label ver-top">Body</div>
+    <div class="table-child"><%= f.text_area :content, rows: "7", class: "label-content no-outline", required: true %></div>
+  </div>
+  <div class="submit-form text-right">
+    <button type="submit" class="send-form-email js--send-email no-outline">
+      Send
+    </button>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('#contactMessageModal<%= target.id %> .js--send-email').click(function(event) {
+    $(this).html('Sending <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>')
+  });
+</script>
+

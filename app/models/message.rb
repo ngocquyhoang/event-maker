@@ -4,4 +4,6 @@ class Message < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :message, presence: true
+
+  has_many :reply_messages
 end
