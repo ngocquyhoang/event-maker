@@ -620,11 +620,46 @@
       color: #415b90;
     }
 
-    // DASHBOAR HERE -------------------------------------------------------------------------------------------------
+    // DASHBOAR HERE ---------------------------------------------------------
   }
 }
 
 .dashboard-messages {
+  .message-list {
+    .no-messages {
+      margin-top: 50px;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+    }
+  }
+
+  .dashboard-body {
+    position: relative;
+  }
+
+  .new-email-block {
+    position: absolute;
+    display: inline-block;
+    right: 0px;
+    bottom: 10px;
+
+    .new-email-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      line-height: 20px;
+      border: 0px;
+      text-transform: uppercase;
+      color: #ffffff;
+      background-color: #415b90;
+      font-family: 'Cabin Sketch', cursive;
+
+      .fa {
+        margin-left: 5px;
+        font-size: 20px;
+      }
+    }
+  }
 
   .message-item {
     padding: 15px;
@@ -827,6 +862,14 @@
       font-size: 16px;
       line-height: 22px;
       border-bottom: 1px solid #415b90;
+    }
+
+    .email-input-field {
+      font-size: 16px;
+      line-height: 22px;
+      border: 0px;
+      outline: none;
+      width: 100%;
     }
 
     .child-label {

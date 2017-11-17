@@ -46,7 +46,8 @@ class Admins::DashboardController < Admins::AccessController
   end
 
   def messages
-    @messages = Message.all.order('created_at DESC').limit(20)
+    @messages = Message.all.order('created_at DESC')
+    @new_email = AdminEmail.new
 
     @reply = ReplyMessage.new()
   end
@@ -55,8 +56,22 @@ class Admins::DashboardController < Admins::AccessController
     @reply_messages = ReplyMessage.new(reply_message_params)
 
     respond_to do |format|
-      if @reply_messages.save ? ( @save_success = true ) : ( @save_success = false )
+      if @reply_messages.save
         ContactMailer.reply_contact_email( @reply_messages.message, @reply_messages.content ).deliver
+        @save_success = true
+      else
+        @save_success = false
+      end
+      format.js {}
+    end
+  end
+
+  def new_email
+    @new_message = AdminEmail.new(new_message_params)
+
+    respond_to do |format|
+      if @new_message.save
+        ContactMailer.send_new_email( @new_message.subject, @new_message.to_email, @new_message.email_body ).deliver
         @save_success = true
       else
         @save_success = false
@@ -73,6 +88,10 @@ class Admins::DashboardController < Admins::AccessController
 
   def reply_message_params
     params.require(:reply_message).permit(:content, :message_id)
+  end
+
+  def new_message_params
+    params.require(:admin_email).permit(:to_email, :subject, :email_body)
   end
 
   def set_event_type

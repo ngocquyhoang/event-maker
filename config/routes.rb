@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     put 'update_event_type/:id', to: 'dashboard#update_event_type'
     delete 'destroy_event_type/:id', to: 'dashboard#destroy_event_type', as: 'destroy_event_type'
     post 'reply_messages', to: 'dashboard#reply_messages', as: 'reply_messages'
+    post 'new_email', to: 'dashboard#new_email', as: 'new_email'
   end
 
   devise_for :admins, path: 'admins', controllers: {

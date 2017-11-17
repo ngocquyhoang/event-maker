@@ -1,11 +1,10 @@
 <% if @success %>
   $("#successModal").modal("show");
-  $("#message_name").val("");
-  $("#message_email").val("");
-  $("#message_message").val("");
 <% else %>
   $("#errorModal").modal("show");
-  $("#message_name").val("");
-  $("#message_email").val("");
-  $("#message_message").val("");
 <% end %>
+
+$('#contact #form-submit').html('Send Message');
+$("#message_name").val("");
+$("#message_email").val("");
+$("#message_message").val("");

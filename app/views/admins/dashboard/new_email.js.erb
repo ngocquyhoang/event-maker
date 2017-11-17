@@ -1,0 +1,29 @@
+<% if @save_success %>
+  new PNotify({
+    text: 'Email has been success send to <%= @new_message.to_email %>',
+    addclass: 'notice-success',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+
+  $('#newEmailModal #admin_email_to_email').val(''); 
+  $('#newEmailModal #admin_email_subject').val('');
+  $('#newEmailModal #admin_email_email_body').val('');
+<% else %>
+  new PNotify({
+    text: 'Something went wrong. Please try again later',
+    addclass: 'notice-error',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% end %>
+
+$('#newEmailModal .js--send-email').html('Send');
