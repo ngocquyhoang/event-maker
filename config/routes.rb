@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  get 'layouts', to: 'home#layouts', as: 'layouts'
 
   namespace :admins do
     resources :dashboard, only: [:index]

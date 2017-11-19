@@ -1,4 +1,4 @@
-<li class="layout-item cursor-pointer" data-toggle="modal" data-target="#editLayoutModal<%= target_layout.id %>">
+<li class="layout-item cursor-pointer project-item mix <%= get_slug( target_layout.event_types ).gsub('/', ' ') %>" data-toggle="modal" data-target="#editLayoutModal<%= target_layout.id %>">
   <%= cl_image_tag(target_layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
   <div class="layout-text">
     <span class="layout-type"><%= target_layout.event_types %></span>

@@ -1,4 +1,6 @@
 module ApplicationHelper
+  require 'unicode_utils'
+
   def avatar_for user
     if user.avatar?
       cl_image_tag(@user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}])
@@ -33,5 +35,10 @@ module ApplicationHelper
     else
       EventType.find_by_id(layout.event_type_id).label
     end
+  end
+
+  def get_slug string
+    slug_return = UnicodeUtils.downcase(string, :tr).gsub(/[()-,. @*&$#^!']/, '')
+    return slug_return
   end
 end

@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <ul class="list-inline list-unstyled zevent-nav">
           <li class="nav-item">
-            <a href="#" class="no-outline">Layouts</a>
+            <%= link_to "Layouts", layouts_path, class: "no-outline" %>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item">
@@ -103,44 +103,26 @@
 <section class="fourth-section">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-sm-6">
-        <div class="portfolio-item first-item">
-          <div class="image">
-            <a href="<%= asset_path 'vendor/01-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/first-item.jpg" %></a>
-          </div>
-          <div class="text">
-            <span>Nature</span>
-            <h4>Robotic Light</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="portfolio-item second-item">
-          <div class="image">
-            <a href="<%= asset_path 'vendor/02-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/second-item.jpg" %></a>
-          </div>
-          <div class="text">
-            <span>Architect</span>
-            <h4>Rock Solid</h4>
+      <% @layouts.each do |layout| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="portfolio-item item-<%= @layouts.index(layout) %>">
+            <div class="image">
+              <a href="<%= layout.featured_image.to_s %>" data-lightbox="image-<%= layout.id %>">
+                <%= cl_image_tag(layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>682, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>341, :crop=>"scale"}], class: "layout-image") %>
+              </a>
+            </div>
+            <div class="text">
+              <span><%= layout.event_types %></span>
+              <h4><%= layout.name %></h4>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <div class="portfolio-item third-item">
-          <div class="image">
-            <a href="<%= asset_path 'vendor/03-big-item.jpg' %>" data-lightbox="image-1"><%= image_tag "vendor/third-item.jpg" %></a>
-          </div>
-          <div class="text">
-            <span>Focus</span>
-            <h4>Clean Design</h4>
-          </div>
-        </div>
-      </div>
+      <% end %>
       <div class="col-md-3 col-sm-6">
         <div class="send-to-portfolio">
           <span>Do you want to see more?</span>
           <div class="primary-button">
-            <a href="portfolio-page.html">Visit layouts</a>
+            <%= link_to "Visit layouts", layouts_path, class: "no-outline" %>
           </div>
         </div>
       </div>
