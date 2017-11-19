@@ -3,3 +3,12 @@
 
 //= require 'pnotify.min'
 //= require 'admins/dashboard'
+
+//= require codemirror
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/xml
+//= require codemirror/modes/css
+//= require codemirror/modes/javascript
+
+//= require codemirror/addons/selection/active-line
+//= require codemirror/addons/edit/matchbrackets

@@ -1,0 +1,251 @@
+<div class="modal fade zevent-modal" id="newLayoutModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <h3 class="modal-title">Create new Layout</h3>
+        <%= form_for(@new_layout, url: admins_create_layout_path, :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
+          <div id="newLayoutStep" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+            <div class="carousel-inner">
+              <div class="item step-block step-block-1 active" data-step="step-1" data-actived="false" >
+                <h4 class="step-title">Step 1: Add layout information</h4>
+                <div class="step-body">
+                  <div class="form-group">
+                    <h5 class="text-left">Layout name</h5>
+                    <%= f.text_field :name, class: 'form-control', required: true, placeholder: "Layout name ..." %>
+                  </div>
+                  <div class="form-group">
+                    <h5 class="text-left">Layout types</h5>
+                    <%= f.select :event_types, @event_types, { :include_blank => "Select type"}, { :multiple => true, :size => 2, :class => "ui fluid search dropdown js--select-event-type semantic-ui-form form-multipe" } %>
+                    <script type="text/javascript">
+                      $('.js--select-event-type').dropdown({
+                        maxSelections: 2
+                      });
+                    </script>
+                  </div>
+                  <div class="form-upload-image text-center">
+                    <h5 class="text-left">Featured Image</h5>
+                    <label id="layout_featured_image_label" class="cursor-pointer no-outline">
+                      <div id="preview_image"></div>
+                      <img src="<%= asset_url 'add-layout-image.jpg' %>" class="js--add-image add-image-default" >
+                      <%= f.file_field :featured_image, class: 'hide' %>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="item step-block step-block-2" data-step="step-2" data-actived="false" >
+                <h4 class="step-title">Step 2: Add HTML code</h4>
+                <div class="step-body">
+                  <div class="code-editor-box">
+                    <%= f.text_area :html, class: 'zevent-code-editor no-outline', autofocus: true  %>
+                  </div>
+                </div>
+              </div>
+              <div class="item step-block step-block-3" data-step="step-3" data-actived="false" >
+                <h4 class="step-title">Step 3: Add CSS code</h4>
+                <div class="step-body">
+                  <div class="code-editor-box">
+                    <%= f.text_area :css, class: 'zevent-code-editor no-outline', autofocus: true  %>
+                  </div>
+                </div>
+              </div>
+              <div class="item step-block step-block-4" data-step="step-4" data-actived="false" >
+                <h4 class="step-title">Step 4: Add Javascript code (Optional)</h4>
+                <div class="step-body">
+                  <div class="code-editor-box">
+                    <%= f.text_area :javascript, class: 'zevent-code-editor no-outline', autofocus: true  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-control">
+              <a class="control-button btn prev-button no-outline" href="#newLayoutStep" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                Previous
+              </a>
+              <a class="control-button btn next-button no-outline" href="#newLayoutStep" data-slide="next">
+                Next
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+              <button type="submit" class="control-button btn submit-button no-outline">
+                Create
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var editorHTML, editorCSS, editorJavascript;
+
+  $('#newLayoutStep .step-control .next-button').click(function(event) {
+    var step = $('#newLayoutStep .carousel-inner .active').attr('data-step');
+    return validateStep(step)
+  });
+
+  $('#newLayoutStep').on('slid', '', checkitem);
+  $('#newLayoutStep').on('slid.bs.carousel', '', checkitem);
+  $(document).ready(function(){ 
+    checkitem(); 
+  });
+
+  function checkitem(){
+    if($('#newLayoutStep .carousel-inner .item:first').hasClass('active')) {
+      $('#newLayoutStep .step-control .prev-button').hide();
+      $('#newLayoutStep .step-control .next-button').show();
+      $('#newLayoutStep .step-control .submit-button').hide();
+    } else if($('#newLayoutStep .carousel-inner .item:last').hasClass('active')) {
+      $('#newLayoutStep .step-control .prev-button').show();
+      $('#newLayoutStep .step-control .next-button').hide();
+      $('#newLayoutStep .step-control .submit-button').show();
+    } else {
+      $('#newLayoutStep .step-control .prev-button').show();
+      $('#newLayoutStep .step-control .next-button').show();
+      $('#newLayoutStep .step-control .submit-button').hide();
+    }
+
+    var activeStep = $('#newLayoutStep .carousel-inner .active');
+    var step = activeStep.attr('data-step');
+
+    var isInti = ( activeStep.attr('data-actived') == 'true');
+    if( !isInti ) {
+      switch(step) {
+        case 'step-2':
+          editorHTML = CodeMirror.fromTextArea(document.getElementById("layout_html"), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true,
+            tabSize: 4,
+            mode: 'htmlmixed',
+            theme: 'solarized dark',
+          });
+          activeStep.attr('data-actived', 'true');
+          break;
+        case 'step-3':
+          editorCSS = CodeMirror.fromTextArea(document.getElementById("layout_css"), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true,
+            tabSize: 4,
+            mode: 'css',
+            theme: 'solarized dark',
+          });
+          activeStep.attr('data-actived', 'true');
+          break;
+        case 'step-4':
+          editorJavascript = CodeMirror.fromTextArea(document.getElementById("layout_javascript"), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true,
+            tabSize: 4,
+            mode: 'javascript',
+            theme: 'solarized dark',
+          });
+          activeStep.attr('data-actived', 'true');
+          break;
+        default:
+          return true
+      }
+    }
+  }
+
+  $("#layout_featured_image").on('change', function () {
+    if(typeof (FileReader) != "undefined") {
+      var image_holder = $("#preview_image");
+      image_holder.empty();
+      $('.js--add-image').hide();
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $("<img />", {
+              "src": e.target.result,
+              "class": "js--add-image"
+          }).appendTo(image_holder);
+      }
+      
+      image_holder.show();
+      reader.readAsDataURL($(this)[0].files[0]);
+    } else {
+      console.log("This browser does not support FileReader.");
+    }
+  });
+
+  function validateStep(step){
+    switch(step) {
+      case 'step-1':
+        var validStep1 = 0;
+        if( $('#newLayoutStep .step-block-1 #layout_name').val() == '' ) { 
+          validStep1++;
+          new PNotify({
+            text: 'Please input Layout name',
+            addclass: 'notice-error',
+            animate: {
+              animate: true,
+              in_class: 'rotateInDownLeft',
+              out_class: 'rotateOutUpRight'
+            },
+            icon: false
+          });
+        };
+        if( $('#newLayoutStep .step-block-1 #layout_event_types').val() == null ) { 
+          validStep1++;
+          new PNotify({
+            text: 'Please select Layout Type',
+            addclass: 'notice-error',
+            animate: {
+              animate: true,
+              in_class: 'rotateInDownLeft',
+              out_class: 'rotateOutUpRight'
+            },
+            icon: false
+          });
+        };
+        if( $('#newLayoutStep .step-block-1 #layout_featured_image').val() == '' ) { 
+          validStep1++;
+          new PNotify({
+            text: 'Please select input featured image',
+            addclass: 'notice-error',
+            animate: {
+              animate: true,
+              in_class: 'rotateInDownLeft',
+              out_class: 'rotateOutUpRight'
+            },
+            icon: false
+          });
+        };
+        return ( validStep1 == 0 ) ? true : false; 
+        break;
+      case 'step-2':
+        return ( editorHTML.doc.getValue() == '' ) ? false : true
+        break;
+      case 'step-3':
+        return ( editorCSS.doc.getValue() == '' ) ? false : true
+        break;
+      default:
+        return true
+    }
+  }
+
+  $('#new_layout .submit-button').click(function(event) {
+    $(this).html('Creating <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+
+    var htmlValue = editorHTML.doc.getValue();
+    var cssValue = editorCSS.doc.getValue();
+    var javascriptValue = editorJavascript.doc.getValue();
+
+    $('#layout_html').val( htmlValue );
+    $('#layout_css').val( cssValue );
+    $('#layout_javascript').val( javascriptValue );
+
+    if( (htmlValue.length > 0) && (cssValue.length > 0) ) {
+      return true
+    } else {
+      return false
+    }
+  });
+</script>

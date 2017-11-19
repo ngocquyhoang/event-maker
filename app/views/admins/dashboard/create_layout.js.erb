@@ -1,4 +1,35 @@
-$('#create_layout_modal').css('display','none');
-$('body').removeClass('modal-open');
-$('.modal-backdrop').remove();
-$('#list-layout').html('<%= j render "admins/dashboard/layout" %>');
+<% if @save_success %>
+  $('#admins_layout_list').append('<%= j render "admins/track_layout/layout_item", target_layout: @layout  %>');
+  $('#newLayoutStep .js--select-event-type').dropdown('clear');
+  $("#newLayoutStep #preview_image").empty();
+  $('#newLayoutStep .js--add-image').show();
+
+  $('#newLayoutStep .step-block').attr('data-actived', 'false');
+  $('#newLayoutStep').carousel(0);
+
+  $('#newLayoutModal').bsmodal('hide');
+  $('#new_layout .submit-button').html('Create');
+  document.getElementById("new_layout").reset();
+
+  new PNotify({
+    text: 'Layout <%= @layout.name %> was successfully created',
+    addclass: 'notice-success',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% else %>
+  new PNotify({
+    text: 'Something went wrong please try again later',
+    addclass: 'notice-error',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% end %>

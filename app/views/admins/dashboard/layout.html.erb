@@ -9,23 +9,15 @@
           <h2 class="admin-page-title">Layout</h2>
         </div>
         <div class="dashboard-body">
-          <%#= render "create_layout_modal" %>
-          <%#= render "layout" %>
-          <ul class="list-layouts list-unstyled list-inline">
+          <ul class="list-layouts list-unstyled list-inline" id="admins_layout_list">
             <li class="layout-item cursor-pointer" data-toggle="modal" data-target="#newLayoutModal">
-              <%= image_tag "https://cdn.dribbble.com/users/11867/screenshots/552726/400x300.jpg", class: "layout-image" %>
+              <%= image_tag "add-layout-image.jpg", class: "layout-image" %>
               <div class="layout-text">
                 <h4 class="layout-name new-layout">New Layout</h4>
               </div>
             </li>
-            <% (1..10).each do |index| %>
-              <li class="layout-item cursor-pointer" data-toggle="modal" data-target="#myModal<%= index %>">
-                <%= image_tag "https://cdn.dribbble.com/users/11867/screenshots/552726/400x300.jpg", class: "layout-image" %>
-                <div class="layout-text">
-                  <span class="layout-type">Music</span>
-                  <h4 class="layout-name">Minimal Capture</h4>
-                </div>
-              </li>
+            <% @layouts.each do |layout| %>
+              <%= render "admins/track_layout/layout_item", target_layout: layout %>
             <% end %>
           </ul>
         </div>
@@ -34,69 +26,4 @@
   </div>
 </div>
 
-<div class="modal fade zevent-modal" id="newLayoutModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <button type="button" class="close-modal no-outline" data-dismiss="modal">
-        <%= image_tag "vendor/close.png" %>
-      </button>
-      <div class="modal-body">
-        <h3 class="modal-title">Create new Layout</h3>
-        <div id="newLayoutStep" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
-          <div class="carousel-inner">
-            <div class="item active">
-              x
-            </div>
-            <div class="item">
-              xx
-            </div>
-            <div class="item">
-              xxx
-            </div>
-          </div>
-          <div class="step-control">
-            <a class="control-button btn prev-button no-outline" href="#newLayoutStep" data-slide="prev">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              Previous
-            </a>
-            <a class="control-button btn next-button no-outline" href="#newLayoutStep" data-slide="next">
-              Next
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </a>
-            <button type="submit" class="control-button btn submit-button no-outline" href="#newLayoutStep" data-slide="next">
-              Create
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $('#newLayoutStep').on('slid', '', checkitem);
-  $('#newLayoutStep').on('slid.bs.carousel', '', checkitem);
-  $(document).ready(function(){ 
-    checkitem(); 
-    $('.step-control .submit-button').click(function(event) {
-      $(this).html('Creating <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>')
-    });
-  });
-
-  function checkitem(){
-    var $this = $('#newLayoutStep');
-    if($('#newLayoutStep .carousel-inner .item:first').hasClass('active')) {
-      $('#newLayoutStep .step-control .prev-button').hide();
-      $('#newLayoutStep .step-control .next-button').show();
-      $('#newLayoutStep .step-control .submit-button').hide();
-    } else if($('#newLayoutStep .carousel-inner .item:last').hasClass('active')) {
-      $('#newLayoutStep .step-control .prev-button').show();
-      $('#newLayoutStep .step-control .next-button').hide();
-      $('#newLayoutStep .step-control .submit-button').show();
-    } else {
-      $('#newLayoutStep .step-control .prev-button').show();
-      $('#newLayoutStep .step-control .next-button').show();
-      $('#newLayoutStep .step-control .submit-button').hide();
-    } 
-  }
-</script>
+<%= render 'admins/track_layout/new_layout_modal' %>

@@ -76,14 +76,12 @@ ActiveRecord::Schema.define(version: 20171117034226) do
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
+    t.string "name"
+    t.string "featured_image"
     t.text "html"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.text "main_description"
-    t.text "sub_description"
-    t.string "address"
-    t.integer "event_type_id"
+    t.text "css"
+    t.text "javascript"
+    t.text "event_types"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
