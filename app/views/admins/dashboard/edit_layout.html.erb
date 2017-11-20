@@ -1,0 +1,142 @@
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-layout-edit">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Edit "<%= @layout.name %>" Layout</h2>
+        </div>
+        <div class="dashboard-body">
+          <%= form_for(@layout, url: admins_update_layout_path(@layout), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
+            <div class="step-body">
+              <h4 class="step-title">Step 1: Edit layout information</h4>
+              <div class="form-group">
+                <h5 class="text-left">Layout name</h5>
+                <%= f.text_field :name, class: 'form-control', required: true, placeholder: "Layout name ..." %>
+              </div>
+              <div class="form-group">
+                <h5 class="text-left">Layout types</h5>
+                <%= f.select :event_types, @event_types, { :include_blank => "Select type"}, { :multiple => true, :size => 2, :class => "ui fluid search dropdown js--select-event-type semantic-ui-form form-multipe" } %>
+                <script type="text/javascript">
+                  $('.js--select-event-type').dropdown({
+                    maxSelections: 2
+                  });
+                  <% if @layout.event_types? && @layout.event_types.split(" / ").length != 0 %>
+                    <% @layout.event_types.split(" / ").each do |type| %>
+                      $('.js--select-event-type').dropdown('set selected', "<%= type %>");
+                    <% end %>
+                  <% end %>
+                </script>
+              </div>
+              <div class="form-upload-image text-center">
+                <h5 class="text-left">Featured Image</h5>
+                <label id="layout_featured_image_label" class="cursor-pointer no-outline">
+                  <div id="preview_image"></div>
+                  <% if @layout.featured_image.blank? %>
+                    <img src="<%= asset_url 'add-layout-image.jpg' %>" class="js--add-image add-image-default" >
+                  <% else %>
+                    <%= cl_image_tag(@layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "js--add-image add-image-default") %>
+                  <% end %>
+                  <%= f.file_field :featured_image, class: 'hide' %>
+                </label>
+              </div>
+            </div>
+            <div class="step-body">
+              <h4 class="step-title">Step 2: Edit HTML code</h4>
+              <div class="code-editor-box">
+                <%= f.text_area :html, class: 'zevent-code-editor no-outline' %>
+              </div>
+            </div>
+            <div class="step-body">
+              <h4 class="step-title">Step 3: Edit CSS code</h4>
+              <div class="code-editor-box">
+                <%= f.text_area :css, class: 'zevent-code-editor no-outline' %>
+              </div>
+            </div>
+            <div class="step-body">
+              <h4 class="step-title">Step 4: Edit Javascript code (Optional)</h4>
+              <div class="code-editor-box">
+                <%= f.text_area :javascript, class: 'zevent-code-editor no-outline' %>
+              </div>
+            </div>
+            <div class="step-body text-right">
+              <%= link_to admins_destroy_layout_path( @layout ), method: :delete, class: 'delete-button btn no-outline' do %>
+                Delete
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <% end %>
+              <button type="submit" class="control-button btn no-outline js--submit-edit-layout">
+                Update Layout
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var editorHTML, editorCSS, editorJavascript;
+
+  $("#layout_featured_image").on('change', function () {
+    if(typeof (FileReader) != "undefined") {
+      var image_holder = $("#preview_image");
+      image_holder.empty();
+      $('.js--add-image').hide();
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("<img />", {
+            "src": e.target.result,
+            "class": "js--add-image"
+        }).appendTo(image_holder);
+      }
+      
+      image_holder.show();
+      reader.readAsDataURL($(this)[0].files[0]);
+    } else {
+      console.log("This browser does not support FileReader.");
+    }
+  });
+
+  editorHTML = CodeMirror.fromTextArea(document.getElementById("layout_html"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    tabSize: 4,
+    mode: 'htmlmixed',
+    theme: 'rubyblue',
+  });
+
+  editorCSS = CodeMirror.fromTextArea(document.getElementById("layout_css"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    tabSize: 4,
+    mode: 'css',
+    theme: 'rubyblue',
+  });
+
+  editorJavascript = CodeMirror.fromTextArea(document.getElementById("layout_javascript"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    tabSize: 4,
+    mode: 'javascript',
+    theme: 'rubyblue',
+  });
+
+  $('.js--submit-edit-layout').click(function(event) {
+    $(this).html('Updating <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+
+    var htmlValue = editorHTML.doc.getValue();
+    var cssValue = editorCSS.doc.getValue();
+    var javascriptValue = editorJavascript.doc.getValue();
+
+    $('#layout_html').val( htmlValue );
+    $('#layout_css').val( cssValue );
+    $('#layout_javascript').val( javascriptValue );
+  });
+</script>

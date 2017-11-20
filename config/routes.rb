@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     get 'messages', to: 'dashboard#messages', as: 'messages'
 
     post 'create_layout', to: 'dashboard#create_layout', as: 'create_layout'
+    patch 'update_layout/:id', to: 'dashboard#update_layout', as: 'update_layout'
+    put 'update_layout/:id', to: 'dashboard#update_layout'
+    get 'layout/:id/edit', to: 'dashboard#edit_layout', as: 'edit_layout'
+    delete 'destroy_layout/:id', to: 'dashboard#destroy_layout', as: 'destroy_layout'
 
     post 'create_event_type', to: 'dashboard#create_event_type', as: 'create_event_type'
     patch 'update_event_type/:id', to: 'dashboard#update_event_type', as: 'update_event_type'

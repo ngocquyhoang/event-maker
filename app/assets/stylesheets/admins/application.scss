@@ -1,6 +1,6 @@
 /*
 *= require codemirror
-*= require codemirror/themes/solarized
+*= require codemirror/themes/rubyblue
 *= require codemirror/addons/hint/show-hint
 */
 
@@ -445,6 +445,7 @@
         .dashboard-body {
           overflow-y: auto;
           height: calc( 100vh - 110px );
+          min-height: 590px;
 
           .form-control {
             font-size: 16px;
@@ -757,6 +758,11 @@
       margin-bottom: 15px;
       float: left;
 
+      .layout-item-link {
+        display: inline-block;
+        color: #000000;
+      }
+
       .layout-image {
         max-width: 100%;
       }
@@ -791,6 +797,96 @@
       content: "";
       display: block;
       clear: both;
+    }
+  }
+}
+
+.dashboard-layout-edit {
+  .step-body {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 25px;
+
+    .step-title {
+      font-size: 20px;
+      line-height: 22px;
+      margin-top: 0px;
+      margin-bottom: 20px;
+      color: #415b90;
+    }
+
+    .code-editor-box {
+      font-size: 16px;
+    }
+
+    .CodeMirror {
+      height: 500px !important;
+      font-size: 16px;
+
+      * {
+        font-family: 'Quicksand', sans-serif;
+      }
+    }
+
+    h5.text-left {
+      font-size: 18px;
+      line-height: 20px;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .form-control {
+      font-size: 16px;
+      line-height: 20px;
+      padding: 10px 15px;
+      height: auto;
+      border: 1px solid #415b90;
+    }
+
+    .semantic-ui-form {
+      font-size: 16px;
+      line-height: 20px;
+      padding-left: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      height: auto;
+      border: 1px solid #415b90;
+
+      & >.menu {
+        border-color: #415b90;
+      }
+    }
+
+    #layout_featured_image_label {
+      margin-bottom: 0px;
+
+      #preview_image {
+        img {
+          height: 300px;
+        }
+      }
+
+      .add-image-default {
+        height: 300px;
+      }
+    }
+
+    .control-button {
+      background-color: #415b90;
+      color: #ffffff;
+      padding: 10px 25px;
+      font-size: 16px;
+      line-height: 20px;
+      font-family: 'Cabin Sketch', cursive;
+    }
+
+    .delete-button {
+      background-color: #DD4B39;
+      color: #ffffff;
+      padding: 10px 25px;
+      font-size: 16px;
+      line-height: 20px;
+      font-family: 'Cabin Sketch', cursive;
     }
   }
 }
@@ -913,11 +1009,13 @@
 }
 
 #newLayoutModal {
+
   .modal-content {
     margin-top: 100px;
   }
 
-  #newLayoutStep {
+  #newLayoutStep,
+  .edit-layout-step {
 
     .carousel-inner {
       .step-block {

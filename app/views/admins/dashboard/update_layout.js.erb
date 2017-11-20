@@ -1,0 +1,24 @@
+<% if @update_success %>
+  new PNotify({
+    text: 'Layout was successfully updated',
+    addclass: 'notice-success',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% else %>
+  new PNotify({
+    text: 'Something went wrong please try again later',
+    addclass: 'notice-error',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% end %>
+$('.js--submit-edit-layout').html('Update Layout');

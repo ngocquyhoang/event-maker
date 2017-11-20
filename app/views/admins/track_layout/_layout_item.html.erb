@@ -1,7 +1,9 @@
-<li class="layout-item cursor-pointer" data-toggle="modal" data-target="#editLayoutModal<%= target_layout.id %>">
-  <%= cl_image_tag(target_layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
-  <div class="layout-text">
-    <span class="layout-type"><%= target_layout.event_types %></span>
-    <h4 class="layout-name"><%= target_layout.name %></h4>
-  </div>
+<li class="layout-item cursor-pointer" >
+  <%= link_to admins_edit_layout_path(target_layout), class: 'layout-item-link no-outline' do %>
+    <%= cl_image_tag(target_layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
+    <div class="layout-text">
+      <span class="layout-type"><%= target_layout.event_types %></span>
+      <h4 class="layout-name"><%= target_layout.name %></h4>
+    </div>
+  <% end %>
 </li>
