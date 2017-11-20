@@ -1,5 +1,6 @@
 class Admins::DashboardController < Admins::AccessController
   before_action :set_event_type, only: [:update_event_type, :destroy_event_type]
+  before_action :set_layout, only: [:edit_layout, :update_layout, :destroy_layout]
 
   # DASHBOARD BLOCK #################################
 
@@ -37,6 +38,33 @@ class Admins::DashboardController < Admins::AccessController
 
       format.js {}
     end
+  end
+
+  def edit_layout
+    @event_types = []
+
+    EventType.all.each do |type|
+      @event_types << type.label
+    end
+  end
+
+  def update_layout
+    new_layout_params = layout_params.to_h
+    new_layout_params[:event_types].shift
+    new_layout_params[:event_types] = new_layout_params[:event_types].join(" / ")
+
+    respond_to do |format|
+      @layout.update( new_layout_params ) ? ( @update_success = true ) : ( @update_success = false )
+      @layout.reload
+
+      format.js {}
+    end
+  end
+
+  def destroy_layout
+    @layout.destroy
+    flash[:success] = "Layout was successfully deleted"
+    redirect_to admins_layout_path
   end
 
   # EVENT TYPE BLOCK ################################
@@ -135,5 +163,9 @@ class Admins::DashboardController < Admins::AccessController
 
   def set_event_type
     @event_type = EventType.find( params[:id] )
+  end
+
+  def set_layout
+    @layout = Layout.find(params[:id])
   end
 end
