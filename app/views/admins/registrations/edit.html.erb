@@ -1,107 +1,112 @@
-<div class="admin-wrapper">
-  <div class="admin-profile-screen">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2 col-sm-12">
-          <div class="admin-setting-page">
-            <div class="admin-page-header">
-              <h3 class="admin-page-title">Admin setting</h3>
-            </div>
-            <div class="admin-page-body">
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                <div class="form-group js--email-field">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid field-label text-left">
-                      Email
-                    </div>
-                    <div class="table-child ver-mid">
-                      <% if resource.errors.empty? %>
-                        <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
-                        <div class="invalid-feedback text-left"></div>
-                      <% else %>
-                        <% if resource.errors.messages[:email].empty? %>
-                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-valid', placeholder: "Email" %>
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-setting">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Account setting</h2>
+        </div>
+        <div class="dashboard-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 col-sm-12">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                  <div class="form-group js--email-field">
+                    <div class="table-panel">
+                      <div class="table-child ver-mid field-label text-left">
+                        Email
+                      </div>
+                      <div class="table-child ver-mid">
+                        <% if resource.errors.empty? %>
+                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
                           <div class="invalid-feedback text-left"></div>
                         <% else %>
-                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                          <% if resource.errors.messages[:email].empty? %>
+                            <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-valid', placeholder: "Email" %>
+                            <div class="invalid-feedback text-left"></div>
+                          <% else %>
+                            <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                            <div class="invalid-feedback text-left">
+                              <%= "Email " + resource.errors.messages[:email][0] %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group js--new-password-field">
+                    <div class="table-panel">
+                      <div class="table-child ver-mid field-label text-left">
+                        New password
+                      </div>
+                      <div class="table-child ver-mid">
+                        <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                          <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password" %>
+                          <div class="invalid-feedback text-left text-black"> ( Leave blank if you don't want to change it ) </div>
+                        <% else %>
+                          <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password" %>
                           <div class="invalid-feedback text-left">
-                            <%= "Email " + resource.errors.messages[:email][0] %>
+                            <% if resource.errors.messages[:password].empty? %>
+                              <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                            <% else %>
+                              <%= "New password " + resource.errors.messages[:password][0] %>
+                            <% end %>
                           </div>
                         <% end %>
-                      <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="form-group js--new-password-field">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid field-label text-left">
-                      New password
-                    </div>
-                    <div class="table-child ver-mid">
-                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
-                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password" %>
-                        <div class="invalid-feedback text-left text-black"> ( Leave blank if you don't want to change it ) </div>
-                      <% else %>
-                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password" %>
-                        <div class="invalid-feedback text-left">
-                          <% if resource.errors.messages[:password].empty? %>
-                            <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
-                          <% else %>
-                            <%= "New password " + resource.errors.messages[:password][0] %>
-                          <% end %>
-                        </div>
-                      <% end %>
+                  <div class="form-group js--comfirm-new-password-field">
+                    <div class="table-panel">
+                      <div class="table-child ver-mid field-label text-left">
+                        New password confirmation
+                      </div>
+                      <div class="table-child ver-mid">
+                        <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password confirmation" %>
+                          <div class="invalid-feedback text-left"></div>
+                        <% else %>
+                          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password confirmation" %>
+                          <div class="invalid-feedback text-left">
+                            <% unless resource.errors.messages[:password_confirmation].empty? %>
+                             <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="form-group js--comfirm-new-password-field">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid field-label text-left">
-                      New password confirmation
-                    </div>
-                    <div class="table-child ver-mid">
-                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
-                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password confirmation" %>
-                        <div class="invalid-feedback text-left"></div>
-                      <% else %>
-                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password confirmation" %>
-                        <div class="invalid-feedback text-left">
-                          <% unless resource.errors.messages[:password_confirmation].empty? %>
-                           <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group js--current-password-field">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid field-label text-left">
-                      Current password
-                    </div>
-                    <div class="table-child ver-mid">
-                      <% if resource.errors.messages[:current_password].empty? %>
-                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Current password" %>
-                        <div class="invalid-feedback text-left text-black"> ( We need your current password to confirm your changes ) </div>
-                      <% else %>
-                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Current password" %>
-                        <div class="invalid-feedback text-left">
-                          <%= "Current password " + resource.errors.messages[:current_password][0] %>
-                        </div>
-                      <% end %>
+                  <div class="form-group js--current-password-field">
+                    <div class="table-panel">
+                      <div class="table-child ver-mid field-label text-left">
+                        Current password
+                      </div>
+                      <div class="table-child ver-mid">
+                        <% if resource.errors.messages[:current_password].empty? %>
+                          <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Current password" %>
+                          <div class="invalid-feedback text-left text-black"> ( We need your current password to confirm your changes ) </div>
+                        <% else %>
+                          <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Current password" %>
+                          <div class="invalid-feedback text-left">
+                            <%= "Current password " + resource.errors.messages[:current_password][0] %>
+                          </div>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="form-group text-right">
-                  <button type="submit" class="btn btn-submit btn-lg no-outline">
-                    Save Setting
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </button>
-                </div>
-              <% end %>
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-submit btn-lg no-outline">
+                      Save Setting
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

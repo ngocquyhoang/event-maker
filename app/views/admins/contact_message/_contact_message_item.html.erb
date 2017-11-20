@@ -1,0 +1,53 @@
+<li class="message-item cursor-pointer" data-toggle="modal" data-target="#contactMessageModal<%= contact_message.id %>">
+  <div class="table-panel">
+    <div class="table-child ver-mid message-id">
+      #<%= contact_message.id %>
+    </div>
+    <div class="table-child ver-mid message-time">
+      <%= contact_message.created_at.strftime("%Y %b %d %H:%M") %>
+    </div>
+    <div class="table-child ver-mid message-email">
+      <%= contact_message.email %>
+    </div>
+    <div class="table-child ver-mid message-name">
+      <%= contact_message.name %>
+    </div>
+    <div class="table-child message-content">
+      <%= truncate( contact_message.message , length: 60) %>
+    </div>
+  </div>
+</li>
+<div class="modal fade zevent-modal contact-message-modal" id="contactMessageModal<%= contact_message.id %>" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body text-center">
+        <h3 class="modal-title">Contact message from <%= contact_message.name %></h3>
+        <div class="contact-message-block">
+          <div class="table-panel">
+            <div class="table-child label-title">Name</div>
+            <div class="table-child"><%= contact_message.name %></div>
+          </div>
+          <div class="table-panel">
+            <div class="table-child label-title">Email</div>
+            <div class="table-child"><%= contact_message.email %></div>
+          </div>
+          <div class="message-content">
+            <%= contact_message.message %>
+          </div>
+        </div>
+        <h3 class="modal-title">Reply message</h3>
+        <div class="reply-message-block">
+          <ul class="list-unstyled reply_message_list js--reply_message_list">
+            <% contact_message.reply_messages.order('created_at DESC').each do |reply_message| %>
+              <%= render "admins/contact_message/reply_message_item", target: reply_message %>
+            <% end %>
+          </ul>
+        </div>
+        <%= render "admins/contact_message/form_reply_email", target: contact_message %>
+      </div>
+    </div>
+  </div>
+</div>

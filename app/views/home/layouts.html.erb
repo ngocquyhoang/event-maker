@@ -1,0 +1,94 @@
+<section class="first-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline list-unstyled zevent-nav">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "no-outline" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Layouts", layouts_path, class: "no-outline" %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", users_dashboard_index_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "no-outline" %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", admins_dashboard_index_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "no-outline" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "no-outline" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class: "no-outline" %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="content-wrap">
+          <div class="text-content">
+            <h2>Layouts</h2>
+            <div class="line-dec"></div>
+            <span>ALL Layout You can choose</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content-wrapper home-layouts-list">
+  <div class="inner-container container">
+    <div class="projects-holder-3">
+      <div class="filter-categories">
+        <ul class="project-filter">
+          <li class="filter" data-filter="all"><span>All</span></li>
+          <% @layout_type.each do |type| %>
+            <li class="filter" data-filter="<%= get_slug(type) %>"><span><%= type %></span></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="projects-holder">
+        <div class="row">
+          <% @layouts.each do |layout| %>
+            <div class="col-md-3 col-sm-6 project-item mix <%= get_slug( layout.event_types ).gsub('/', ' ') %>">
+              <div class="image">
+                <a href="<%= layout.featured_image.to_s %>" data-lightbox="image-<%= layout.id %>">
+                  <%= cl_image_tag(layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
+                </a>
+              </div>
+              <div class="text">
+                <span><%= layout.event_types %></span>
+                <h4><%= layout.name %></h4>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="https://github.com/ngocquyhoang"><i class="fa fa-github"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+        <p>Copyright &copy; 2017 Event Maker | Design: <a href="https://ngocquyhoang.com" target="_blank">ngocquyhoang.com</a></p>
+      </div>
+    </div>
+  </div>
+</footer>

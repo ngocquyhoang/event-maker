@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  belongs_to :event_type
   has_one :layout
   has_many :cost_management
 

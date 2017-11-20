@@ -1,0 +1,6 @@
+<% if @save_success %>
+  $('#contactMessageModal<%= @reply_messages.message.id %> .js--reply_message_list').prepend('<%= j render "admins/contact_message/reply_message_item", target: @reply_messages %>')
+<% end %>
+
+$('#contactMessageModal<%= @reply_messages.message.id %> .js--send-email').html('Send');
+$('#contactMessageModal<%= @reply_messages.message.id %> .email_form .label-content').val('');

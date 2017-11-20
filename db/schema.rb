@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113082328) do
+ActiveRecord::Schema.define(version: 20171117034226) do
+
+  create_table "admin_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "to_email"
+    t.text "subject"
+    t.text "email_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -68,14 +76,12 @@ ActiveRecord::Schema.define(version: 20171113082328) do
   end
 
   create_table "layouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
+    t.string "name"
+    t.string "featured_image"
     t.text "html"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.text "main_description"
-    t.text "sub_description"
-    t.string "address"
-    t.integer "event_type_id"
+    t.text "css"
+    t.text "javascript"
+    t.text "event_types"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -88,11 +94,18 @@ ActiveRecord::Schema.define(version: 20171113082328) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reply_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "message_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
   create_table "paypals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "notification_params"
     t.string "status"
     t.string "transaction_id"
     t.datetime "purchased_at"
+
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

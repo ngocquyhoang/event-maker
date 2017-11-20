@@ -1,0 +1,7 @@
+<% if @update_success %>
+  $('#editEventType<%= @event_type.id %>').bsmodal('hide');
+  $('.type-item[data-target="#editEventType<%= @event_type.id %>"]').text('<%= @event_type.label %>');
+<% else %>
+  $('#editEventType<%= @event_type.id %>').bsmodal('hide');
+  $('#editEventType<%= @event_type.id %> .label-field').val('<%= @event_type.label %>')
+<% end %>

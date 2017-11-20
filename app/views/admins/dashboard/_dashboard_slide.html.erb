@@ -1,0 +1,86 @@
+<ul class="list-unstyled">
+  <li class="slide-item">
+    <% if current_page?(admins_dashboard_index_path) %>
+      <%= link_to admins_dashboard_index_path, class: "active no-outline" do %>
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <span>Dashboard</span>
+      <% end %>
+    <% else %>
+      <%= link_to admins_dashboard_index_path, class: "no-outline" do %>
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <span>Dashboard</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <% if current_page?(admins_messages_path) %>
+      <%= link_to admins_messages_path, class: "active no-outline" do %>
+        <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+        <span>Messages</span>
+      <% end %>
+    <% else %>
+      <%= link_to admins_messages_path, class: "no-outline" do %>
+        <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+        <span>Messages</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <% if current_page?(admins_layout_path) %>
+      <%= link_to admins_layout_path, class: "active no-outline" do %>
+        <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+        <span>Layout</span>
+      <% end %>
+    <% else %>
+      <%= link_to admins_layout_path, class: "no-outline" do %>
+        <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+        <span>Layout</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <% if current_page?(admins_event_type_path) %>
+      <%= link_to admins_event_type_path, class: "active no-outline" do %>
+        <i class="fa fa-list-ul" aria-hidden="true"></i>
+        <span>Event Type</span>
+      <% end %>
+    <% else %>
+      <%= link_to admins_event_type_path, class: "no-outline" do %>
+        <i class="fa fa-list-ul" aria-hidden="true"></i>
+        <span>Event Type</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <% if current_page?(admins_payment_path) %>
+      <%= link_to admins_payment_path, class: "active no-outline" do %>
+        <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+        <span>Payment</span>
+      <% end %>
+    <% else %>
+      <%= link_to admins_payment_path, class: "no-outline" do %>
+        <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+        <span>Payment</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <% if current_page?(edit_admin_registration_path) %>
+      <%= link_to edit_admin_registration_path, class: "active no-outline" do %>
+        <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+        <span>Setting</span>
+      <% end %>
+    <% else %>
+      <%= link_to edit_admin_registration_path, class: "no-outline" do %>
+        <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+        <span>Setting</span>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="slide-item">
+    <%= link_to destroy_admin_session_path, method: :delete, class: "no-outline" do %>
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      <span>Sign out</span>
+    <% end %>
+  </li>
+</ul>

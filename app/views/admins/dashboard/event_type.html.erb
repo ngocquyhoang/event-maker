@@ -1,0 +1,29 @@
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-event-type">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Event Type</h2>
+        </div>
+        <div class="dashboard-body">
+          <div class="event-type-form">
+            <%= form_for(@event_type, url: admins_create_event_type_path, :remote => true, authenticity_token: true) do |f| %>
+              <%= f.text_field :label, class: "label-field no-outline", required: true %>
+              <%= f.submit "Create", class: "submit-event-type no-outline" %>
+            <% end %>
+          </div>
+          <div class="event-type-list">
+            <ul class="list-unstyled list-inline" id="event_type_list">
+              <% @event_types.each do |type| %>
+                <%= render 'admins/dashboard/event_type_item', type: type %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

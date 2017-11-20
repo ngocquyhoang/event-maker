@@ -1,0 +1,49 @@
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-layout-list">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Layout</h2>
+        </div>
+        <div class="dashboard-filter">
+          <ul class="project-filter">
+            <li class="filter" data-filter="all"><span>All</span></li>
+            <% @event_types.each do |type| %>
+              <li class="filter" data-filter="<%= get_slug(type) %>"><span><%= type %></span></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="dashboard-body projects-holder">
+          <ul class="list-layouts list-unstyled list-inline" id="admins_layout_list">
+            <li class="layout-item cursor-pointer" data-toggle="modal" data-target="#newLayoutModal">
+              <%= image_tag "add-layout-image.jpg", class: "layout-image" %>
+              <div class="layout-text">
+                <h4 class="layout-name new-layout">New Layout</h4>
+              </div>
+            </li>
+            <% @layouts.each do |layout| %>
+              <%= render "admins/track_layout/layout_item", target_layout: layout %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'admins/track_layout/new_layout_modal' %>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    'use strict';
+
+    $('.projects-holder').mixitup({
+      effects: ['fade','grayscale'],
+      easing: 'snap',
+      transitionSpeed: 400
+    });
+  });
+</script>

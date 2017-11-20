@@ -1,0 +1,48 @@
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-messages">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Contact Messages</h2>
+        </div>
+        <div class="dashboard-body">
+          <div class="message-list">
+            <% if @messages.blank? %>
+              <div class="text-center no-messages">No contact Messages </div>
+            <% else %>
+              <ul class="list-unstyled">
+                <% @messages.each do |message| %>
+                  <%= render 'admins/contact_message/contact_message_item', contact_message: message %>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+
+          <div class="new-email-block">
+            <button type="button" class="new-email-button no-outline" data-toggle="modal" data-target="#newEmailModal"> 
+              New Email
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade zevent-modal" id="newEmailModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+        <%= image_tag "vendor/close.png" %>
+      </button>
+      <div class="modal-body">
+        <h3 class="modal-title">New Email</h3>
+        <%= render "admins/contact_message/form_new_email" %>
+      </div>
+    </div>
+  </div>
+</div>

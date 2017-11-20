@@ -1,11 +1,45 @@
-<h1>Admin Dashboard</h1>
-<% if admin_signed_in? %>
-  <div><%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-primary btn-lg" %></div>
-  <br>
-
-  <%= render "create_layout_modal" %>
-
-  <div id="list-layout">
-    <%= render "layout" %>
+<div class="admin-main-dashboard">
+  <div class="admin-dashboard-screen table-panel">
+    <div class="admin-slide-left table-child">
+      <%= render "admins/dashboard/dashboard_slide" %>
+    </div>
+    <div class="dashboard-main table-child">
+      <div class="dashboard-layout dashboard-dashboard">
+        <div class="dashboard-header">
+          <h2 class="admin-page-title">Dashboard</h2>
+        </div>
+        <div class="dashboard-body">
+          <div class="dashboard-main-item">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @event_count %></h4> Event created
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @user_count %></h4> User sign up
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @layout_count %></h4> Themes
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dashboard-item text-center">
+                  <h4 class="count"><%= @message_count %></h4> Contact Message
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-analytics">
+            <h3 class="dashboard-ana-title">
+              Google Analytics
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

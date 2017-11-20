@@ -1,0 +1,6 @@
+<% if @save_success %>
+  $('#event_type_list').prepend("<%= j render 'admins/dashboard/event_type_item', type: @event_type %>");
+  $('#event_type_label').val('');
+<% else %>
+  $('#event_type_label').val('');
+<% end %>

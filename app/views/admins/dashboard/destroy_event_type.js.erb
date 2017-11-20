@@ -1,0 +1,6 @@
+$('#editEventType<%= @event_type.id %>').bsmodal('hide');
+
+setTimeout(function(){ 
+  $('.type-item[data-target="#editEventType<%= @event_type.id %>"]').remove();
+  $('#editEventType<%= @event_type.id %>').remove()
+}, 500);
