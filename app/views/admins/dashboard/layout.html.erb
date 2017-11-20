@@ -8,15 +8,7 @@
         <div class="dashboard-header">
           <h2 class="admin-page-title">Layout</h2>
         </div>
-        <div class="dashboard-filter">
-          <ul class="project-filter">
-            <li class="filter" data-filter="all"><span>All</span></li>
-            <% @event_types.each do |type| %>
-              <li class="filter" data-filter="<%= get_slug(type) %>"><span><%= type %></span></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="dashboard-body projects-holder">
+        <div class="dashboard-body">
           <ul class="list-layouts list-unstyled list-inline" id="admins_layout_list">
             <li class="layout-item cursor-pointer" data-toggle="modal" data-target="#newLayoutModal">
               <%= image_tag "add-layout-image.jpg", class: "layout-image" %>
@@ -35,15 +27,3 @@
 </div>
 
 <%= render 'admins/track_layout/new_layout_modal' %>
-
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    'use strict';
-
-    $('.projects-holder').mixitup({
-      effects: ['fade','grayscale'],
-      easing: 'snap',
-      transitionSpeed: 400
-    });
-  });
-</script>

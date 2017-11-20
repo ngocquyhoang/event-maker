@@ -641,15 +641,11 @@
     }
   }
 
-  .dashboard-body {
-    position: relative;
-  }
-
   .new-email-block {
-    position: absolute;
+    position: fixed;
     display: inline-block;
-    right: 0px;
-    bottom: 10px;
+    right: 30px;
+    bottom: 30px;
 
     .new-email-button {
       padding: 10px 20px;
