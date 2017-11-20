@@ -99,6 +99,13 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+  create_table "paypals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "notification_params"
+    t.string "status"
+    t.string "transaction_id"
+    t.datetime "purchased_at"
+
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -131,6 +138,8 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "acc_state"
+    t.integer "https_use_count"
   end
 
 end
