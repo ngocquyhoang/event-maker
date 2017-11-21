@@ -67,7 +67,6 @@ Rails.application.routes.draw do
 
   get ':username', to: 'users#show', as: :user
 
-  get "/hook" => "users/paypal#hook"
-  get "/baokim" => "users/baokim#create"
-  post '/user/dashboard', to: 'users/dashboard#index'
+  post "/hook" => "users/paypal#hook"
+  post "/baokim" => "users/baokim#create"
 end
