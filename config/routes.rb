@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   namespace :users do
     resources :dashboard, only: [:index]
     resources :events, only: [:new, :create, :edit, :update, :show]
-    resources :layouts, only: [:index]
     resources :cost_managements, only: [:create]
     resources :paypal
     resources :baokim
