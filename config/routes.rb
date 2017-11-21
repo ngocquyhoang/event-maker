@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :layouts, only: [:index]
     resources :cost_managements, only: [:create]
     resources :paypal
+    resources :baokim
 
     devise_scope :user do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
@@ -67,6 +68,7 @@ Rails.application.routes.draw do
 
   get ':username', to: 'users#show', as: :user
 
-  post "/hook" => "users/paypal#hook"
+  get "/hook" => "users/paypal#hook"
+  get "/baokim" => "users/baokim#create"
   post '/user/dashboard', to: 'users/dashboard#index'
 end

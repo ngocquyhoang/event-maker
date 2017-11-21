@@ -27,7 +27,6 @@ gem 'faker'
 gem 'codemirror-rails'
 gem 'unicode_utils'
 
-
 gem 'capistrano-rails', group: :development
 
 group :development, :test do
