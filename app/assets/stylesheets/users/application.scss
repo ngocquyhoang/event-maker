@@ -575,6 +575,172 @@
       }
     }
   }
+
+  .profile-container {
+    .status-block {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #415b90;
+
+      .status-label {
+        width: 200px;
+        font-size: 20px;
+        line-height: 24px;
+        font-family: 'Cabin Sketch', cursive;
+        color: #415b90;
+        font-weight: bold;
+      }
+
+      .account-status-button {
+        padding: 10px 25px;
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 20px;
+        font-family: 'Cabin Sketch', cursive;
+        text-transform: uppercase;
+
+        .fa {
+          margin-right: 5px;
+        }
+
+        &.button-free {
+          background-color: #DD4B39;
+        }
+
+        &.button-pro {
+          background-color: #415b90;
+        }
+
+        &.button-pro-plus {
+          background-color: #ffbf00;
+        }
+      }
+    }
+
+    .account-upgrade-plan {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #415b90;
+
+      .upgrade-plan-title {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        font-family: 'Cabin Sketch', cursive;
+        color: #415b90;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .table {
+        text-align: center;
+
+        .fa-times {
+          color: #DD4B39;
+        }
+
+        .fa-check {
+          color: #28a745;
+        }
+
+        .upgrade-account-button {
+          padding: 8px 15px;
+          background-color: #415b90;
+          font-family: 'Cabin Sketch', cursive;
+          font-size: 16px;
+          line-height: 18px;
+          color: #ffffff;
+        }
+      }
+
+      .table {
+        tr {
+          td:first-child {
+            text-align: left;
+          }
+        }
+
+        td {
+          font-size: 18px;
+          line-height: 22px;
+          padding: 15px;
+          border-top-color: #415b90;
+        }
+
+        >thead>tr>th {
+          border-bottom: 1px solid #415b90;
+          font-size: 20px;
+          line-height: 22px;
+          font-family: 'Cabin Sketch', cursive;
+          color: #415b90;
+          padding-bottom: 20px;
+        }
+      }
+
+      .tablecol-1 {
+
+      }
+
+      .tablecol-2 {
+        width: 200px;
+        text-align: center;
+      }
+
+      .tablecol-3 {
+        width: 200px;
+        text-align: center;
+      }
+
+      .tablecol-4 {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    .payment-history {
+      .payment-history-title {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        font-family: 'Cabin Sketch', cursive;
+        color: #415b90;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .table {
+        text-align: center;
+      }
+
+      .table {
+        tr {
+          td:first-child, 
+          th:first-child {
+            text-align: left;
+          }
+        }
+
+        td {
+          font-size: 14px;
+          line-height: 18px;
+          padding: 15px 5px;
+          border-top-color: #415b90;
+        }
+
+        >thead>tr>th {
+          border-bottom: 1px solid #415b90;
+          font-size: 16px;
+          line-height: 18px;
+          color: #415b90;
+          padding: 15px 5px;
+          text-align: center;
+          font-weight: 400;
+        }
+      }
+    }
+  }
 }
 
 .user-setting-page {
@@ -969,4 +1135,63 @@
 
 .margin-bottom-15 {
   margin-bottom: 15px;
+}
+
+#upgradeProModal,
+#upgradeProPlusModal {
+  .modal-body {
+    padding: 30px 30px 20px;
+  }
+
+  .modal-content {
+    margin-top: 150px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 25px;
+    margin-top: 0px;
+    font-family: 'Cabin Sketch', cursive;
+    text-align: center;
+    color: #415b90;
+    text-transform: uppercase;
+  }
+
+  .pay-with-block {
+    padding-bottom: 20px;
+
+    h5 {
+      position: relative;
+      text-align: center;
+
+      span {
+        font-size: 20px;
+        line-height: 22px;
+        padding: 10px 20px;
+        display: inline-block;
+        background-color: #ffffff;
+        position: relative;
+        z-index: 10;
+        color: #415b90;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        position: absolute;
+        border-bottom: 1px solid #415b90;
+        top: 22px;
+        left: 0px;
+      }
+    }
+    .pay-button {
+      display: inline-block;
+
+      .payment-logo {
+        height: 80px;
+      }
+    }
+  }
 }

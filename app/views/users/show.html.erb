@@ -24,7 +24,111 @@
           </div>
         </div>
         <div class="col-md-8 col-sm-12">
-          <!-- thong ke lai, payment -->
+          <div class="profile-container">
+            <div class="status-block">
+              <div class="table-panel">
+                <div class="table-child ver-mid status-label">
+                  You are currently
+                </div>
+                <div class="table-child ver-mid">
+                  <% if current_user.acc_state == "pro" %>
+                    <button type="button" class="btn account-status-button button-pro">
+                      <i class="fa fa-diamond" aria-hidden="true"></i> Professional account
+                    </button>
+                  <% elsif current_user.acc_state == "plus" %>
+                    <button type="button" class="btn account-status-button button-pro-plus">
+                      <i class="fa fa-grav" aria-hidden="true"></i> Professional Plus account
+                    </button>
+                  <% else %>
+                    <button type="button" class="btn account-status-button button-free">
+                      <i class="fa fa-snowflake-o" aria-hidden="true"></i> Free account
+                    </button>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="account-upgrade-plan">
+              <h4 class="upgrade-plan-title">Upgrade plan</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="tablecol-1"></th>
+                    <th class="tablecol-2">Free</th>
+                    <th class="tablecol-3">Professional</th>
+                    <th class="tablecol-4">Professional Plus</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Event Limit</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>unlimited</td>
+                  </tr>
+                  <tr>
+                    <td>Email Support</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                  </tr>
+                  <tr>
+                    <td>Live Chat</td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <%= "Current" if current_user.acc_state == "free" %>
+                    </td>
+                    <td>
+                      <%= "Current" if current_user.acc_state == "pro" %>
+                      <% if current_user.acc_state == "free" %>
+                        <button type="button" class="btn upgrade-account-button no-outline" data-toggle="modal" data-target="#upgradeProModal">
+                          Upgrade Pro
+                        </button>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= "Current" if current_user.acc_state == "plus" %>
+                      <% unless current_user.acc_state == "plus" %>
+                        <button type="button" class="btn upgrade-account-button no-outline" data-toggle="modal" data-target="#upgradeProPlusModal">
+                          Upgrade Pro +
+                        </button>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="payment-history">
+              <h4 class="payment-history-title">Payment History</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="tablecol-1">Transaction ID</th>
+                    <th class="tablecol-2">Amount</th>
+                    <th class="tablecol-3">Width</th>
+                    <th class="tablecol-4">Notice</th>
+                    <th class="tablecol-5">Status</th>
+                    <th class="tablecol-6">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#121324</td>
+                    <td>100$</td>
+                    <td>Paypal</td>
+                    <td>Upgrade to Pro</td>
+                    <td>Success</td>
+                    <td>2017 Nov 29 10:11</td> <!-- time.strftime("%Y %b %d %H:%M") -->
+                  </tr>
+                  <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,6 +136,62 @@
 </div>
 
 <% if @user == current_user %>
+  <div class="modal fade zevent-modal" id="upgradeProModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <button type="button" class="close-modal no-outline" data-dismiss="modal">
+          <%= image_tag "vendor/close.png" %>
+        </button>
+        <div class="modal-body">
+          <h3 class="modal-title">Upgrade to Professional</h3>
+          <div class="pay-with-block">
+            <h5><span>pay with</span></h5>
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <%= link_to new_users_paypal_path(status: "pro"), class: 'pay-button' do %>
+                  <%= image_tag "paypal-logo.png", class: "payment-logo" %>
+                <% end %>
+              </div>
+              <div class="col-md-6 text-center">
+                <%= link_to new_users_baokim_path(status: "pro"), class: 'pay-button' do %>
+                  <%= image_tag "baokim-logo-3.jpeg", class: "payment-logo" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zevent-modal" id="upgradeProPlusModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <button type="button" class="close-modal no-outline" data-dismiss="modal">
+          <%= image_tag "vendor/close.png" %>
+        </button>
+        <div class="modal-body">
+          <h3 class="modal-title">Upgrade to Professional Plus</h3>
+          <div class="pay-with-block">
+            <h5><span>pay with</span></h5>
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <%= link_to new_users_paypal_path(status: "pro_plus"), class: 'pay-button' do %>
+                  <%= image_tag "paypal-logo.png", class: "payment-logo" %>
+                <% end %>
+              </div>
+              <div class="col-md-6 text-center">
+                <%= link_to new_users_baokim_path(status: "pro_plus"), class: 'pay-button' do %>
+                  <%= image_tag "baokim-logo-3.jpeg", class: "payment-logo" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade zevent-modal" id="editUserAvatarModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
