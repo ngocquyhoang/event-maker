@@ -38,6 +38,6 @@ class Users::PaypalController < ApplicationController
           flash[:success] = "Upgraded to Professional Plus!!"
       end
     end
-    render "/users/dashboard/paypal.html.erb"
+    redirect_to users_dashboard_index_path
   end
 end

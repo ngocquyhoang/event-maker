@@ -1,8 +1,7 @@
 <div class="user-main-wrap">
   <div class="container">
     <h1>User Dashboard</h1>
-    <%= render "/users/dashboard/create_event" %>
-
+    <%= link_to "Create New Event", new_users_event_path, class:"btn btn-primary" %>
     <div id="list-event">
       <%= render "/users/dashboard/event" %>
     </div>

@@ -7,17 +7,22 @@ class Users::EventsController < Users::AccessController
   def show
   end
 
+  def new
+  end
+
   def create
     event = Event.new
     if event.update_attributes event_params
       flash[:success] = "Event created!!"
+      redirect_to users_dashboard_index_path
     else
       flash[:danger] = "Something Wrong!!"
+      redirect_to :back
     end
 
-    respond_to do |format|
-      format.js { render :file => "/users/dashboard/create_event.js.erb" }
-    end
+    # respond_to do |format|
+    #   format.js { render :file => "/users/dashboard/create_event.js.erb" }
+    # end
   end
 
   def update
