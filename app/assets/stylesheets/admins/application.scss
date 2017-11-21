@@ -632,6 +632,40 @@
       padding-left: 15px;
       padding-right: 15px;
 
+      .fieldset-1 {
+        width: 1000px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        .chart-1 {
+          width: 490px;
+          height: 260px;
+          margin-right: 20px;
+          float: left;
+        }
+
+        .chart-2 {
+          width: 490px;
+          height: 303px;
+          float: left;
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+      }
+
+      .fieldset-2 {
+        width: 1010px;
+        margin: 0 auto;
+
+        .chart-3 {
+          width: 1010px;
+          height: 602px;
+        }
+      }
     }
 
     // DASHBOAR HERE ---------------------------------------------------------
