@@ -35,8 +35,10 @@ Rails.application.routes.draw do
   namespace :users do
     resources :dashboard, only: [:index]
     resources :events
-    resources :cost_managements, only: [:create]
     resources :payment
+    
+    post 'cost_managements/events/:id', to: 'cost_managements#create', as: 'cost_managements_create'
+    post 'events/:id/build', to: 'events#event_build', as: 'event_build'
 
     devise_scope :user do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'

@@ -1,11 +1,14 @@
 class Users::EventsController < Users::AccessController
   include UsersHelper
-  before_action :find_event, only: [:show, :update, :edit, :destroy]
+  before_action :find_event, only: [:show, :update, :edit, :destroy, :event_build]
   before_action :load_event, only: [:create]
-  before_action :load_cost, only: [:show]
   before_action :check_state, only: [:new, :create]
 
   def show
+    redirect_to user_path(current_user.username) unless @event.user == current_user
+    @cost_history = @event.cost_managements.order('created_at DESC')
+
+    @new_cost_management = CostManagement.new
   end
 
   def new
@@ -40,7 +43,9 @@ class Users::EventsController < Users::AccessController
 
   def update
     if @event.update event_params
+      @user.update_attributes(:is_builded => false)
       flash[:success] = "Event was successful updated!"
+      redirect_to users_event_path(@event)
     else
       flash[:error] = "Something went wrong please try again later!"
       redirect_to edit_users_event_path(@event)
@@ -56,6 +61,11 @@ class Users::EventsController < Users::AccessController
     end
   end
 
+  def event_build
+    # @event.build
+    byebug
+  end
+
   def check_event_slug_ajax
     is_valid = Event.new(name: 'BD', slug: params['event_slug'], user_id: 1, layout_id: 1, start_time: '01-12-2017 08:00', end_time: '01-12-2017 17:00', main_description: 'BD', address: 'BD', event_type_id: 1, address_commune: 'BD', address_district: 'BD', address_province: 'BD', expense: 2000, title_layout: 'BD', seo_keyword: 'BD').valid?
     render json: { 'is_valid': is_valid }
@@ -68,10 +78,6 @@ class Users::EventsController < Users::AccessController
 
   def find_event
     @event = Event.find_by id: params[:id]
-  end
-
-  def load_cost
-    @cost_log = CostManagement.where(event_id: params[:id]).order(id: :desc)
   end
 
   def check_state

@@ -1,19 +1,171 @@
-<div class="row">
-  <div class="col-sm-6">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_event_modal">
-      Edit modal
-    </button>
-    <%= render "edit_modal" %>
+<div class="user-wrapper">
+  <div class="user-event-screen">
+    <div class="container">
+      <h2 class="screen-title"><%= @event.name %></h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="event-info-block">
+            <ul class="list-unstyled info-list">
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Name: 
+                  </div>
+                  <div class="table-child ver-mid">
+                    <%= @event.name %>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item text-center">
+                <% if @event.is_builded? %>
+                  <%= link_to "https://#{ @event.slug }.zevent.date", "https://#{ @event.slug }.zevent.date", class: 'link-out' %>
+                <% else %>
+                  <%= link_to users_event_build_path( @event ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
+                    Build 
+                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </li>
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Time: 
+                  </div>
+                  <div class="table-child ver-mid time-form-to-block">
+                    <div class="table-panel">
+                      <div class="table-child title-block">
+                        From:
+                      </div>
+                      <div class="table-child">
+                        <%= @event.start_time.strftime("%Y %b %d %H:%M") %>
+                      </div>
+                    </div>
+                    <div class="table-panel">
+                      <div class="table-child title-block">
+                        To:
+                      </div>
+                      <div class="table-child">
+                        <%= @event.end_time.strftime("%Y %b %d %H:%M") %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Address: 
+                  </div>
+                  <div class="table-child ver-mid">
+                    <%= @event.address %> - <%= @event.address_commune %> - <%= @event.address_district %> - <%= @event.address_province %>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item layout-block">
+                <h5 class="layout-title">Layout: <span><%= @event.layout.name %></span></h5>
+                <div class="event-layout">
+                  <%= cl_image_tag(@event.layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
+                </div>
+                <div class="edit-block">
+                  <%= link_to edit_users_event_path( @event ), class: 'edit-button' do %>
+                    Edit
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <% unless @event.is_builded? %>
+            <div class="build-notice">
+              <div class="table-panel">
+                <div class="table-child ver-mid">
+                  You event website wasn't update
+                </div>
+                <div class="table-child ver-mid">
+                  <%= link_to users_event_build_path( @event ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
+                      Build
+                      <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                    <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="event-cost-block">
+            <h4 class="cost-title">Cost management</h4>
+            <div class="table-panel cal-table">
+              <div class="table-child ver-mid text-center">
+                <button type="button" class="new-transaction-button no-outline" data-toggle="modal" data-target="#addCostModal">
+                  New Transaction
+                  <i class="fa fa-exchange" aria-hidden="true"></i>
+                </button>
 
-    <div id="event-detail-info">
-      <%= render "event_info" %>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <%= render "manage_cost_modal" %>
-    <div id="list-cost-log">
-      <%= render "manage_cost" %>
+                <div class="modal fade zevent-modal" id="addCostModal" tabindex="-1">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <button type="button" class="close-modal no-outline" data-dismiss="modal">
+                        <%= image_tag "vendor/close.png" %>
+                      </button>
+                      <div class="modal-body">
+                        <h3 class="modal-title">Create new Transaction</h3>
+                        <%= form_for(@new_cost_management, method: :post, url: users_cost_managements_create_path(@event), remote: true) do |f| %>
+                          <%= f.hidden_field :event_id, value: @event.id %>
+                          <%= f.hidden_field :user_id, value: current_user.id %>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <%= f.select :cost_type, CostManagement.cost_types.keys.map {|role| [role.titleize,role]}, {}, class:"ui dropdown js--select-cost-type semantic-ui-form" %>
+                              </div>
+                              <div class="col-md-6">
+                                <%= f.number_field :amount, class:"form-control", placeholder: 'Amount', required: true %>
+                              </div>
+                            </div>
+                            <script type="text/javascript">
+                              $('.js--select-cost-type').dropdown();
+                            </script>
+                          </div>
+                          <div class="form-group">
+                            <%= f.text_field :note, class:"form-control", placeholder: 'Note', required: true %>
+                          </div>
+                          <div class="form-group text-right">
+                            <button type="button" class="btn modal-control-button no-outline" data-dismiss="modal">
+                              Cancel
+                            </button>
+                            <%= f.submit "Create", class:"btn modal-control-button create-transaction-button no-outline" %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-child cal-box text-right js--event-cal-box">
+                <%= render 'users/cost_managements/cal_box', event: @event %>
+              </div>
+            </div>
+            <div class="cost-history">
+              <h5>Transaction History</h5>
+              <table class="table" id="cost_history_table">
+                <thead>
+                  <tr>
+                    <th class="tablecol-1">ID</th>
+                    <th class="tablecol-2">Type</th>
+                    <th class="tablecol-3">Amount</th>
+                    <th class="tablecol-4">Notice</th>
+                    <th class="tablecol-5">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @cost_history.each do |history| %>
+                    <%= render 'users/cost_managements/history_item', history: history %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

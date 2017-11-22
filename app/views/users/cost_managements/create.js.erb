@@ -1,0 +1,32 @@
+$('#addCostModal').bsmodal('hide');
+
+<% if @create_success %>
+  $('#cost_history_table tbody').prepend("<%= j render 'users/cost_managements/history_item', history: @cost_management %>");
+
+  $('.js--event-cal-box').html("<%= j render 'users/cost_managements/cal_box', event: @event %>")
+
+  new PNotify({
+    text: 'New Transaction was successfully added',
+    addclass: 'notice-success',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% else %>
+  new PNotify({
+    text: 'Something went wrong please try again later',
+    addclass: 'notice-error',
+    animate: {
+      animate: true,
+      in_class: 'rotateInDownLeft',
+      out_class: 'rotateOutUpRight'
+    },
+    icon: false
+  });
+<% end %>
+
+$('#addCostModal #cost_management_amount').val('');
+$('#addCostModal #cost_management_note').val('');

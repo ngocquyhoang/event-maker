@@ -1,0 +1,16 @@
+<div class="table-panel">
+  <div class="table-child ver-mid"><%= event.expense %>$</div>
+  <div class="table-child ver-mid cal-label">Expense</div>
+</div>
+<div class="table-panel">
+  <div class="table-child ver-mid">+ <%= get_income event %>$</div>
+  <div class="table-child ver-mid cal-label">Income</div>
+</div>
+<div class="table-panel">
+  <div class="table-child ver-mid">- <%= get_expense event %>$</div>
+  <div class="table-child ver-mid cal-label">Cost</div>
+</div>
+<div class="table-panel total-cal">
+  <div class="table-child ver-mid"><%= event.expense + get_income(event) - get_expense(event) %>$</div>
+  <div class="table-child ver-mid cal-label">Total</div>
+</div>
