@@ -11,10 +11,13 @@ class CreateEvent < ActiveRecord::Migration[5.1]
       t.text :sub_description
       t.integer :event_type_id
       t.string :address
+      t.string :address_commune
+      t.string :address_district
+      t.string :address_province
       t.integer :est_amount_people
       t.integer :expense
       t.string :title_layout
-      t.string :seo_keyword
+      t.text :seo_keyword
       t.string :google_form_url
 
       t.timestamps

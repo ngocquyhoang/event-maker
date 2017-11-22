@@ -71,12 +71,13 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.text "sub_description"
     t.integer "event_type_id"
     t.string "address"
-    t.string "scale"
+    t.string "address_commune"
+    t.string "address_district"
+    t.string "address_province"
     t.integer "est_amount_people"
     t.integer "expense"
     t.string "title_layout"
-    t.string "seo_keyword"
-    t.boolean "use_form"
+    t.text "seo_keyword"
     t.string "google_form_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.text "hobby"
     t.text "dislike"
     t.datetime "dob"
+    t.integer "acc_state", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -145,8 +147,6 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "acc_state"
-    t.integer "https_use_count"
   end
 
 end

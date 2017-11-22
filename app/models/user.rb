@@ -5,7 +5,7 @@ class User < ApplicationRecord
     omniauth_providers: [:facebook, :google_oauth2]
   enum acc_state: [:free, :pro, :plus]
 
-  has_many :event
+  has_many :events
 
   mount_uploader :avatar, User::AvatarUploader
 
