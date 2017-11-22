@@ -2,10 +2,13 @@ class Users::EventsController < Users::AccessController
   include UsersHelper
   before_action :find_event, only: [:show, :update, :edit, :destroy, :event_build]
   before_action :load_event, only: [:create]
-  before_action :load_cost, only: [:show]
   before_action :check_state, only: [:new, :create]
 
   def show
+    redirect_to user_path(current_user.username) unless @event.user == current_user
+    @cost_history = @event.cost_managements.order('created_at DESC')
+
+    @new_cost_management = CostManagement.new
   end
 
   def new
@@ -75,10 +78,6 @@ class Users::EventsController < Users::AccessController
 
   def find_event
     @event = Event.find_by id: params[:id]
-  end
-
-  def load_cost
-    @cost_log = CostManagement.where(event_id: params[:id]).order(id: :desc)
   end
 
   def check_state

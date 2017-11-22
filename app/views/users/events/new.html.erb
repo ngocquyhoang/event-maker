@@ -96,7 +96,6 @@
                 </div>
                 <div class="table-child ver-mid">
                   <%= f.select :event_type_id, @event_types.collect { |type| [ type.label, type.id ] }, { include_blank: 'Select Event Type' }, class:"ui dropdown js--select-event-type semantic-ui-form" %>
-
                   <script type="text/javascript">
                     $('.js--select-event-type').dropdown();
                   </script>

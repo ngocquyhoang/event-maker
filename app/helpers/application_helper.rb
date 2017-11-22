@@ -41,4 +41,26 @@ module ApplicationHelper
     slug_return = UnicodeUtils.downcase(string, :tr).gsub(/[()-,. @*&$#^!']/, '')
     return slug_return
   end
+
+  def get_income event
+    income = 0
+    event.cost_managements.each do |transaction| 
+      if transaction.cost_type == 'income'
+        income += transaction.amount
+      end
+    end  
+
+    return income 
+  end
+
+  def get_expense event
+    expense = 0
+    event.cost_managements.each do |transaction| 
+      if transaction.cost_type == 'cost'
+        expense += transaction.amount
+      end
+    end  
+
+    return expense 
+  end  
 end

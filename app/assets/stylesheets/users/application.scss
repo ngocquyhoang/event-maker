@@ -1399,6 +1399,33 @@
         .layout-image {
           max-width: 100%;
         }
+
+        .edit-block {
+          margin-top: 35px;
+          text-align: center;
+
+          .edit-button {
+            font-size: 18px;
+            line-height: 22px;
+            font-family: 'Cabin Sketch', cursive;
+            color: #ffffff;
+            border: 1px solid #415b90;
+            border-radius: 5px;
+            padding: 12px 30px;
+            text-transform: uppercase;
+            transition: all 0.5s;
+            background-color: #415b90;
+
+            .fa {
+              margin-left: 5px;
+            }
+
+            &:hover {
+              background-color: #ffffff;
+              color: #415b90;
+            }
+          }
+        }
       }
     }
   }
@@ -1421,6 +1448,158 @@
   }
 
   .event-cost-block {
+    .cost-title {
+      margin-top: 0px;
+      font-size: 18px;
+      margin-bottom: 20px;
+      line-height: 22px;
+      font-weight: 400;
+      color: #415b90;
+      text-transform: uppercase;
+    }
 
+    .cal-table {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 20px;
+
+      .cal-label {
+        width: 120px;
+      }
+
+      .cal-box {
+        width: 300px;
+        border-top: 1px solid #415b90;
+
+        .table-panel {
+          border-bottom: 1px solid #415b90;
+
+          .table-child {
+            padding: 10px 12px;
+            text-align: right;
+            color: #000000;
+          }
+        }
+      }
+    }
+
+    .new-transaction-button {
+      font-size: 18px;
+      line-height: 20px;
+      font-family: 'Cabin Sketch', cursive;
+      color: #ffffff;
+      border: 1px solid #415b90;
+      border-radius: 5px;
+      padding: 10px 25px;
+      text-transform: uppercase;
+      background-color: #415b90;
+
+      .fa {
+        margin-left: 5px;
+      }
+    }
+
+    .cost-history {
+      h5 {
+        margin-top: 0px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        line-height: 22px;
+        font-weight: 400;
+        color: #415b90;
+        text-transform: uppercase;
+      }
+
+      .table {
+        >tbody>tr>td {
+          border-bottom: 1px solid #415b90;
+          padding: 15px 10px;
+          font-size: 16px;
+          line-height: 20px;
+        }
+
+        >thead>tr>th {
+          border-bottom: 1px solid #415b90;
+          padding: 15px 10px;
+          font-size: 18px;
+          line-height: 20px;
+          font-family: 'Cabin Sketch', cursive;
+          color: #415b90;
+        }
+
+        .tablecol-1 {
+          width: 50px;
+        }
+
+        .tablecol-2 {
+          width: 100px;
+        }
+
+        .tablecol-3 {
+          width: 100px;
+        }
+
+        .tablecol-5 {
+          width: 170px;
+        }
+      }
+    }
   }
 }
+
+#addCostModal {
+  .modal-title {
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    font-family: 'Cabin Sketch', cursive;
+    text-align: center;
+    color: #415b90;
+  }
+
+  .form-control {
+    font-size: 18px;
+    line-height: 22px;
+    height: auto;
+    padding: 10px 20px;
+    border-color: #415b90;
+  }
+
+  .semantic-ui-form {
+    width: 100%;
+    font-size: 18px;
+    line-height: 20px;
+    min-height: auto;
+    padding: 11px 20px;
+    border-color: #415b90;
+
+    &.ui.dropdown .menu {
+      border-color: #415b90;
+
+      .item {
+        font-size: 18px;
+        line-height: 20px;
+        padding: 10px 20px;
+      }
+    }
+
+    &.ui.dropdown:not(.button)>.default.text {
+      color: rgba(125, 125, 125, 1);
+    }
+  }
+
+  .modal-control-button {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 10px 25px;
+    font-family: 'Cabin Sketch', cursive;
+    color: #ffffff;
+    background-color: #DD4B39;
+
+    &.create-transaction-button {
+      background-color: #415b90;
+    }
+  }
+}
+
