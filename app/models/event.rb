@@ -3,7 +3,7 @@ require 'unicode_utils'
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :event_type
-  has_one :layout
+  belongs_to :layout
   has_many :cost_managements
 
   validate :start_time_validation

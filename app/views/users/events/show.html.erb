@@ -1,18 +1,142 @@
-<div class="row">
-  <div class="col-sm-6">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_event_modal">
-      Edit modal
-    </button>
-
-    <div id="event-detail-info">
-      <%= render "event_info" %>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <%= render "manage_cost_modal" %>
-    <div id="list-cost-log">
-      <%= render "manage_cost" %>
+<div class="user-wrapper">
+  <div class="user-event-screen">
+    <div class="container">
+      <h2 class="screen-title"><%= @event.name %></h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="event-info-block">
+            <ul class="list-unstyled info-list">
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Name: 
+                  </div>
+                  <div class="table-child ver-mid">
+                    <%= @event.name %>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item text-center">
+                <% if @event.is_builded? %>
+                  <%= link_to "https://#{ @event.slug }.zevent.date", "https://#{ @event.slug }.zevent.date", class: 'link-out' %>
+                <% else %>
+                  <%= link_to users_event_build_path( @event ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
+                    Build 
+                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </li>
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Time: 
+                  </div>
+                  <div class="table-child ver-mid time-form-to-block">
+                    <div class="table-panel">
+                      <div class="table-child title-block">
+                        From:
+                      </div>
+                      <div class="table-child">
+                        <%= @event.start_time.strftime("%Y %b %d %H:%M") %>
+                      </div>
+                    </div>
+                    <div class="table-panel">
+                      <div class="table-child title-block">
+                        To:
+                      </div>
+                      <div class="table-child">
+                        <%= @event.end_time.strftime("%Y %b %d %H:%M") %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid info-label">
+                    Address: 
+                  </div>
+                  <div class="table-child ver-mid">
+                    <%= @event.address %> - <%= @event.address_commune %> - <%= @event.address_district %> - <%= @event.address_province %>
+                  </div>
+                </div>
+              </li>
+              <li class="info-item layout-block">
+                <h5 class="layout-title">Layout: <span><%= @event.layout.name %></span></h5>
+                <div class="event-layout">
+                  <%= cl_image_tag(@event.layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "layout-image") %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <% unless @event.is_builded? %>
+            <div class="build-notice">
+              <div class="table-panel">
+                <div class="table-child ver-mid">
+                  You event website wasn't update
+                </div>
+                <div class="table-child ver-mid">
+                  <%= link_to users_event_build_path( @event ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
+                      Build
+                      <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+                    <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="event-cost-block">
+            <h4 class="cost-title">Cost management</h4>
+            <div class="cal-table">
+              <div class="cal-box text-right">
+                <div class="table-panel">
+                  <div class="table-child ver-mid">1000$</div>
+                  <div class="table-child ver-mid">Expense</div>
+                </div>
+                <div class="table-panel">
+                  <div class="table-child ver-mid">+ 3500$</div>
+                  <div class="table-child ver-mid">Income</div>
+                </div>
+                <div class="table-panel">
+                  <div class="table-child ver-mid">- 950$</div>
+                  <div class="table-child ver-mid">Cost</div>
+                </div>
+                <div class="table-panel total-cal">
+                  <div class="table-child ver-mid">4050$</div>
+                  <div class="table-child ver-mid">Total</div>
+                </div>
+              </div>
+            </div>
+            <div class="cost-history">
+              <h5>Cost History</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="tablecol-1">Transaction ID</th>
+                    <th class="tablecol-2">Amount</th>
+                    <th class="tablecol-3">Width</th>
+                    <th class="tablecol-4">Notice</th>
+                    <th class="tablecol-5">Status</th>
+                    <th class="tablecol-6">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#121324</td>
+                    <td>100$</td>
+                    <td>Paypal</td>
+                    <td>Upgrade to Pro</td>
+                    <td>Success</td>
+                    <td>2017 Nov 29 10:11</td> <!-- time.strftime("%Y %b %d %H:%M") -->
+                  </tr>
+                  <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

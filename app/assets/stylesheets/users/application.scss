@@ -1312,4 +1312,115 @@
     margin-bottom: 30px;
   }
 
+  .button-build {
+    padding: 8px 20px;
+    font-size: 18px;
+    line-height: 20px;
+    font-family: 'Cabin Sketch', cursive;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #DD4B39;
+    font-weight: bold;
+
+    .fa {
+      margin-left: 5px;
+    }
+  }
+
+  .event-info-block {
+    padding: 15px;
+
+    .info-item {
+      padding: 10px 0px;
+      line-height: 20px;
+      font-size: 16px;
+      border-bottom: 1px solid #415b90;
+
+      &:last-child {
+        border-bottom: 0px;
+      }
+
+      .info-label {
+        width: 80px;
+        color: #415b90;
+        text-align: left;
+        font-family: 'Cabin Sketch', cursive;
+        font-weight: 600;
+      }
+
+      .time-form-to-block {
+        .table-panel {
+          border-bottom: 1px solid #415b90;
+
+          .table-child {
+            font-size: 16px;
+            line-height: 20px;
+            padding-bottom: 10px;
+          }
+
+          .title-block {
+            width: 60px;
+            color: #415b90;
+          }
+          
+          &:last-child {
+            border: 0px;
+
+            .table-child {
+              padding-top: 10px;
+              padding-bottom: 0px;
+            }
+          }
+        }
+      }
+
+      &.layout-block {
+        .layout-title {
+          font-size: 16px;
+          line-height: 20px;
+          color: #415b90;
+          text-align: left;
+          font-family: 'Cabin Sketch', cursive;
+          font-weight: 600;
+          margin-top: 15px;
+          margin-bottom: 20px;
+
+          span {
+            font-size: 18px;
+            line-height: 20px;
+            font-style: italic;
+            font-family: 'Cabin Sketch', cursive;
+            text-transform: uppercase;
+            color: #DD4B39;
+            margin-left: 10px;
+          }
+        }
+
+        .layout-image {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .build-notice {
+    border-bottom: 1px solid #DD4B39;
+    margin-bottom: 20px;
+
+    .table-child {
+      padding: 10px 12px;
+      font-size: 20px;
+      line-height: 22px;
+      color: #DD4B39;
+      text-align: center;
+
+      &:first-child {
+        width: 470px;
+      }
+    }
+  }
+
+  .event-cost-block {
+
+  }
 }

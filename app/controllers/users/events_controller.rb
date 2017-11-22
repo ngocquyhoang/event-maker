@@ -1,6 +1,6 @@
 class Users::EventsController < Users::AccessController
   include UsersHelper
-  before_action :find_event, only: [:show, :update, :edit, :destroy]
+  before_action :find_event, only: [:show, :update, :edit, :destroy, :event_build]
   before_action :load_event, only: [:create]
   before_action :load_cost, only: [:show]
   before_action :check_state, only: [:new, :create]
@@ -40,6 +40,7 @@ class Users::EventsController < Users::AccessController
 
   def update
     if @event.update event_params
+      @user.update_attributes(:is_builded => false)
       flash[:success] = "Event was successful updated!"
       redirect_to users_event_path(@event)
     else
@@ -55,6 +56,11 @@ class Users::EventsController < Users::AccessController
     else
       flash[:error] = "Something went wrong please try again later!"
     end
+  end
+
+  def event_build
+    # @event.build
+    byebug
   end
 
   def check_event_slug_ajax

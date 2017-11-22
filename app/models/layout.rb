@@ -5,5 +5,7 @@ class Layout < ApplicationRecord
   validates :html, presence: true
   validates :css, presence: true
 
+  has_many :events
+
   mount_uploader :featured_image, Admin::FeaturedImageUploader
 end
