@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :paypal
     resources :baokim
 
+    post 'events/:id/build', to: 'events#event_build', as: 'event_build'
+
     devise_scope :user do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
     end

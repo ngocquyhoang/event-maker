@@ -43,7 +43,7 @@
             </div>
             <script type="text/javascript">
               $('#event_slug').keyup( function () {
-                if (this.value.length >= 3 && this.value.length <= 12) {
+                if (this.value.length >= 3 && this.value.length <= 12 && validateSlug(this.value)) {
                   $('#event_slug').removeClass('is-invalid');
                   $('#event_slug_error').addClass('text-black');
                   $.ajax({
@@ -54,12 +54,12 @@
                       if (result.is_valid) {
                         $('#event_slug').removeClass('is-invalid');
                         $('#event_slug').addClass('is-valid');
-                        $('#event_slug_error').text('( Between 3 and 12 characters for a url is acceptable )');
+                        $('#event_slug_error').text('( Between 3 and 12 characters for a URL is acceptable )');
                       }else {
                         $('#event_slug').removeClass('is-valid');
                         $('#event_slug').addClass('is-invalid');
                         $('#event_slug_error').removeClass('text-black');
-                        $('#event_slug_error').text('( This url is already in use )');
+                        $('#event_slug_error').text('( This URL is already in use )');
                       }
                     }}
                   );
@@ -67,9 +67,14 @@
                   $('#event_slug').removeClass('is-valid');
                   $('#event_slug').addClass('is-invalid');
                   $('#event_slug_error').removeClass('text-black');
-                  $('#event_slug_error').text('( Between 3 and 12 characters for a url is acceptable )');
+                  $('#event_slug_error').text('( Between 3 and 12 characters for a URL is acceptable )');
                 }
               })
+
+              function validateSlug(slug) {
+                var rex = /^[a-zA-Z\-]+$/;
+                return rex.test(slug);
+              }
             </script>
             <div class="form-group">
               <div class="table-panel">
@@ -77,7 +82,7 @@
                   Layout <span class="required-mark">（＊）</span>
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.select :layout_id, @layouts.collect { |layout| [ layout.title, layout.id ] }, { include_blank: 'Select Event Layout' }, class:"ui dropdown js--select-layout semantic-ui-form" %>
+                  <%= f.select :layout_id, @layouts.collect { |layout| [ layout.name, layout.id ] }, { include_blank: 'Select Event Layout' }, class:"ui dropdown js--select-layout semantic-ui-form" %>
                   <script type="text/javascript">
                     $('.js--select-layout').dropdown();
                   </script>

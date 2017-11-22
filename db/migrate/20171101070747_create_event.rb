@@ -1,8 +1,8 @@
 class CreateEvent < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
-      t.string :name, null: false
-      t.string :slug, unique: true
+      t.string :name,               null: false
+      t.string :slug,               unique: true
       t.integer :user_id
       t.integer :layout_id
       t.datetime :start_time
@@ -19,6 +19,7 @@ class CreateEvent < ActiveRecord::Migration[5.1]
       t.string :title_layout
       t.text :seo_keyword
       t.string :google_form_url
+      t.boolean :is_builded,        default: false, null: false
 
       t.timestamps
     end
