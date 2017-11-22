@@ -18,6 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.text :hobby
       t.text :dislike
       t.datetime :dob
+      t.integer  :acc_state,        null: false, default: 0
 
       ## Recoverable
       t.string   :reset_password_token,               unique: true

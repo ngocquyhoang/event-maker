@@ -1196,3 +1196,120 @@
     }
   }
 }
+
+#event-form {
+  .table-panel {
+    > .table-child:first-child {
+      width: 200px;
+      font-size: 18px;
+      line-height: 22px;
+      color: #415b90;
+      font-family: 'Cabin Sketch', cursive;
+      font-weight: 600;
+    }
+
+    .form-control,
+    .input-group-addon {
+      font-size: 18px;
+      line-height: 22px;
+      height: auto;
+      padding: 10px 20px;
+      border-color: #415b90;
+
+      &.slug-input {
+        text-transform: lowercase;
+
+        &.is-valid {
+          border-color: #28a745;
+        }
+
+        &.is-invalid {
+          border-color: #dc3545;
+        }
+      }
+    }
+
+
+    .invalid-feedback {
+      margin-top: 5px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #dc3545;
+
+      &.text-black {
+        color: rgba(0, 0, 0, 0.87);
+      }
+    }
+
+    textarea.form-control {
+      resize: none;
+    }
+  }
+
+  .semantic-ui-form {
+    width: 100%;
+    font-size: 18px;
+    line-height: 20px;
+    min-height: auto;
+    padding: 11px 20px;
+    border-color: #415b90;
+
+    &.ui.dropdown .menu {
+      border-color: #415b90;
+
+      .item {
+        font-size: 18px;
+        line-height: 20px;
+        padding: 10px 20px;
+      }
+    }
+
+    &.ui.dropdown:not(.button)>.default.text {
+      color: rgba(125, 125, 125, 1);
+    }
+  }
+
+  .submit-group {
+    margin-top: 40px;
+
+    .event-form-submit-button {
+      font-size: 18px;
+      line-height: 22px;
+      padding: 12px 25px;
+      font-family: 'Cabin Sketch', cursive;
+      text-transform: uppercase;
+      background-color: #415b90;
+      color: #ffffff;
+    }
+
+    .event-form-delete-button {
+      font-size: 18px;
+      line-height: 22px;
+      padding: 12px 25px;
+      font-family: 'Cabin Sketch', cursive;
+      text-transform: uppercase;
+      background-color: #DD4B39;
+      color: #ffffff;
+    }
+  }
+}
+
+.required-mark {
+  color: #DD4B39;
+}
+
+.user-event-screen {
+  padding: 20px 0px 50px;
+
+  .screen-title {
+    font-size: 26px;
+    line-height: 30px;
+    font-family: 'Cabin Sketch', cursive;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    color: #415b90;
+    margin-bottom: 30px;
+  }
+
+}

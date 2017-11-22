@@ -2,10 +2,26 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :event_type
   has_one :layout
-  has_many :cost_management
+  has_many :cost_managements
 
   validate :start_time_validation
   validate :end_time_validation
+
+  validates :slug, uniqueness: true, presence: true, length: { in: 3..12 }
+  validates :name, presence: true
+  validates :user_id, presence: true
+  validates :layout_id, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :main_description, presence: true
+  validates :address, presence: true
+  validates :event_type_id, presence: true
+  validates :address_commune, presence: true
+  validates :address_district, presence: true
+  validates :address_province, presence: true
+  validates :expense, presence: true
+  validates :title_layout, presence: true
+  validates :seo_keyword, presence: true
 
   def start_time_validation
     if self.start_time.present? && self.start_time < Date.today
