@@ -41,6 +41,7 @@ class Users::EventsController < Users::AccessController
   def update
     if @event.update event_params
       flash[:success] = "Event was successful updated!"
+      redirect_to users_event_path(@event)
     else
       flash[:error] = "Something went wrong please try again later!"
       redirect_to edit_users_event_path(@event)

@@ -1,3 +1,5 @@
+require 'unicode_utils'
+
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :event_type
@@ -23,6 +25,8 @@ class Event < ApplicationRecord
   validates :title_layout, presence: true
   validates :seo_keyword, presence: true
 
+  before_save :clean_slug
+
   def start_time_validation
     if self.start_time.present? && self.start_time < Date.today
       errors.add(:start_time, "can't be in the past")
@@ -37,5 +41,9 @@ class Event < ApplicationRecord
         errors.add(:start_time, "can't be less than start date")
       end
     end
+  end
+
+  def clean_slug
+    self.slug = UnicodeUtils.downcase("#{self.slug}", :tr).gsub(/[()-,. @*&$#^!']/, '')
   end
 end
