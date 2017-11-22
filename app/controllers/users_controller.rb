@@ -20,6 +20,7 @@ class UsersController < Users::AccessController
       @address_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
       @distric_list_of_province = get_district_list(@user.address_province)
       @commune_list_of_province = get_commune_list(@user.address_province, @user.address_district)
+      @payments = Payment.where(user_id: @user.id).order(id: :desc)
     end
   end
 

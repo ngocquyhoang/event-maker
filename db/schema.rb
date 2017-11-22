@@ -37,13 +37,6 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "baokims", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "notification_params"
-    t.string "status"
-    t.string "transaction_id"
-    t.datetime "purchased_at"
-  end
-
   create_table "cost_managements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "cost_type", null: false
     t.integer "amount", null: false
@@ -103,10 +96,14 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "paypals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "notification_params"
+    t.integer "user_id"
+    t.string "description"
     t.string "status"
     t.string "transaction_id"
+    t.string "amount"
+    t.integer "payment_type"
     t.datetime "purchased_at"
   end
 

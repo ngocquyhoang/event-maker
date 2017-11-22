@@ -122,15 +122,22 @@
                   </tr>
                 </thead>
                 <tbody>
+                <% if @payments.blank? %>
                   <tr>
-                    <td>#121324</td>
-                    <td>100$</td>
-                    <td>Paypal</td>
-                    <td>Upgrade to Pro</td>
-                    <td>Success</td>
-                    <td>2017 Nov 29 10:11</td> <!-- time.strftime("%Y %b %d %H:%M") -->
+                    <td>Nothing here</td>
                   </tr>
+                <% end %>
+
+                <% @payments.each do |payment| %>
                   <tr>
+                    <td><%= payment.transaction_id %></td>
+                    <td><%= payment.amount %></td>
+                    <td><%= payment.payment_type %></td>
+                    <td><%= payment.description %></td>
+                    <td><%= payment.status %></td>
+                    <td><%= payment.purchased_at.strftime("%Y %b %d %H:%M") %></td>
+                  </tr>
+                <% end %>
                 </tbody>
               </table>
             </div>
@@ -154,12 +161,12 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <%= link_to new_users_paypal_path(status: "pro"), class: 'pay-button' do %>
+                <%= link_to new_users_payment_path(status: "pro", payment_method: "paypal"), class: 'pay-button' do %>
                   <%= image_tag "paypal-logo.png", class: "payment-logo" %>
                 <% end %>
               </div>
               <div class="col-md-6 text-center">
-                <%= link_to new_users_baokim_path(status: "pro"), class: 'pay-button' do %>
+                <%= link_to new_users_payment_path(status: "pro", payment_method: "baokim"), class: 'pay-button' do %>
                   <%= image_tag "baokim-logo-3.jpeg", class: "payment-logo" %>
                 <% end %>
               </div>
@@ -182,12 +189,12 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <%= link_to new_users_paypal_path(status: "pro_plus"), class: 'pay-button' do %>
+                <%= link_to new_users_payment_path(status: "pro_plus", payment_method: "paypal"), class: 'pay-button' do %>
                   <%= image_tag "paypal-logo.png", class: "payment-logo" %>
                 <% end %>
               </div>
               <div class="col-md-6 text-center">
-                <%= link_to new_users_baokim_path(status: "pro_plus"), class: 'pay-button' do %>
+                <%= link_to new_users_payment_path(status: "pro_plus", payment_method: "baokim"), class: 'pay-button' do %>
                   <%= image_tag "baokim-logo-3.jpeg", class: "payment-logo" %>
                 <% end %>
               </div>
