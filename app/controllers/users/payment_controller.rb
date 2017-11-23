@@ -10,20 +10,20 @@ class Users::PaymentController < ApplicationController
       case params[:status]
         when  "pro"
           amount = 100
-          name = "Professional By Paypal"
+          name = "Event maker Professional package By Paypal"
         when  "pro_plus"
-          amount = 1000
-          name = "Professional Plus By Paypal"
+          amount = 200
+          name = "Event maker Professional Plus package By Paypal"
       end
       redirect_to @payment.paypal_url amount, name, current_user.id, users_dashboard_index_path
     elsif params[:payment_method] = "baokim"
       case params[:status]
         when  "pro"
-          amount = 10000
-          name = "Professional By Baokim"
+          amount = 2270000
+          name = "Event maker Professional package By Baokim"
         when  "pro_plus"
-          amount = 11000
-          name = "Professional Plus By Baokim"
+          amount = 4540000
+          name = "Event maker Professional Plus package By Baokim"
       end
       redirect_to @payment.baokim_url amount, name, current_user.id, users_dashboard_index_path
     end
