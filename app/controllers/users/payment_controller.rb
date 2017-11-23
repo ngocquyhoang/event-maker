@@ -6,7 +6,7 @@ class Users::PaymentController < ApplicationController
     amount = 0
     name = "test"
     @payment = Payment.new
-    if params[:payment_method] = "paypal"
+    if params[:payment_method] == "paypal"
       case params[:status]
         when  "pro"
           amount = 100
@@ -16,7 +16,7 @@ class Users::PaymentController < ApplicationController
           name = "Professional Plus By Paypal"
       end
       redirect_to @payment.paypal_url amount, name, current_user.id, users_dashboard_index_path
-    elsif params[:payment_method] = "baokim"
+    elsif params[:payment_method] == "baokim"
       case params[:status]
         when  "pro"
           amount = 10000
