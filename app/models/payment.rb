@@ -4,7 +4,7 @@ class Payment < ApplicationRecord
 
   def paypal_url amount, name, user_id, return_path
     values = {
-      business: "fnaticrc.carn-facilitator@gmail.com",
+      business: "zevent.date@gmail.com",
       cmd: "_xclick",
       upload: "1",
       return: "#{Rails.application.secrets.app_host}#{return_path}",
@@ -18,9 +18,9 @@ class Payment < ApplicationRecord
   end
 
   def baokim_url amount, name, user_id, return_path
-    key = "d51bf710f5379a60"
-    site_id = 31626
-    business_mail = "ohhmyprincess@gmail.com"
+    key = "d9486353f04c1866"
+    site_id = 31632
+    business_mail = "zevent.date@gmail.com"
     url_can = "#{Rails.application.secrets.app_host}#{return_path}"
     url_suc = "#{Rails.application.secrets.app_host}/hook?user_id=#{user_id}"
     data = "#{business_mail}#{site_id}#{name}#{amount}#{url_can}#{url_suc}"
