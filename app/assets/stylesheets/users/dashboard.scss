@@ -1,0 +1,27 @@
+.user-main-wrap {
+  padding-top: 70px;
+  min-height: calc(100vh - 40px);
+
+  .event-list {
+    .event-item {
+      margin-bottom: 15px;
+
+      .item-wrap {
+        display: block;
+      }
+
+      .feature-image {
+        width: 100%;
+      }
+
+      .event-name {
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: normal;
+      }
+    }
+  }
+}

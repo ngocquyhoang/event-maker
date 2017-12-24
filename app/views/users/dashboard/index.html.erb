@@ -1,9 +1,25 @@
 <div class="user-main-wrap">
   <div class="container">
-    <h1>User Dashboard</h1>
-    <%= link_to "Create New Event", new_users_event_path, class:"btn btn-primary" %>
-    <div id="list-event">
-      <%= render "/users/dashboard/event" %>
+    <div class="event-list">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="event-item">
+            <%= link_to new_users_event_path, class: "item-wrap" do %>
+              <%= image_tag "add-layout-image.jpg", class: "feature-image" %>
+            <% end %>
+          </div>
+        </div>
+        <% @events.each do |event| %>
+          <div class="col-md-3">
+            <div class="event-item">
+              <%= link_to users_event_path(event), class: "item-wrap" do %>
+                <%= cl_image_tag(event.layout.featured_image.full_public_id, :transformation=>[{:width=>800, :height=>600, :gravity=>"auto", :crop=>"crop"}, {:width=>400, :height=>300, :crop=>"scale"}], class: "feature-image") %>
+                <h3 class="event-name"><%= event.name %></h3>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
