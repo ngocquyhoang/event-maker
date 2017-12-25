@@ -48,7 +48,7 @@ class Event < ApplicationRecord
   end
 
   def build_host
-    cmd = "sudo virtualhost create " + self.slug
+    cmd = "sudo virtualhost create " + self.slug + ".zevent.date"
     system(cmd)
     if $?.exitstatus == 0
       puts "Yay !! Create virtualhost successfully !"
