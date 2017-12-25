@@ -46,4 +46,14 @@ class Event < ApplicationRecord
   def clean_slug
     self.slug = UnicodeUtils.downcase("#{self.slug}", :tr).gsub(/[()-,. @*&$#^!']/, '')
   end
+
+  def build_host
+    cmd = "sudo virtualhost create " + self.slug
+    system(cmd)
+    if $?.exitstatus == 0
+      puts "Yay !! Create virtualhost successfully !"
+    else
+      puts "Oh noo!! OOP!"
+    end
+  end
 end
