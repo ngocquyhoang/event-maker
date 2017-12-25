@@ -68,7 +68,7 @@ class Users::EventsController < Users::AccessController
   end
 
   def check_event_slug_ajax
-    is_valid = Event.new(name: 'BD', slug: params['event_slug'], user_id: 1, layout_id: 1, start_time: '01-12-2017 08:00', end_time: '01-12-2017 17:00', main_description: 'BD', address: 'BD', event_type_id: 1, address_commune: 'BD', address_district: 'BD', address_province: 'BD', expense: 2000, title_layout: 'BD', seo_keyword: 'BD').valid?
+    is_valid = Event.new(name: 'BD', slug: params['event_slug'], user_id: 1, layout_id: 1, start_time: '01-12-2018 08:00', end_time: '01-12-2018 17:00', main_description: 'BD', address: 'BD', event_type_id: 1, address_commune: 'BD', address_district: 'BD', address_province: 'BD', expense: 2000, title_layout: 'BD', seo_keyword: 'BD').valid?
     render json: { 'is_valid': is_valid }
   end
 

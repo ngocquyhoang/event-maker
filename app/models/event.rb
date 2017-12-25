@@ -53,4 +53,8 @@ class Event < ApplicationRecord
     create_ssl_cmd = "sudo certbot --apache --redirect -d " + self.slug + ".zevent.date"
     system(create_ssl_cmd)
   end
+
+  def build_website
+    
+  end
 end

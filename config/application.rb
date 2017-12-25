@@ -11,6 +11,9 @@ Dotenv::Railtie.load
 module EventMaker
   class Application < Rails::Application
     config.load_defaults 5.1
+    config.time_zone = 'Hanoi'
+    config.active_record.default_timezone = :local
+
     default_url_options[:host] = "https://zevent.date"
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|

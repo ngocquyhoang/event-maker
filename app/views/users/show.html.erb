@@ -115,29 +115,29 @@
                   <tr>
                     <th class="tablecol-1">Transaction ID</th>
                     <th class="tablecol-2">Amount</th>
-                    <th class="tablecol-3">Width</th>
+                    <th class="tablecol-3">With</th>
                     <th class="tablecol-4">Notice</th>
                     <th class="tablecol-5">Status</th>
                     <th class="tablecol-6">Time</th>
                   </tr>
                 </thead>
                 <tbody>
-                <% if @payments.blank? %>
-                  <tr>
-                    <td>You don't have any payment history</td>
-                  </tr>
-                <% end %>
+                  <% if @payments.blank? %>
+                    <tr>
+                      <td>You don't have any payment history</td>
+                    </tr>
+                  <% end %>
 
-                <% @payments.each do |payment| %>
-                  <tr>
-                    <td><%= payment.transaction_id %></td>
-                    <td><%= payment.amount %></td>
-                    <td><%= payment.payment_type %></td>
-                    <td><%= payment.description %></td>
-                    <td><%= payment.status %></td>
-                    <td><%= payment.purchased_at.strftime("%Y %b %d %H:%M") %></td>
-                  </tr>
-                <% end %>
+                  <% @payments.each do |payment| %>
+                    <tr>
+                      <td><%= payment.transaction_id %></td>
+                      <td><%= payment.amount %></td>
+                      <td><%= payment.payment_type %></td>
+                      <td><%= payment.description %></td>
+                      <td><%= payment.status %></td>
+                      <td><%= payment.purchased_at.strftime("%Y %b %d %H:%M") %></td>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
             </div>
