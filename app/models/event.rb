@@ -48,12 +48,9 @@ class Event < ApplicationRecord
   end
 
   def build_host
-    cmd = "sudo virtualhost create " + self.slug + ".zevent.date"
-    system(cmd)
-    if $?.exitstatus == 0
-      puts "Yay !! Create virtualhost successfully !"
-    else
-      puts "Oh noo!! OOP!"
-    end
+    create_host_cmd = "sudo virtualhost create " + self.slug + ".zevent.date"
+    system(create_host_cmd)
+    create_ssl_cmd = "sudo certbot --apache --redirect -d " + self.slug + ".zevent.date"
+    system(create_ssl_cmd)
   end
 end
