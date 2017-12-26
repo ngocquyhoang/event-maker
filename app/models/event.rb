@@ -75,5 +75,9 @@ class Event < ApplicationRecord
     html_code.gsub!( "zevent_google_form_url", self.google_form_url )
     css_code = self.layout.css
     javascript_code = self.layout.javascript
+    
+    puts html_code
+    puts css_code
+    puts javascript_code
   end
 end
