@@ -52,9 +52,28 @@ class Event < ApplicationRecord
     system(create_host_cmd)
     create_ssl_cmd = "sudo certbot --apache --redirect -d " + self.slug + ".zevent.date"
     system(create_ssl_cmd)
+
+    create_html_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/index.html"
+    create_css_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/styles.css"
+    create_js_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/applications.js"
+    system(create_html_file_cmd)
+    system(create_css_file_cmd)
+    system(create_js_file_cmd)
   end
 
   def build_website
-    
+    html_code = self.layout.html.gsub( "zevent_name", self.name )
+    html_code.gsub!( "zevent_slug", self.slug )
+    html_code.gsub!( "zevent_slug", self.slug )
+    html_code.gsub!( "zevent_start_time", self.start_time )
+    html_code.gsub!( "zevent_end_time", self.end_time )
+    html_code.gsub!( "zevent_main_description", self.main_description )
+    html_code.gsub!( "zevent_sub_description", self.sub_description )
+    html_code.gsub!( "zevent_address", self.address + self.address_commune + self.address_district + self.address_province )
+    html_code.gsub!( "zevent_title_layout", self.title_layout )
+    html_code.gsub!( "zevent_seo_keyword", self.seo_keyword )
+    html_code.gsub!( "zevent_google_form_url", self.google_form_url )
+    css_code = self.layout.css
+    javascript_code = self.layout.javascript
   end
 end

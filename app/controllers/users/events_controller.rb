@@ -44,7 +44,7 @@ class Users::EventsController < Users::AccessController
 
   def update
     if @event.update event_params
-      @user.update_attributes(:is_builded => false)
+      @event.update_attributes(:is_builded => false)
       flash[:success] = "Event was successful updated!"
       redirect_to users_event_path(@event)
     else
@@ -63,8 +63,10 @@ class Users::EventsController < Users::AccessController
   end
 
   def event_build
-    # @event.build
-    byebug
+    unless @event.is_builded
+      @event.build_website 
+      @event.update_attributes(:is_builded => true)
+    end
   end
 
   def check_event_slug_ajax
