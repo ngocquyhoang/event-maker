@@ -25,7 +25,7 @@ class Users::EventsController < Users::AccessController
     @event = Event.new event_params
     if @event.save
       flash[:success] = "Event was created!"
-      @event.build_host
+      # @event.build_host
       redirect_to users_dashboard_index_path
     else
       flash[:error] = "Something went wrong please try again later!"
@@ -65,7 +65,6 @@ class Users::EventsController < Users::AccessController
   def event_build
     unless @event.is_builded
       @event.build_website 
-      puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       @event.update(:is_builded => true)
     end
   end
@@ -82,6 +81,7 @@ class Users::EventsController < Users::AccessController
 
   def find_event
     @event = Event.find_by id: params[:id]
+    redirect_to users_dashboard_index_path unless @event.user = current_user
   end
 
   def check_state
