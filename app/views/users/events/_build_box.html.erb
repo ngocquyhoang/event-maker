@@ -1,0 +1,8 @@
+<% if event_target.is_builded? %>
+  <%= link_to "https://#{ event_target.slug }.zevent.date", "https://#{ event_target.slug }.zevent.date", class: 'link-out' %>
+<% else %>
+  <%= link_to users_event_build_path( event_target ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
+    Build 
+    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+  <% end %>
+<% end %>

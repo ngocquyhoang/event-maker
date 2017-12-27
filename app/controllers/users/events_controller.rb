@@ -66,6 +66,9 @@ class Users::EventsController < Users::AccessController
     unless @event.is_builded
       @event.build_website 
       @event.update(:is_builded => true)
+      respond_to do |format|
+        format.js {}
+      end
     end
   end
 
