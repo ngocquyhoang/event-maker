@@ -53,9 +53,9 @@ class Event < ApplicationRecord
     create_ssl_cmd = "sudo certbot --apache --redirect -d " + self.slug + ".zevent.date"
     system(create_ssl_cmd)
 
-    create_html_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/index.html"
-    create_css_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/styles.css"
-    create_js_file_cmd = "touch /var/www/zevent/" + self.slug + "zeventdate/applications.js"
+    create_html_file_cmd = "sudo touch /var/www/zevent/" + self.slug + "zeventdate/index.html"
+    create_css_file_cmd = "sudo touch /var/www/zevent/" + self.slug + "zeventdate/styles.css"
+    create_js_file_cmd = "sudo touch /var/www/zevent/" + self.slug + "zeventdate/applications.js"
     system(create_html_file_cmd)
     system(create_css_file_cmd)
     system(create_js_file_cmd)
