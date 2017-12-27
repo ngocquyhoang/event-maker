@@ -1,0 +1,12 @@
+$("#js__build_notice").remove();
+$("#js__build_box").replaceWith("<%= j render 'users/events/build_box', event_target: @event %>");
+new PNotify({
+  text: 'Website was successful builded',
+  addclass: 'notice-success',
+  animate: {
+    animate: true,
+    in_class: 'rotateInDownLeft',
+    out_class: 'rotateOutUpRight'
+  },
+  icon: false
+});
