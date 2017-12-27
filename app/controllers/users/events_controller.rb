@@ -25,7 +25,7 @@ class Users::EventsController < Users::AccessController
     @event = Event.new event_params
     if @event.save
       flash[:success] = "Event was created!"
-      # @event.build_host
+      @event.build_host
       redirect_to users_dashboard_index_path
     else
       flash[:error] = "Something went wrong please try again later!"
