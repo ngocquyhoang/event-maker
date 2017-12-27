@@ -78,8 +78,8 @@ class Event < ApplicationRecord
     css_code = self.layout.css
     javascript_code = self.layout.javascript
     
-    File.write( "/var/www/zevent/#{ self.slug }/index.html", html_code )
-    File.write( "/var/www/zevent/#{ self.slug }/styles.css", css_code )
-    File.write( "/var/www/zevent/#{ self.slug }/applications.js", javascript_code )
+    File.write( "/var/www/zevent/#{ self.slug }zeventdate/index.html", html_code )
+    File.write( "/var/www/zevent/#{ self.slug }zeventdate/styles.css", css_code )
+    File.write( "/var/www/zevent/#{ self.slug }zeventdate/applications.js", javascript_code )
   end
 end
