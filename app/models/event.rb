@@ -78,12 +78,8 @@ class Event < ApplicationRecord
     css_code = self.layout.css
     javascript_code = self.layout.javascript
     
-    update_html_cmd = "sudo echo #{ html_code } > /var/www/zevent/#{ self.slug }/index.html"
-    update_css_cmd = "sudo echo #{ css_code } > /var/www/zevent/#{ self.slug }/styles.css"
-    update_javascript_cmd = "sudo echo #{ javascript_code } > /var/www/zevent/#{ self.slug }/applications.js"
-
-    system(update_html_cmd)
-    system(update_css_cmd)
-    system(update_javascript_cmd)
+    File.write( "/var/www/zevent/#{ self.slug }/index.html", update_html_cmd )
+    File.write( "/var/www/zevent/#{ self.slug }/styles.css", update_css_cmd )
+    File.write( "/var/www/zevent/#{ self.slug }/applications.js", update_javascript_cmd )
   end
 end
