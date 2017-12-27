@@ -59,14 +59,16 @@ class Event < ApplicationRecord
     system(create_html_file_cmd)
     system(create_css_file_cmd)
     system(create_js_file_cmd)
+
+    chmod_cmd = "sudo chmod -R 777 /var/www/zevent/" + self.slug + "zeventdate"
+    system(chmod_cmd)
   end
 
   def build_website
     html_code = self.layout.html.gsub( "zevent_name", self.name )
     html_code.gsub!( "zevent_slug", self.slug )
-    html_code.gsub!( "zevent_slug", self.slug )
-    html_code.gsub!( "zevent_start_time", self.start_time )
-    html_code.gsub!( "zevent_end_time", self.end_time )
+    html_code.gsub!( "zevent_start_time", self.start_time.strftime("%I:%M%p %d %B %Y") )
+    html_code.gsub!( "zevent_end_time", self.end_time.strftime("%I:%M%p %d %B %Y") )
     html_code.gsub!( "zevent_main_description", self.main_description )
     html_code.gsub!( "zevent_sub_description", self.sub_description )
     html_code.gsub!( "zevent_address", self.address + self.address_commune + self.address_district + self.address_province )
@@ -76,8 +78,12 @@ class Event < ApplicationRecord
     css_code = self.layout.css
     javascript_code = self.layout.javascript
     
-    puts html_code
-    puts css_code
-    puts javascript_code
+    update_html_cmd = "sudo echo #{ html_code } > /var/www/zevent/#{ self.slug }/index.html"
+    update_css_cmd = "sudo echo #{ css_code } > /var/www/zevent/#{ self.slug }/styles.css"
+    update_javascript_cmd = "sudo echo #{ javascript_code } > /var/www/zevent/#{ self.slug }/applications.js"
+
+    system(update_html_cmd)
+    system(update_css_cmd)
+    system(update_javascript_cmd)
   end
 end
