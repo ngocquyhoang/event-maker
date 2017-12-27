@@ -16,15 +16,8 @@
                   </div>
                 </div>
               </li>
-              <li class="info-item text-center">
-                <% if @event.is_builded? %>
-                  <%= link_to "https://#{ @event.slug }.zevent.date", "https://#{ @event.slug }.zevent.date", class: 'link-out' %>
-                <% else %>
-                  <%= link_to users_event_build_path( @event ), remote: true, method: :post, class: 'btn no-outline button-build', :data => {:confirm => 'Build website ?'} do %>
-                    Build 
-                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
-                  <% end %>
-                <% end %>
+              <li class="info-item text-center" id="js__build_box">
+                <%= render 'users/events/build_box', event_target: @event %>
               </li>
               <li class="info-item">
                 <div class="table-panel">
@@ -78,7 +71,7 @@
         </div>
         <div class="col-md-8">
           <% unless @event.is_builded? %>
-            <div class="build-notice">
+            <div class="build-notice" id="js__build_notice">
               <div class="table-panel">
                 <div class="table-child ver-mid">
                   You event website wasn't update
