@@ -161,12 +161,13 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <%= link_to new_users_payment_path(status: "pro", payment_method: "paypal"), class: 'pay-button' do %>
+                <div class="pay-button" id="paypal-button">
                   <%= image_tag "paypal-logo.png", class: "payment-logo" %>
-                <% end %>
+                </div>
+
               </div>
               <div class="col-md-6 text-center">
-                <%= link_to new_users_payment_path(status: "pro", payment_method: "baokim"), class: 'pay-button' do %>
+                <%= link_to new_users_upgrade_payment_path(status: "pro", payment_method: "baokim"), class: 'pay-button' do %>
                   <%= image_tag "baokim-logo-3.jpg", class: "payment-logo" %>
                 <% end %>
               </div>
@@ -189,12 +190,12 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <%= link_to new_users_payment_path(status: "pro_plus", payment_method: "paypal"), class: 'pay-button' do %>
+                <div class="pay-button" id="paypal-button2">
                   <%= image_tag "paypal-logo.png", class: "payment-logo" %>
-                <% end %>
+                </div>
               </div>
               <div class="col-md-6 text-center">
-                <%= link_to new_users_payment_path(status: "pro_plus", payment_method: "baokim"), class: 'pay-button' do %>
+                <%= link_to new_users_upgrade_payment_path(status: "pro_plus", payment_method: "baokim"), class: 'pay-button' do %>
                   <%= image_tag "baokim-logo-3.jpg", class: "payment-logo" %>
                 <% end %>
               </div>
@@ -504,4 +505,80 @@
       todayHighlight: true,
     });
   });
+</script>
+<script>
+    paypal.Button.render({
+      env: 'sandbox', // Or 'sandbox',
+
+      commit: true, // Show a 'Pay Now' button
+
+      payment: function() {
+        var CREATE_URL = 'https://94170c55.ngrok.io/paypal_create?type=pro';
+
+        return paypal.request.post(CREATE_URL).then(function(res) {
+          return res.id;
+        });
+      },
+
+      onAuthorize: function(data) {
+        var EXECUTE_URL = 'https://94170c55.ngrok.io/payment_return?user_id=<%= current_user.id %>&type=pro';
+
+        var params = {
+          paymentID: data.paymentID,
+          payerID: data.payerID
+        };
+
+        return paypal.request.post(EXECUTE_URL, params);
+      },
+
+      onCancel: function(data, actions) {
+        /*
+         * Buyer cancelled the payment
+         */
+      },
+
+      onError: function(err) {
+        /*
+         * An error occurred during the transaction
+         */
+      }
+    }, '#paypal-button');
+</script>
+<script>
+    paypal.Button.render({
+      env: 'sandbox', // Or 'sandbox',
+
+      commit: true, // Show a 'Pay Now' button
+
+      payment: function() {
+        var CREATE_URL = 'https://94170c55.ngrok.io/paypal_create?type=plus';
+
+        return paypal.request.post(CREATE_URL).then(function(res) {
+          return res.id;
+        });
+      },
+
+      onAuthorize: function(data) {
+        var EXECUTE_URL = 'https://94170c55.ngrok.io/payment_return?user_id=<%= current_user.id %>&type=plus';
+
+        var params = {
+          paymentID: data.paymentID,
+          payerID: data.payerID
+        };
+
+        return paypal.request.post(EXECUTE_URL, params);
+      },
+
+      onCancel: function(data, actions) {
+        /*
+         * Buyer cancelled the payment
+         */
+      },
+
+      onError: function(err) {
+        /*
+         * An error occurred during the transaction
+         */
+      }
+    }, '#paypal-button2');
 </script>

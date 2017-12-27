@@ -1,4 +1,4 @@
-class Payment < ApplicationRecord
+class UpgradePayment < ApplicationRecord
   belongs_to :user
   enum payment_type: [:paypal, :baokim]
 
