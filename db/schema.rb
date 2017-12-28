@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20171226163506) do
     t.string "title_layout"
     t.text "seo_keyword"
     t.string "google_form_url"
+    t.boolean "is_builded", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
