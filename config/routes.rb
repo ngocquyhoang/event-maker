@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :dashboard, only: [:index]
     resources :events
-    resources :payment
+    resources :upgrade_payment
     
     post 'cost_managements/events/:id', to: 'cost_managements#create', as: 'cost_managements_create'
     post 'events/:id/build', to: 'events#event_build', as: 'event_build'
@@ -70,4 +70,6 @@ Rails.application.routes.draw do
   get ':username', to: 'users#show', as: :user
 
   post "/hook" => "users/payment#hook"
+  post "/payment_return" => "users/upgrade_payment#paypal_return"
+  post "/paypal_create" => "users/upgrade_payment#create"
 end

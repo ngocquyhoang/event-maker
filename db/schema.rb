@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117034226) do
+ActiveRecord::Schema.define(version: 20171226163506) do
 
   create_table "admin_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "to_email"
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.string "title_layout"
     t.text "seo_keyword"
     t.string "google_form_url"
-    t.boolean "is_builded", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,7 +95,14 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reply_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "message_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "upgrade_payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "notification_params"
     t.integer "user_id"
     t.string "description"
@@ -105,13 +111,6 @@ ActiveRecord::Schema.define(version: 20171117034226) do
     t.string "amount"
     t.integer "payment_type"
     t.datetime "purchased_at"
-  end
-
-  create_table "reply_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "message_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

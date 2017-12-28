@@ -26,6 +26,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'faker'
 gem 'codemirror-rails'
 gem 'unicode_utils'
+gem 'paypal-sdk-rest'
 
 gem 'capistrano-rails', group: :development
 
