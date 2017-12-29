@@ -23,8 +23,8 @@ class Users::UpgradePaymentController < ApplicationController
       :payer =>  {
        :payment_method =>  "paypal" },
       :redirect_urls => {
-       :return_url => "https://94170c55.ngrok.io",
-       :cancel_url => "https://94170c55.ngrok.io" },
+       :return_url => "https://zevent.date",
+       :cancel_url => "https://zevent.date" },
       :transactions =>  [{
         :item_list => {
           :items => [{

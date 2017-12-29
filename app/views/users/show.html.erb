@@ -162,9 +162,8 @@
             <div class="row">
               <div class="col-md-6 text-center">
                 <div class="pay-button" id="paypal-button">
-                  <%= image_tag "paypal-logo.png", class: "payment-logo" %>
+                  <%#= image_tag "paypal-logo.png", class: "payment-logo" %>
                 </div>
-
               </div>
               <div class="col-md-6 text-center">
                 <%= link_to new_users_upgrade_payment_path(status: "pro", payment_method: "baokim"), class: 'pay-button' do %>
@@ -513,7 +512,7 @@
       commit: true, // Show a 'Pay Now' button
 
       payment: function() {
-        var CREATE_URL = 'https://94170c55.ngrok.io/paypal_create?type=pro';
+        var CREATE_URL = 'https://zevent.date/paypal_create?type=pro';
 
         return paypal.request.post(CREATE_URL).then(function(res) {
           return res.id;
@@ -521,7 +520,7 @@
       },
 
       onAuthorize: function(data) {
-        var EXECUTE_URL = 'https://94170c55.ngrok.io/payment_return?user_id=<%= current_user.id %>&type=pro';
+        var EXECUTE_URL = 'https://zevent.date/payment_return?user_id=<%= current_user.id %>&type=pro';
 
         var params = {
           paymentID: data.paymentID,
@@ -551,7 +550,7 @@
       commit: true, // Show a 'Pay Now' button
 
       payment: function() {
-        var CREATE_URL = 'https://94170c55.ngrok.io/paypal_create?type=plus';
+        var CREATE_URL = 'https://zevent.date/paypal_create?type=plus';
 
         return paypal.request.post(CREATE_URL).then(function(res) {
           return res.id;
@@ -559,7 +558,7 @@
       },
 
       onAuthorize: function(data) {
-        var EXECUTE_URL = 'https://94170c55.ngrok.io/payment_return?user_id=<%= current_user.id %>&type=plus';
+        var EXECUTE_URL = 'https://zevent.date/payment_return?user_id=<%= current_user.id %>&type=plus';
 
         var params = {
           paymentID: data.paymentID,
