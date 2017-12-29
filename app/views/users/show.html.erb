@@ -507,9 +507,9 @@
 </script>
 <script>
     paypal.Button.render({
-      env: 'sandbox', // Or 'sandbox',
+      env: 'sandbox', 
 
-      commit: true, // Show a 'Pay Now' button
+      commit: true,
 
       payment: function() {
         var CREATE_URL = 'https://zevent.date/paypal_create?type=pro';
@@ -528,31 +528,22 @@
         };
 
         return paypal.request.post(EXECUTE_URL, params);
-
-        console.log('1');
-
-        setTimeout(function(){ location.reload(true); }, 2000);
-        
       },
 
       onCancel: function(data, actions) {
-        /*
-         * Buyer cancelled the payment
-         */
+        
       },
 
       onError: function(err) {
-        /*
-         * An error occurred during the transaction
-         */
+        
       }
     }, '#paypal-button-upgrade-pro');
 </script>
 <script>
     paypal.Button.render({
-      env: 'sandbox', // Or 'sandbox',
+      env: 'sandbox', 
 
-      commit: true, // Show a 'Pay Now' button
+      commit: true, 
 
       payment: function() {
         var CREATE_URL = 'https://zevent.date/paypal_create?type=plus';
@@ -574,15 +565,11 @@
       },
 
       onCancel: function(data, actions) {
-        /*
-         * Buyer cancelled the payment
-         */
+        
       },
 
       onError: function(err) {
-        /*
-         * An error occurred during the transaction
-         */
+        
       }
     }, '#paypal-button-upgrade-pro-plus');
 </script>
