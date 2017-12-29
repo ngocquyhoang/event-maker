@@ -161,7 +161,7 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <div class="pay-button" id="paypal-button">
+                <div class="pay-button" id="paypal-button-upgrade-pro">
                   <%#= image_tag "paypal-logo.png", class: "payment-logo" %>
                 </div>
               </div>
@@ -189,8 +189,8 @@
             <h5><span>pay with</span></h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <div class="pay-button" id="paypal-button2">
-                  <%= image_tag "paypal-logo.png", class: "payment-logo" %>
+                <div class="pay-button" id="paypal-button-upgrade-pro-plus">
+                  <%#= image_tag "paypal-logo.png", class: "payment-logo" %>
                 </div>
               </div>
               <div class="col-md-6 text-center">
@@ -541,7 +541,7 @@
          * An error occurred during the transaction
          */
       }
-    }, '#paypal-button');
+    }, '#paypal-button-upgrade-pro');
 </script>
 <script>
     paypal.Button.render({
@@ -579,5 +579,5 @@
          * An error occurred during the transaction
          */
       }
-    }, '#paypal-button2');
+    }, '#paypal-button-upgrade-pro-plus');
 </script>

@@ -60,7 +60,7 @@ class Users::UpgradePaymentController < ApplicationController
           name = "Event maker Professional package By Baokim"
         when  "pro_plus"
           amount = 4540000
-          name = "Event maker Professional Plus package By Baokim"
+          name = "Event maker Professional Plus By Baokim"
       end
       redirect_to @payment.baokim_url amount, name, current_user.id, users_dashboard_index_path
     end
