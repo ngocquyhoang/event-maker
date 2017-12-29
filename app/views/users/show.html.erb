@@ -534,10 +534,10 @@
           payerID: data.payerID
         };
 
-        return paypal.request.post(EXECUTE_URL, params).then(function(res) {
-          console.log(1);
-          setTimeout(function(){ location.reload(true); }, 2000);
-        });
+        return paypal.request.post(EXECUTE_URL, params)
+          .then(function (res) {
+              window.alert('Payment Complete!');
+          });
       },
 
       onCancel: function(data, actions) {
