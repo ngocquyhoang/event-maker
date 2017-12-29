@@ -509,6 +509,13 @@
     paypal.Button.render({
       env: 'sandbox', 
 
+      style: {
+        label: 'checkout',
+        size:  'medium',
+        shape: 'pill',
+        color: 'blue'
+      },
+
       commit: true,
 
       payment: function() {
@@ -527,7 +534,10 @@
           payerID: data.payerID
         };
 
-        return paypal.request.post(EXECUTE_URL, params);
+        return paypal.request.post(EXECUTE_URL, params).then(function(res) {
+          console.log(1);
+          setTimeout(function(){ location.reload(true); }, 2000);
+        });
       },
 
       onCancel: function(data, actions) {
@@ -542,6 +552,13 @@
 <script>
     paypal.Button.render({
       env: 'sandbox', 
+
+      style: {
+        label: 'checkout',
+        size:  'medium',
+        shape: 'pill',
+        color: 'blue'
+      },
 
       commit: true, 
 
@@ -562,7 +579,7 @@
         };
 
         return paypal.request.post(EXECUTE_URL, params);
-      },
+      },  
 
       onCancel: function(data, actions) {
         
