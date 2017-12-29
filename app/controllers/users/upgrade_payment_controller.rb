@@ -109,9 +109,9 @@ class Users::UpgradePaymentController < ApplicationController
         user.update_attributes acc_state: 2
       end
 
-      respond_to do |format|
-        format.js {}
-      end
+      # respond_to do |format|
+      #   format.js {}
+      # end
 
       # redirect_to user_path user.username, format: 'html'
     else

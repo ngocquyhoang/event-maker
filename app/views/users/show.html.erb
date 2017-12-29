@@ -528,6 +528,11 @@
         };
 
         return paypal.request.post(EXECUTE_URL, params);
+
+        console.log('1');
+
+        setTimeout(function(){ location.reload(true); }, 2000);
+        
       },
 
       onCancel: function(data, actions) {
