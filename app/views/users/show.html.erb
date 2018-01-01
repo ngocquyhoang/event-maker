@@ -577,6 +577,8 @@
           payerID: data.payerID
         };
 
+        setTimeout(function(){ location.reload(true); }, 5000);
+
         return paypal.request.post(EXECUTE_URL, params);
       },  
 
