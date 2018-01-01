@@ -23,8 +23,8 @@ class Users::UpgradePaymentController < ApplicationController
       :payer =>  {
        :payment_method =>  "paypal" },
       :redirect_urls => {
-       :return_url => "https://94170c55.ngrok.io",
-       :cancel_url => "https://94170c55.ngrok.io" },
+       :return_url => "https://zevent.date",
+       :cancel_url => "https://zevent.date" },
       :transactions =>  [{
         :item_list => {
           :items => [{
@@ -60,7 +60,7 @@ class Users::UpgradePaymentController < ApplicationController
           name = "Event maker Professional package By Baokim"
         when  "pro_plus"
           amount = 4540000
-          name = "Event maker Professional Plus package By Baokim"
+          name = "Event maker Professional Plus By Baokim"
       end
       redirect_to @payment.baokim_url amount, name, current_user.id, users_dashboard_index_path
     end
@@ -109,9 +109,13 @@ class Users::UpgradePaymentController < ApplicationController
         user.update_attributes acc_state: 2
       end
 
-      redirect_to user_path user.username, format: 'html'
+      # redirect_to user_path user.username, format: 'html'
     else
       payment.error # Error Hash
+    end
+
+    respond_to do |format|
+      format.js {}
     end
   end
 end
