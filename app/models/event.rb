@@ -50,7 +50,7 @@ class Event < ApplicationRecord
   def build_host
     create_host_cmd = "sudo virtualhost create " + self.slug + ".zevent.date"
     system(create_host_cmd)
-    create_ssl_cmd = "sudo certbot --apache --redirect -d " + self.slug + ".zevent.date"
+    create_ssl_cmd = "sudo certbot --authenticator webroot --webroot-path /var/www/zevent/" + self.slug + "zeventdate --installer apache --redirect -d " + self.slug + ".zevent.date"
     system(create_ssl_cmd)
 
     create_html_file_cmd = "sudo touch /var/www/zevent/" + self.slug + "zeventdate/index.html"
