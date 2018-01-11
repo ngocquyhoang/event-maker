@@ -18,7 +18,7 @@ class CreateEvent < ActiveRecord::Migration[5.1]
       t.integer :expense
       t.string :title_layout
       t.text :seo_keyword
-      t.string :google_form_url
+      t.text :google_form_url
       t.boolean :is_builded,        default: false, null: false
 
       t.timestamps
