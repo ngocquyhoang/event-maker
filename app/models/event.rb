@@ -75,6 +75,7 @@ class Event < ApplicationRecord
     html_code.gsub!( "zevent_title_layout", self.title_layout )
     html_code.gsub!( "zevent_seo_keyword", self.seo_keyword )
     html_code.gsub!( "zevent_google_form_url", self.google_form_url )
+    html_code.gsub!( "zevent_user_email", self.user.email )
     css_code = self.layout.css
     javascript_code = self.layout.javascript
     
